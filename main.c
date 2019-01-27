@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-void	error()
+static void	error()
 {
 	ft_putstr("Usage: ./fractol fractal_type\n");
 	ft_putstr("Available fractals:	* Julia\n");
@@ -10,15 +10,15 @@ void	error()
 
 int	main(int ac, char **av)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	t_graphic	*ptr;
 
 	if (ac != 2 || (ft_strcmp(av[1], "Julia") && ft_strcmp(av[1], "Mandelbrot")))
 		error();
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, WIDTH, HEIGHT, "fractol");
+	ptr->mlx = mlx_init();
+	ptr->win = mlx_new_window(ptr->mlx, WIDTH, HEIGHT, "fractol");
 	if (!strcmp(av[1], "Mandelbrot"))
 	{
-		mlx_loop(mlx_ptr);
+		mandelbrot(*ptr);
+		mlx_loop(ptr->mlx);
 	}
 }

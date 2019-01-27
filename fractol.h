@@ -24,8 +24,19 @@
 
 # define WIDTH 800
 # define HEIGHT 500
+# define MAX_ITER 15
 
-struct			s_point
+typedef struct		s_graphic
+{
+	void*		mlx;
+	void*		win;
+	int		color;
+}			t_graphic;
+
+void	mandelbrot(t_graphic ptr);
+int	rgb_map(int r, int g, int b);
+
+typedef struct		s_point
 {
 	double		x;
 	double		y;
