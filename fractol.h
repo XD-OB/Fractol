@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 06:31:41 by obelouch          #+#    #+#             */
-/*   Updated: 2019/01/26 06:53:30 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/01/27 21:45:13 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct		s_graphic
 {
 	void*		mlx;
 	void*		win;
-	int		color;
 }			t_graphic;
 
 void	mandelbrot(t_graphic ptr);

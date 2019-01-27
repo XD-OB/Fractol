@@ -10,15 +10,15 @@ static void	error()
 
 int	main(int ac, char **av)
 {
-	t_graphic	*ptr;
+	t_graphic	ptr;
 
 	if (ac != 2 || (ft_strcmp(av[1], "Julia") && ft_strcmp(av[1], "Mandelbrot")))
 		error();
-	ptr->mlx = mlx_init();
-	ptr->win = mlx_new_window(ptr->mlx, WIDTH, HEIGHT, "fractol");
+	ptr.mlx = mlx_init();
+	ptr.win = mlx_new_window(ptr.mlx, WIDTH, HEIGHT, "fractol");
 	if (!strcmp(av[1], "Mandelbrot"))
 	{
-		mandelbrot(*ptr);
-		mlx_loop(ptr->mlx);
+		mandelbrot(ptr);
+		mlx_loop(ptr.mlx);
 	}
 }

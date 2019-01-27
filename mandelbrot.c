@@ -35,7 +35,7 @@ void	mandelbrot(t_graphic ptr)
 				k++;
 			}
 			if (k < MAX_ITER)
-				mlx_pixel_put(ptr.mlx, ptr.win, j, i, rgb_map(k * 20 + 50 > 256 ? 255 : k * 20 + 50, 0, 0));
+				mlx_pixel_put(ptr.mlx, ptr.win, j, i, rgb_map(k * 20 + 50 > 255 ? 255 : k * 20 + 50, 0, 0));
 			else
 				mlx_pixel_put(ptr.mlx, ptr.win, j, i, 0);
 			j++;
