@@ -8,7 +8,7 @@ void	julia(t_graphic ptr)
 	float	y;
 	float	xn;
 	float	yn;
-	float	k;
+	int	k;
 	float	mod_z_2;
 	int	i;
 	int	j;
@@ -35,7 +35,7 @@ void	julia(t_graphic ptr)
 				k++;
 			}
 			if (k < ptr.max_iter)
-				mlx_pixel_put(ptr.mlx, ptr.win, j, i, rgb_map(k * 20 + 50 > 255 ? 255 : k * 20 + 50, 0, 0));
+				mlx_pixel_put(ptr.mlx, ptr.win, j, i, ptr.map[k % 16].color);
 			else
 				mlx_pixel_put(ptr.mlx, ptr.win, j, i, 0);
 			j++;
