@@ -25,26 +25,21 @@
 # define WIDTH 800
 # define HEIGHT 500
 
-typedef struct		s_color
-{
-	int		r;
-	int		g;
-	int		b;
-	int		color;
-}			t_color;
-
 typedef struct		s_graphic
 {
 	void*		mlx;
 	void*		win;
 	int		max_iter;
-	t_color		map[16];
+	int		map[16];
+	int		palette;
+	int		design;
 }			t_graphic;
 
 void	mandelbrot(t_graphic ptr);
 void	julia(t_graphic ptr);
 int	rgb_map(int r, int g, int b);
 void	init_ptr(t_graphic *ptr);
+int	ft_tabsize(int map[16]);
 
 typedef struct		s_point
 {
