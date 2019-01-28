@@ -16,9 +16,10 @@ int	main(int ac, char **av)
 		error();
 	ptr.mlx = mlx_init();
 	ptr.win = mlx_new_window(ptr.mlx, WIDTH, HEIGHT, "fractol");
+	ptr.max_iter = 300;
 	if (!strcmp(av[1], "Mandelbrot"))
-	{
 		mandelbrot(ptr);
-		mlx_loop(ptr.mlx);
-	}
+	if (!strcmp(av[1], "Julia"))
+		julia(ptr);
+	mlx_loop(ptr.mlx);
 }

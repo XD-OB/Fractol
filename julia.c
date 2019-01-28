@@ -1,9 +1,9 @@
 #include "fractol.h"
 
-void	mandelbrot(t_graphic ptr)
+void	julia(t_graphic ptr)
 {
-	float	x_c;
-	float	y_c;
+	float	re_c;
+	float	im_c;
 	float	x;
 	float	y;
 	float	xn;
@@ -13,22 +13,22 @@ void	mandelbrot(t_graphic ptr)
 	int	i;
 	int	j;
 
+	re_c = -0.7;
+	im_c = 0.27015;
 	i = 0;
 	while (i < HEIGHT)
 	{
-		y_c = (i - HEIGHT/2.0) * 4/WIDTH;
 		j = 0;
 		while (j < WIDTH)
 		{
-			x_c = (j - WIDTH/2.0) * 4/WIDTH;
-			x = 0;
-			y = 0;
+			y = (i - HEIGHT/2.0) * 4/WIDTH;
+			x = (j - WIDTH/2.0) * 4/WIDTH;
 			k = 0;
 			mod_z_2 = 0;
 			while (mod_z_2 <= 4 && k < ptr.max_iter)
 			{
-				xn = pow(x, 2) - pow(y, 2) + x_c;
-				yn = 2 * x * y + y_c;
+				xn = pow(x, 2) - pow(y, 2) + re_c;
+				yn = 2 * x * y + im_c;
 				x = xn;
 				y = yn;
 				mod_z_2 = pow(x, 2) + pow(y, 2);

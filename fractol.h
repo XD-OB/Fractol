@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 06:31:41 by obelouch          #+#    #+#             */
-/*   Updated: 2019/01/27 21:45:13 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/01/27 23:38:40 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,16 @@
 
 # define WIDTH 800
 # define HEIGHT 500
-# define MAX_ITER 15
 
 typedef struct		s_graphic
 {
 	void*		mlx;
 	void*		win;
+	int			max_iter;
 }			t_graphic;
 
 void	mandelbrot(t_graphic ptr);
+void	julia(t_graphic ptr);
 int	rgb_map(int r, int g, int b);
 
 typedef struct		s_point
