@@ -50,6 +50,15 @@ typedef struct		s_complex
 	float		im;
 }			t_complex;
 
+typedef struct		s_image
+{
+	void		*void_ptr;
+	char		*img;
+	int		bpp;
+	int		s_l;
+	int		endian;
+}			t_image;
+
 typedef struct		s_graphic
 {
 	void*		mlx;
@@ -60,6 +69,7 @@ typedef struct		s_graphic
 	int		design;
 	int		type;
 	float		zoom;
+	t_image		image;
 }			t_graphic;
 
 void		fractal(t_graphic ptr);
@@ -68,8 +78,11 @@ void		julia(t_graphic ptr);
 int		rgb_map(int r, int g, int b);
 void		init_ptr(t_graphic *ptr);
 int		ft_tabsize(int map[16]);
-t_complex	complex(float a, float b);
+t_complex	complex(double a, double b);
 float		mod(t_complex z);
+void		init_img(t_graphic *ptr);
+void		img_put_pixel(t_graphic *ptr, double x, double y, int color);
+void		img_clear(t_graphic *ptr);
 int		key_event(int keycode, t_graphic *ptr);
 
 typedef struct		s_point

@@ -5,7 +5,7 @@ int	rgb_map(int r, int g, int b)
 	return ((r<<16 & 0xFF0000) | (g<<8 & 0x00FF00) | (b & 0x0000FF));	
 }
 
-t_complex	complex(float a, float b)
+t_complex	complex(double a, double b)
 {
 	t_complex	z;
 

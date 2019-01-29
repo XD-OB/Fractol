@@ -40,6 +40,7 @@ void	init_ptr(t_graphic *ptr)
 	ptr->design = 2;
 	palette_color(ptr);
 	ptr->zoom = 1;
+	init_img(ptr);
 }
 
 void	fractal(t_graphic ptr)
@@ -48,6 +49,7 @@ void	fractal(t_graphic ptr)
 		mandelbrot(ptr);
 	else if (ptr.type == JULIA)
 		julia(ptr);
+	mlx_put_image_to_window(ptr, ptr.win, ptr.image.void_ptr, 0, 0);
 }
 
 int	main(int ac, char **av)
