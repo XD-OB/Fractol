@@ -2,37 +2,28 @@
 
 void	mandelbrot(t_graphic ptr)
 {
-	float	x_c;
-	float	y_c;
-	float	x;
-	float	y;
-	float	xn;
-	float	yn;
+	t_complex	c;
+	t_complex	z;
+	t_complex	z1;
 	int	k;
-	float	mod_z_2;
 	int	i;
 	int	j;
 
 	i = 0;
 	while (i < HEIGHT)
 	{
-		y_c = (i - HEIGHT/2.0) * 4/WIDTH;
+		c.im = (i - HEIGHT/2.0) * 4/WIDTH;
 		j = 0;
 		while (j < WIDTH)
 		{
-			x_c = (j - WIDTH/2.0) * 4/WIDTH;
-			x = 0;
-			y = 0;
-			k = 0;
-			mod_z_2 = 0;
-			while (mod_z_2 <= 4 && k < ptr.max_iter)
+			c.re = (j - WIDTH/2.0) * 4/WIDTH;
+			z = complex(0, 0);
+			k = -1;
+			while (mod(z) <= 2 && ++k < ptr.max_iter)
 			{
-				xn = pow(x, 2) - pow(y, 2) + x_c;
-				yn = 2 * x * y + y_c;
-				x = xn;
-				y = yn;
-				mod_z_2 = pow(x, 2) + pow(y, 2);
-				k++;
+				z1.re = pow(z.re, 2) - pow(z.im, 2) + c.re;
+				z1.im = 2 * z.re * z.im + c.im;
+				z = z1;
 			}
 			if (k < ptr.max_iter)
 			{

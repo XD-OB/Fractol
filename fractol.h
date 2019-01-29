@@ -25,6 +25,12 @@
 # define WIDTH 800
 # define HEIGHT 500
 
+typedef struct		s_complex
+{
+	float		re;
+	float		im;
+}			t_complex;
+
 typedef struct		s_graphic
 {
 	void*		mlx;
@@ -35,11 +41,13 @@ typedef struct		s_graphic
 	int		design;
 }			t_graphic;
 
-void	mandelbrot(t_graphic ptr);
-void	julia(t_graphic ptr);
-int	rgb_map(int r, int g, int b);
-void	init_ptr(t_graphic *ptr);
-int	ft_tabsize(int map[16]);
+void		mandelbrot(t_graphic ptr);
+void		julia(t_graphic ptr);
+int		rgb_map(int r, int g, int b);
+void		init_ptr(t_graphic *ptr);
+int		ft_tabsize(int map[16]);
+t_complex	complex(float a, float b);
+float		mod(t_complex z);
 
 typedef struct		s_point
 {

@@ -2,37 +2,28 @@
 
 void	julia(t_graphic ptr)
 {
-	float	re_c;
-	float	im_c;
-	float	x;
-	float	y;
-	float	xn;
-	float	yn;
-	int	k;
-	float	mod_z_2;
-	int	i;
-	int	j;
+	t_complex	c;
+	t_complex	z;
+	t_complex	z1;
+	int		k;
+	int		i;
+	int		j;
 
-	re_c = -0.7;
-	im_c = 0.27015;
 	i = 0;
+	c = complex(-0.7, 0.27015);
 	while (i < HEIGHT)
 	{
 		j = 0;
 		while (j < WIDTH)
 		{
-			y = (i - HEIGHT/2.0) * 4/WIDTH;
-			x = (j - WIDTH/2.0) * 4/WIDTH;
-			k = 0;
-			mod_z_2 = 0;
-			while (mod_z_2 <= 4 && k < ptr.max_iter)
+			z.im = (i - HEIGHT/2.0) * 4/WIDTH;
+			z.re = (j - WIDTH/2.0) * 4/WIDTH;
+			k = -1;
+			while (mod(z) <= 2 && ++k < ptr.max_iter)
 			{
-				xn = pow(x, 2) - pow(y, 2) + re_c;
-				yn = 2 * x * y + im_c;
-				x = xn;
-				y = yn;
-				mod_z_2 = pow(x, 2) + pow(y, 2);
-				k++;
+				z1.re = pow(z.re, 2) - pow(z.im, 2) + c.re;
+				z1.im = 2 * z.re * z.im + c.im;
+				z = z1;
 			}
 			if (k < ptr.max_iter)
 			{
@@ -42,6 +33,10 @@ void	julia(t_graphic ptr)
 				{
 					if (ptr.design == 1)
 						mlx_pixel_put(ptr.mlx, ptr.win, j, i, rgb_map(k * 2, k * 10, k * 5));
+				else if (ptr.design == 2)
+						mlx_pixel_put(ptr.mlx, ptr.win, j, i, rgb_map(sin(0.3 * k) * 127 + 128, sin(0.3*k+2)*127+128, sin(0.3*k+4)*127+128));
+					else if (ptr.design == 3)
+						mlx_pixel_put(ptr.mlx, ptr.win, j, i, rgb_map(sin(0.1 * k) * 127 + 128, sin(0.2*k)*127+128, sin(0.3*k)*127+128));
 				}
 			}
 			else
