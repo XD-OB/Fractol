@@ -42,6 +42,10 @@ void	mandelbrot(t_graphic ptr)
 				{
 					if (ptr.design == 1)
 						mlx_pixel_put(ptr.mlx, ptr.win, j, i, rgb_map(k * 2, k * 10, k * 5));
+					else if (ptr.design == 2)
+						mlx_pixel_put(ptr.mlx, ptr.win, j, i, rgb_map(sin(0.3 * k) * 127 + 128, sin(0.3*k+2)*127+128, sin(0.3*k+4)*127+128));
+					else if (ptr.design == 3)
+						mlx_pixel_put(ptr.mlx, ptr.win, j, i, rgb_map(sin(0.1 * k) * 127 + 128, sin(0.2*k)*127+128, sin(0.3*k)*127+128));
 				}
 			}
 			else

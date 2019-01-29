@@ -36,8 +36,8 @@ void	init_ptr(t_graphic *ptr)
 	ptr->mlx = mlx_init();
 	ptr->win = mlx_new_window(ptr->mlx, WIDTH, HEIGHT, "fractol");
 	ptr->max_iter = 300;
-	ptr->palette = 1;
-	ptr->design = 0;
+	ptr->palette = 0;
+	ptr->design = 3;
 	palette_color(ptr);
 	
 }
