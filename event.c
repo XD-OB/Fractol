@@ -26,6 +26,10 @@ int	key_event(int keycode, t_graphic *ptr)
 		ptr->max_iter += 10;
 	else if (keycode == K_MINUS)
 		ptr->max_iter -= 10;
+	else if (keycode == K_2)
+		ptr->zoom -= 0.1;
+	else if (keycode == K_1)
+		ptr->zoom += 0.1;
 	else if (keycode == K_SPACE)
 		init_ptr(ptr);
 	mlx_clear_window(ptr->mlx, ptr->win);

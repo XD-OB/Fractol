@@ -35,6 +35,8 @@
 # define K_PLUS 69
 # define K_SPACE 49
 # define K_C 8
+# define K_1 83
+# define K_2 84
 
 enum
 {
@@ -57,6 +59,7 @@ typedef struct		s_graphic
 	int		palette;
 	int		design;
 	int		type;
+	float		zoom;
 }			t_graphic;
 
 void		fractal(t_graphic ptr);

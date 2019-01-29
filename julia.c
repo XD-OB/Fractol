@@ -16,8 +16,8 @@ void	julia(t_graphic ptr)
 		j = 0;
 		while (j < WIDTH)
 		{
-			z.im = (i - HEIGHT/2.0) * 4/WIDTH;
-			z.re = (j - WIDTH/2.0) * 4/WIDTH;
+			z.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr.zoom;
+			z.re = (j - WIDTH/2.0) * 4/WIDTH * ptr.zoom;
 			k = -1;
 			while (mod(z) <= 2 && ++k < ptr.max_iter)
 			{

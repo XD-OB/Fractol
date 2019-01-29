@@ -12,11 +12,11 @@ void	mandelbrot(t_graphic ptr)
 	i = 0;
 	while (i < HEIGHT)
 	{
-		c.im = (i - HEIGHT/2.0) * 4/WIDTH;
+		c.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr.zoom;
 		j = 0;
 		while (j < WIDTH)
 		{
-			c.re = (j - WIDTH/2.0) * 4/WIDTH;
+			c.re = (j - WIDTH/2.0) * 4/WIDTH * ptr.zoom;
 			z = complex(0, 0);
 			k = -1;
 			while (mod(z) <= 2 && ++k < ptr.max_iter)

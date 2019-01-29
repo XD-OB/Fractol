@@ -38,7 +38,8 @@ void	init_ptr(t_graphic *ptr)
 	ptr->max_iter = 120;
 	ptr->palette = 0;
 	ptr->design = 2;
-	palette_color(ptr);	
+	palette_color(ptr);
+	ptr->zoom = 1;
 }
 
 void	fractal(t_graphic ptr)
