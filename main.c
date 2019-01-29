@@ -35,11 +35,18 @@ void	init_ptr(t_graphic *ptr)
 {
 	ptr->mlx = mlx_init();
 	ptr->win = mlx_new_window(ptr->mlx, WIDTH, HEIGHT, "fractol");
-	ptr->max_iter = 400;
+	ptr->max_iter = 120;
 	ptr->palette = 0;
 	ptr->design = 2;
-	palette_color(ptr);
-	
+	palette_color(ptr);	
+}
+
+void	fractal(t_graphic ptr)
+{
+	if (ptr.type == MANDELBROT)
+		mandelbrot(ptr);
+	else if (ptr.type == JULIA)
+		julia(ptr);
 }
 
 int	main(int ac, char **av)
@@ -50,8 +57,10 @@ int	main(int ac, char **av)
 		error();
 	init_ptr(&ptr);
 	if (!strcmp(av[1], "Mandelbrot"))
-		mandelbrot(ptr);
+		ptr.type = MANDELBROT;
 	if (!strcmp(av[1], "Julia"))
-		julia(ptr);
+		ptr.type = JULIA;
+	fractal(ptr);
+	mlx_key_hook(ptr.win, key_event, (void*)&ptr);
 	mlx_loop(ptr.mlx);
 }

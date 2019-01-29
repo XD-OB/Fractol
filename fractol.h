@@ -25,6 +25,23 @@
 # define WIDTH 800
 # define HEIGHT 500
 
+# define K_ESC 53
+# define K_UP 126
+# define K_DOWN 125
+# define K_RIGHT 124
+# define K_LEFT 123
+
+# define K_MINUS 78
+# define K_PLUS 69
+# define K_SPACE 49
+# define K_C 8
+
+enum
+{
+	JULIA,
+	MANDELBROT
+};
+
 typedef struct		s_complex
 {
 	float		re;
@@ -39,8 +56,10 @@ typedef struct		s_graphic
 	int		map[16];
 	int		palette;
 	int		design;
+	int		type;
 }			t_graphic;
 
+void		fractal(t_graphic ptr);
 void		mandelbrot(t_graphic ptr);
 void		julia(t_graphic ptr);
 int		rgb_map(int r, int g, int b);
@@ -48,6 +67,7 @@ void		init_ptr(t_graphic *ptr);
 int		ft_tabsize(int map[16]);
 t_complex	complex(float a, float b);
 float		mod(t_complex z);
+int		key_event(int keycode, t_graphic *ptr);
 
 typedef struct		s_point
 {
