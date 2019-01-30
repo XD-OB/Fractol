@@ -10,7 +10,8 @@ void	julia(t_graphic ptr)
 	int		j;
 
 	i = 0;
-	c = complex(-0.7, 0.27015);
+	//c = complex(-0.7, 0.27015);
+	c = complex(-0.9, 0.4);
 	while (i < HEIGHT)
 	{
 		j = 0;

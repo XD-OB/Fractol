@@ -26,7 +26,7 @@ HEAD = fractol.h
 
 OBJ = *.o
 
-LIB = -L ./mlx -lmlx -L ./libft -lft 
+LIB = -L ./mlx -lmlx -L ./libft -lft -lm -lpthread 
 
 FRAME = -framework OpenGL -framework Appkit
 

@@ -33,8 +33,6 @@ void	palette_color(t_graphic *ptr)
 
 void	init_ptr(t_graphic *ptr)
 {
-	ptr->mlx = mlx_init();
-	ptr->win = mlx_new_window(ptr->mlx, WIDTH, HEIGHT, "fractol");
 	ptr->max_iter = 120;
 	ptr->palette = 0;
 	ptr->design = 2;
@@ -58,6 +56,8 @@ int	main(int ac, char **av)
 
 	if (ac != 2 || (ft_strcmp(av[1], "Julia") && ft_strcmp(av[1], "Mandelbrot")))
 		error();
+	ptr.mlx = mlx_init();
+	ptr.win = mlx_new_window(ptr.mlx, WIDTH, HEIGHT, "fractol");
 	init_ptr(&ptr);
 	if (!strcmp(av[1], "Mandelbrot"))
 		ptr.type = MANDELBROT;

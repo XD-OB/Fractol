@@ -13,6 +13,7 @@
 #ifndef FRACTOL_H
 #define	FRACTOL_H
 
+# include <pthread.h>
 # include <stdio.h>
 # include <math.h>
 # include <unistd.h>
@@ -70,6 +71,7 @@ typedef struct		s_graphic
 	int		type;
 	float		zoom;
 	t_image		image;
+	t_complex	j_cte;
 }			t_graphic;
 
 int		design_color(t_graphic ptr, int k);
