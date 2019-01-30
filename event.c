@@ -24,6 +24,8 @@ int	key_event(int keycode, t_graphic *ptr)
 		switch_design(ptr);
 	else if (keycode == K_M && ptr->type == MANDELBROT)
 		ptr->m_puis++;
+	else if (keycode == K_N && ptr->m_puis >= 0 && ptr->type == MANDELBROT)
+		ptr->m_puis--;
 	else if (keycode == K_PLUS)
 		ptr->max_iter += 5;
 	else if (keycode == K_MINUS && ptr->max_iter > 10)

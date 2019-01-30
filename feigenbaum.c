@@ -1,7 +1,8 @@
 #include "fractol.h"
 
-void	mandelbrot(t_graphic ptr)
+void	feigenbaum(t_graphic ptr)
 {
+	t_complex	tmp;
 	t_complex	c;
 	t_complex	z;
 	t_complex	z1;
@@ -12,11 +13,13 @@ void	mandelbrot(t_graphic ptr)
 	i = 0;
 	while (i < HEIGHT)
 	{
-		c.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr.zoom;
+		tmp.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr.zoom;
 		j = 0;
 		while (j < WIDTH)
 		{
-			c.re = (j - WIDTH/2.0) * 4/WIDTH * ptr.zoom;
+			tmp.re = (j - WIDTH/2.0) * 4/WIDTH * ptr.zoom;
+			c.re = pow(tmp.re, 3) - 3 * tmp.re * pow(tmp.im, 2);
+			c.im = 3 * pow(tmp.re, 2) * tmp.im - pow(tmp.im, 3);
 			if (j < P(j, i) - 2 * pow(P(j, i), 2) + 1 / 4 || pow(j + 1, 2) + pow(i, 2) < 1/16)
 			{
 				img_put_pixel(&ptr, j, i, 0);
@@ -26,7 +29,7 @@ void	mandelbrot(t_graphic ptr)
 			k = -1;
 			while (mod(z) <= 2 && ++k < ptr.max_iter)
 			{
-				z1.re = pow((pow(z.re, 2) + pow(z.im, 2)), (ptr.m_puis / 2.0)) * cos(ptr.m_puis * atan2(z.im, z.re)) + c.re;
+				z1.re = pow((pow(z.re, 2) + pow(z.im, 2)), (ptr.m_puis / 2.0)) * cos(ptr.m_puis * atan2(z.im, z.re)) + c.re -1.401155;
 				z1.im = pow((pow(z.re, 2) + pow(z.im, 2)), (ptr.m_puis / 2.0)) * sin(ptr.m_puis * atan2(z.im, z.re)) + c.im;
 				z = z1;
 			}
