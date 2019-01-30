@@ -72,6 +72,7 @@ typedef struct		s_graphic
 	t_image		image;
 }			t_graphic;
 
+int		design_color(t_graphic ptr, int k);
 void		fractal(t_graphic *ptr);
 void		mandelbrot(t_graphic ptr);
 void		julia(t_graphic ptr);

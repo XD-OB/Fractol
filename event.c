@@ -31,7 +31,11 @@ int	key_event(int keycode, t_graphic *ptr)
 	else if (keycode == K_1)
 		ptr->zoom += 0.05;
 	else if (keycode == K_SPACE)
+	{
 		init_ptr(ptr);
+		fractal(ptr);
+		return (1);
+	}
 	//mlx_clear_window(ptr->mlx, ptr->win);
 	img_clear(ptr);
 	fractal(ptr);
