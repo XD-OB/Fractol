@@ -28,19 +28,19 @@ void	julia(t_graphic ptr)
 			if (k < ptr.max_iter)
 			{
 				if (ptr.design == 0 && ptr.palette != 0)
-					mlx_pixel_put(ptr.mlx, ptr.win, j, i, ptr.map[k % 16]);
+					img_put_pixel(&ptr, j, i, ptr.map[k % 16]);
 				else if (ptr.palette == 0)
 				{
 					if (ptr.design == 1)
-						mlx_pixel_put(ptr.mlx, ptr.win, j, i, rgb_map(k * 2, k * 10, k * 5));
+						img_put_pixel(&ptr, j, i, rgb_map(k * 2, k * 10, k * 5));
 				else if (ptr.design == 2)
-						mlx_pixel_put(ptr.mlx, ptr.win, j, i, rgb_map(sin(0.3 * k) * 127 + 128, sin(0.3*k+2)*127+128, sin(0.3*k+4)*127+128));
+						img_put_pixel(&ptr, j, i, rgb_map(sin(0.3 * k) * 127 + 128, sin(0.3*k+2)*127+128, sin(0.3*k+4)*127+128));
 					else if (ptr.design == 3)
-						mlx_pixel_put(ptr.mlx, ptr.win, j, i, rgb_map(sin(0.1 * k) * 127 + 128, sin(0.2*k)*127+128, sin(0.3*k)*127+128));
+						img_put_pixel(&ptr, j, i, rgb_map(sin(0.1 * k) * 127 + 128, sin(0.2*k)*127+128, sin(0.3*k)*127+128));
 				}
 			}
 			else
-				mlx_pixel_put(ptr.mlx, ptr.win, j, i, 0);
+				img_put_pixel(&ptr, j, i, 0);
 			j++;
 		}
 		i++;

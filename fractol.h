@@ -72,7 +72,7 @@ typedef struct		s_graphic
 	t_image		image;
 }			t_graphic;
 
-void		fractal(t_graphic ptr);
+void		fractal(t_graphic *ptr);
 void		mandelbrot(t_graphic ptr);
 void		julia(t_graphic ptr);
 int		rgb_map(int r, int g, int b);
