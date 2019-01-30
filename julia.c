@@ -19,8 +19,8 @@ void	julia(t_graphic ptr)
 			k = -1;
 			while (mod(z) <= 2 && ++k < ptr.max_iter)
 			{
-				z1.re = pow(z.re, 2) - pow(z.im, 2) + ptr.j_cte.re;
-				z1.im = 2 * z.re * z.im + ptr.j_cte.im;
+				z1.re = pow(pow(z.re, 2) + pow(z.im, 2), ptr.j_puis / 2) * cos(ptr.j_puis * atan2(z.im, z.re)) + ptr.j_cte.re;
+				z1.im = pow(pow(z.re, 2) + pow(z.im, 2), ptr.j_puis / 2) * sin(ptr.j_puis * atan2(z.im, z.re)) + ptr.j_cte.im;
 				z = z1;
 			}
 			if (k < ptr.max_iter)

@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 06:31:41 by obelouch          #+#    #+#             */
-/*   Updated: 2019/01/27 23:38:40 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/01/30 22:44:07 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,71 +47,71 @@
 # define K_I 34
 # define K_O 31
 # define K_P 35
+# define K_J 38
+# define K_K 40
 # define K_1 83
 # define K_2 84
+# define K_4 21
+# define K_5 23
 # define K_7 89
 # define K_8 91
+# define K_ACOLADE 33
 
 enum
 {
 	JULIA,
 	MANDELBROT,
 	DOUADY,
-	DENDRITE,
-	FEIGENBAUM
+	FEIGENBAUM,
+	NONE
 };
 
-typedef struct		s_complex
+typedef struct	s_complex
 {
 	float		re;
 	float		im;
-}			t_complex;
+}				t_complex;
 
-typedef struct		s_image
+typedef struct	s_image
 {
 	void		*void_ptr;
 	char		*img;
-	int		bpp;
-	int		s_l;
-	int		endian;
-}			t_image;
+	int			bpp;
+	int			s_l;
+	int			endian;
+}				t_image;
 
-typedef struct		s_graphic
+typedef struct	s_graphic
 {
 	void*		mlx;
 	void*		win;
-	int		max_iter;
-	int		map[16];
-	int		palette;
-	int		design;
-	int		type;
+	int			max_iter;
+	int			map[16];
+	int			palette;
+	int			design;
+	int			type;
 	float		zoom;
 	t_image		image;
 	t_complex	j_cte;
+	float		j_puis;
 	float		m_puis;
-}			t_graphic;
+}				t_graphic;
 
 void		palette_color(t_graphic *ptr);
-int		design_color(t_graphic ptr, int k);
+int			design_color(t_graphic ptr, int k);
+int			rgb_map(int r, int g, int b);
+void		error(void);
 void		fractal(t_graphic *ptr);
 void		mandelbrot(t_graphic ptr);
 void		feigenbaum(t_graphic ptr);
 void		julia(t_graphic ptr);
-int		rgb_map(int r, int g, int b);
 void		init_ptr(t_graphic *ptr);
-int		ft_tabsize(int map[16]);
 t_complex	complex(double a, double b);
 float		mod(t_complex z);
 void		init_img(t_graphic *ptr);
 void		img_put_pixel(t_graphic *ptr, double x, double y, int color);
 void		img_clear(t_graphic *ptr);
-int		key_event(int keycode, t_graphic *ptr);
+int			key_event(int keycode, t_graphic *ptr);
 
-typedef struct		s_point
-{
-	double		x;
-	double		y;
-	double		z;
-}				t_point;
 
 #endif

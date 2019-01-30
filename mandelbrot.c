@@ -16,12 +16,7 @@ void	mandelbrot(t_graphic ptr)
 		j = 0;
 		while (j < WIDTH)
 		{
-			c.re = (j - WIDTH/2.0) * 4/WIDTH * ptr.zoom;
-			if (j < P(j, i) - 2 * pow(P(j, i), 2) + 1 / 4 || pow(j + 1, 2) + pow(i, 2) < 1/16)
-			{
-				img_put_pixel(&ptr, j, i, 0);
-				continue;
-			}
+			c.re = (j - WIDTH/2.0) * 4/WIDTH * ptr.zoom;	
 			z = complex(0, 0);
 			k = -1;
 			while (mod(z) <= 2 && ++k < ptr.max_iter)
