@@ -38,6 +38,8 @@ void	init_ptr(t_graphic *ptr)
 	ptr->design = 2;
 	palette_color(ptr);
 	ptr->zoom = 1;
+	ptr->j_cte = complex(-0.7, 0.27015);
+	ptr->m_puis = 2;
 	init_img(ptr);
 }
 

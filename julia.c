@@ -2,7 +2,6 @@
 
 void	julia(t_graphic ptr)
 {
-	t_complex	c;
 	t_complex	z;
 	t_complex	z1;
 	int		k;
@@ -10,8 +9,6 @@ void	julia(t_graphic ptr)
 	int		j;
 
 	i = 0;
-	//c = complex(-0.7, 0.27015);
-	c = complex(-0.9, 0.4);
 	while (i < HEIGHT)
 	{
 		j = 0;
@@ -22,8 +19,8 @@ void	julia(t_graphic ptr)
 			k = -1;
 			while (mod(z) <= 2 && ++k < ptr.max_iter)
 			{
-				z1.re = pow(z.re, 2) - pow(z.im, 2) + c.re;
-				z1.im = 2 * z.re * z.im + c.im;
+				z1.re = pow(z.re, 2) - pow(z.im, 2) + ptr.j_cte.re;
+				z1.im = 2 * z.re * z.im + ptr.j_cte.im;
 				z = z1;
 			}
 			if (k < ptr.max_iter)

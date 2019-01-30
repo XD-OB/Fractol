@@ -26,6 +26,8 @@
 # define WIDTH 800
 # define HEIGHT 500
 
+# define JULIA_C 0.0005
+
 # define K_ESC 53
 # define K_UP 126
 # define K_DOWN 125
@@ -36,8 +38,16 @@
 # define K_PLUS 69
 # define K_SPACE 49
 # define K_C 8
+# define K_M 46
+# define K_Y 16
+# define K_U 32
+# define K_I 34
+# define K_O 31
+# define K_P 35
 # define K_1 83
 # define K_2 84
+# define K_7 89
+# define K_8 91
 
 enum
 {
@@ -72,6 +82,7 @@ typedef struct		s_graphic
 	float		zoom;
 	t_image		image;
 	t_complex	j_cte;
+	float		m_puis;
 }			t_graphic;
 
 int		design_color(t_graphic ptr, int k);
