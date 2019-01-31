@@ -1,18 +1,18 @@
 #include "fractol.h"
 
-void	julia(t_graphic ptr)
+static void	part_julia(t_graphic ptr, int p, int q)
 {
 	t_complex	z;
 	t_complex	z1;
 	int		k;
-	int		i;
-	int		j;
+	float		i;
+	float		j;
 
-	i = 0;
-	while (i < HEIGHT)
+	i = (HEIGHT * (p - 1)) / NBR_THREAD;
+	while (i < (HEIGHT * p) / NBR_THREAD)
 	{
-		j = 0;
-		while (j < WIDTH)
+		j = (WIDTH * (q - 1)) / NBR_THREAD;
+		while (j < (WIDTH * q) / NBR_THREAD)
 		{
 			z.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr.zoom;
 			z.re = (j - WIDTH/2.0) * 4/WIDTH * ptr.zoom;
@@ -26,9 +26,23 @@ void	julia(t_graphic ptr)
 			if (k < ptr.max_iter)
 				img_put_pixel(&ptr, j, i, design_color(ptr, k));
 			else
-				img_put_pixel(&ptr, j, i, 0);
+				img_put_pixel(&ptr, j, i, intern_color(ptr, k, mod(z)));
 			j++;
 		}
 		i++;
+	}
+}
+
+void		julia(t_graphic ptr)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (++i <= NBR_THREAD)
+	{
+		j = 0;
+		while (++j <= NBR_THREAD)
+			part_julia(ptr, i, j);
 	}
 }

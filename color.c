@@ -24,7 +24,7 @@ int	design_color(t_graphic ptr, int k)
 {
 	if (ptr.design == 0 && ptr.palette != 0)
 		return (ptr.map[k % 16]);
-	if (ptr.palette == 0)
+	else if (ptr.palette == 0)
 	{
 		if (ptr.design == 1)
 			return (rgb_map(k*2, k*10, k*5));
@@ -34,6 +34,24 @@ int	design_color(t_graphic ptr, int k)
 			return (rgb_map(sin(0.1 * k) * 127 + 128, sin(0.2*k)*127+128, sin(0.3*k)*127+128));
 	}
 	return (0);
+}
+
+int	intern_color(t_graphic ptr, int k, double m_z)
+{
+	if (ptr.intern == 0)
+		return 0;
+	else if (ptr.intern == 1)
+		return (rgb_map(255, 255, 255));
+	else if (ptr.intern == 2)
+		return (rgb_map(k * 100 * sin(m_z), k * sin(m_z), 50 * k));
+	else if (ptr.intern == 3)
+		return (rgb_map(m_z * 20, m_z * 5, m_z * 150));
+	else if (ptr.intern == 4)
+		return (rgb_map(m_z * 300, 0, m_z * 450));
+	else if (ptr.intern == 5)
+		return (rgb_map(sin(m_z) * 200, sin(m_z / 2) * 200, sin(m_z / 4) * 200));
+	else
+		return (0);
 }
 
 int	rgb_map(int r, int g, int b)

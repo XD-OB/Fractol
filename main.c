@@ -19,6 +19,9 @@ static void		fractal_type(t_graphic *ptr, char *str)
 
 void		fractal(t_graphic *ptr)
 {
+	int	i;
+	int	j;
+
 	if (ptr->type == FEIGENBAUM)
 		feigenbaum(*ptr);
 	if (ptr->type == MANDELBROT)

@@ -26,6 +26,7 @@
 # define WIDTH 800
 # define HEIGHT 500
 
+# define NBR_THREAD 3
 # define JULIA_C 0.0005
 
 # define P(x, y) sqrt(pow(x - 1 / 4, 2) + pow(y, 2))
@@ -49,6 +50,7 @@
 # define K_P 35
 # define K_J 38
 # define K_K 40
+# define K_X 7
 # define K_1 83
 # define K_2 84
 # define K_4 21
@@ -90,6 +92,7 @@ typedef struct	s_graphic
 	int			map[16];
 	int			palette;
 	int			design;
+	int			intern;
 	int			type;
 	float		zoom;
 	t_image		image;
@@ -100,6 +103,7 @@ typedef struct	s_graphic
 
 void		palette_color(t_graphic *ptr);
 int			design_color(t_graphic ptr, int k);
+int			intern_color(t_graphic ptr, int k, double m_z);
 int			rgb_map(int r, int g, int b);
 void		error(void);
 void		fractal(t_graphic *ptr);

@@ -14,8 +14,9 @@ void		error()
 void		init_ptr(t_graphic *ptr)
 {
 	ptr->max_iter = 100;
-	ptr->palette = 0;
-	ptr->design = 2;
+	ptr->palette = 1;
+	ptr->design = 0;
+	ptr->intern = 3;
 	palette_color(ptr);
 	ptr->zoom = 1;
 	ptr->j_cte = complex(-0.7, 0.27015);

@@ -16,6 +16,14 @@ static void	switch_design(t_graphic *ptr)
 	}
 }
 
+static void	switch_intern(t_graphic *ptr)
+{
+	if (ptr->intern == 5)
+		ptr->intern = 0;
+	else
+		ptr->intern++;
+}
+
 static void		julia_event(int keycode, t_graphic *ptr)
 {
 	if (keycode == K_K && ptr->type == JULIA)
@@ -58,6 +66,8 @@ int			key_event(int keycode, t_graphic *ptr)
 {
 	if (keycode == K_ESC)
 		exit(1);
+	else if (keycode == K_X)
+		switch_intern(ptr);
 	else if (keycode == K_C)
 		switch_design(ptr);
 	else if (keycode == K_PLUS)

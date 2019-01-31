@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-void	feigenbaum(t_graphic ptr)
+static void	part_feigen(t_graphic ptr, int p, int q)
 {
 	t_complex	tmp;
 	t_complex	c;
@@ -10,12 +10,12 @@ void	feigenbaum(t_graphic ptr)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < HEIGHT)
+	i = (HEIGHT * (p - 1)) / NBR_THREAD;
+	while (i < (HEIGHT * p) / NBR_THREAD)
 	{
 		tmp.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr.zoom;
-		j = 0;
-		while (j < WIDTH)
+		j = (WIDTH * (q - 1)) / NBR_THREAD;
+		while (j < (WIDTH * q) / NBR_THREAD)
 		{
 			tmp.re = (j - WIDTH/2.0) * 4/WIDTH * ptr.zoom;
 			c.re = pow(tmp.re, 3) - 3 * tmp.re * pow(tmp.im, 2);
@@ -36,9 +36,23 @@ void	feigenbaum(t_graphic ptr)
 			if (k < ptr.max_iter)
 				img_put_pixel(&ptr, j, i, design_color(ptr, k));
 			else
-				img_put_pixel(&ptr, j, i, 0);
+				img_put_pixel(&ptr, j, i, intern_color(ptr, k, mod(z)));
 			j++;
 		}
 		i++;
+	}
+}
+
+void		feigenbaum(t_graphic ptr)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (++i <= NBR_THREAD)
+	{
+		j = 0;
+		while (++j <= NBR_THREAD)
+			part_feigen(ptr, i, j);
 	}
 }
