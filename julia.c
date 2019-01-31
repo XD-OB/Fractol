@@ -1,6 +1,13 @@
 #include "fractol.h"
 
-static void	part_julia(t_graphic ptr, int p, int q)
+void	*hello(void *vargp)
+{
+	char	*myid = (char*)vargp;
+	ft_putstr(myid);
+	return NULL;
+}
+
+void	*part_julia(t_graphic ptr, int p, int q)
 {
 	t_complex	z;
 	t_complex	z1;
@@ -31,18 +38,23 @@ static void	part_julia(t_graphic ptr, int p, int q)
 		}
 		i++;
 	}
+	return 0;
 }
 
 void		julia(t_graphic ptr)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	pthread_t	tid;
+	char		*str = "hi\n";
 
 	i = 0;
 	while (++i <= NBR_THREAD)
 	{
 		j = 0;
 		while (++j <= NBR_THREAD)
-			part_julia(ptr, i, j);
+			pthread_create(&tid, NULL, hello, (void*)str);
+			//part_julia(ptr, i, j);
 	}
+	//pthread_exit(NULL);
 }

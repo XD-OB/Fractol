@@ -30,7 +30,7 @@ LIB = -L ./mlx -lmlx -L ./libft -lft -lm -lpthread
 
 FRAME = -framework OpenGL -framework Appkit
 
-FLAG = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror -std=gnu99 -pedantic
 
 all: $(LIB_NAME) $(NAME)
 
