@@ -51,9 +51,7 @@
  CONFIGUREREQUEST 23
  GRAVITYNOTIFY 24
 
-/*
 # Mouse button keycodes
-*/
 
  BUT1_KEY 1
  BUT2_KEY 2
@@ -63,14 +61,9 @@
  SCROLLLEFT_KEY 6
  SCROLLRIGHT_KEY 7
 
-/*
 # Keyboard keys
-*/
 
-/*
 # Letters keys
-*/
-
  A_KEY 0
  B_KEY 11
  C_KEY 8
@@ -98,9 +91,7 @@
  Y_KEY 16
  Z_KEY 6
 
-/*
 # Numbers (not numeric keypad ones)
-*/
 
  K1_KEY 18
  K2_KEY 19
@@ -113,21 +104,19 @@
  K9_KEY 25
  K0_KEY 29
 
-/*
 # Special characters
-# SP_KEY is the space ( ) key
-# BQ_KEY is the back quote (`) and tilde (~) key
-# MN_KEY is the minus (-) and underscore (_) key
-# PL_KEY is the plus (+) and equal (=) key
-# SBO_KEY is the square bracket opening ([) and brace opening ({) key
-# SBC_KEY is the square bracket closing (]) and brace closing (}) key
-# BSL_KEY is the backslash (\) and pipe (|) key
-# SC_KEY is the semicolon (;) and colon (:) key
-# SQ_KEY is the simple quote (') and double quote (") key
-# CM_KEY is the comma (,) and angle bracket opening (<) key
-# PT_KEY is the point (.) and angle bracket closing (>) key
-# SL_KEY is the slash (/) and question mark (?) key
-*/
+SP_KEY is the space ( ) key
+BQ_KEY is the back quote (`) and tilde (~) key
+MN_KEY is the minus (-) and underscore (_) key
+PL_KEY is the plus (+) and equal (=) key
+SBO_KEY is the square bracket opening ([) and brace opening ({) key
+SBC_KEY is the square bracket closing (]) and brace closing (}) key
+BSL_KEY is the backslash (\) and pipe (|) key
+SC_KEY is the semicolon (;) and colon (:) key
+SQ_KEY is the simple quote (') and double quote (") key
+CM_KEY is the comma (,) and angle bracket opening (<) key
+PT_KEY is the point (.) and angle bracket closing (>) key
+SL_KEY is the slash (/) and question mark (?) key
 
  SP_KEY 49
  BQ_KEY 50
@@ -142,10 +131,8 @@
  PT_KEY 47
  SL_KEY 44
 
-/*
 # Functions keys, you might use fn key to use them
 # I didn't find the F11_KEY value
-*/
 
  F1_KEY 122
  F2_KEY 120
@@ -167,28 +154,23 @@
  F18_KEY 79
  F19_KEY 80
 
-/*
 # Arrow keys
-*/
-
  UP_KEY 126
  DOWN_KEY 125
  RIGHT_KEY 124
  LEFT_KEY 123
 
-/*
 # Special keys
-# CL_KEY is the caps lock key
-# LSFT_KEY and RLFT_KEY are the left shift and right shift keys
-# LCTRL_KEY and RCTRL_KEY are the left control and right control keys
-# LOPT_KEY and ROPT_KEY are the left option and right option keys
-# LCMD_KEY and RCMD_KEY are the left command and right command keys
-# LDEL_KEY and RDEL_KEY are the left delete and right delete keys
-# RTN_KEY is the return key
-# EJ_KEY is the eject key and doesn't react
-# PUP_KEY and PDOWN_KEY are the page up and page down keys
-# CLR_KEY is the clear key
-*/
+CL_KEY is the caps lock key
+LSFT_KEY and RLFT_KEY are the left shift and right shift keys
+LCTRL_KEY and RCTRL_KEY are the left control and right control keys
+LOPT_KEY and ROPT_KEY are the left option and right option keys
+LCMD_KEY and RCMD_KEY are the left command and right command keys
+LDEL_KEY and RDEL_KEY are the left delete and right delete keys
+RTN_KEY is the return key
+EJ_KEY is the eject key and doesn't react
+PUP_KEY and PDOWN_KEY are the page up and page down keys
+CLR_KEY is the clear key
 
  ESC_KEY 53
  TAB_KEY 48
@@ -214,13 +196,13 @@
 
 
 # Numeric keyboard keys, preceded by NK
-# NKEQ_KEY is the equal (=) key
-# NKSL_KEY is the slash (/) key
-# NKWC_KEY is the wildcard (*) key
-# NKMN_KEY is the minus (-) key
-# NKPL_KEY is the plus (+) key
-# NKPT_KEY is the point (.) key
-# NKNTR_KEY is the enter key
+NKEQ_KEY is the equal (=) key
+KSL_KEY is the slash (/) key
+NKWC_KEY is the wildcard (*) key
+NKMN_KEY is the minus (-) key
+NKPL_KEY is the plus (+) key
+NKPT_KEY is the point (.) key
+NKNTR_KEY is the enter key
 
  NK1_KEY 83
  NK2_KEY 84
