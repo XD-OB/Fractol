@@ -14,7 +14,6 @@ void		error()
 void		init_ptr(t_graphic *ptr)
 {
 	ptr->max_iter = 100;
-	ptr->palette = 1;
 	ptr->design = 0;
 	ptr->intern = 3;
 	palette_color(ptr);
@@ -23,6 +22,13 @@ void		init_ptr(t_graphic *ptr)
 	ptr->m_puis = 2;
 	ptr->j_puis = 2;
 	init_img(ptr);
+}
+
+void		init_ready(t_ready *r, t_graphic *ptr)
+{
+	r->ptr = ptr;
+	r->p = 0;
+	r->q = 0;
 }
 
 t_complex	complex(double a, double b)

@@ -31,7 +31,7 @@ void		fractal(t_graphic *ptr)
 	if (ptr->type == DOUADY)
 		ptr->j_cte = complex(-0.123, 0.745);
 	if (ptr->type == JULIA || ptr->type == DOUADY)
-		julia(*ptr);
+		julia(ptr);
 	mlx_put_image_to_window(ptr, ptr->win, ptr->image.void_ptr, 0, 0);
 }
 

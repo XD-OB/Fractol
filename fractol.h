@@ -26,10 +26,10 @@
 # define WIDTH 800
 # define HEIGHT 500
 
+# define P(x, y) sqrt(pow(x - 1 / 4, 2) + pow(y, 2))
+
 # define NBR_THREAD 3
 # define JULIA_C 0.0005
-
-# define P(x, y) sqrt(pow(x - 1 / 4, 2) + pow(y, 2))
 
 # define K_ESC 53
 # define K_UP 126
@@ -90,7 +90,6 @@ typedef struct	s_graphic
 	void*		win;
 	int			max_iter;
 	int			map[16];
-	int			palette;
 	int			design;
 	int			intern;
 	int			type;
@@ -101,6 +100,13 @@ typedef struct	s_graphic
 	float		m_puis;
 }				t_graphic;
 
+typedef struct	s_ready
+{
+	t_graphic	*ptr;
+	int		p;
+	int		q;
+}		t_ready;
+
 void		palette_color(t_graphic *ptr);
 int			design_color(t_graphic ptr, int k);
 int			intern_color(t_graphic ptr, int k, double m_z);
@@ -110,7 +116,8 @@ void		fractal(t_graphic *ptr);
 void		mandelbrot(t_graphic ptr);
 void		feigenbaum(t_graphic ptr);
 void		cosine(t_graphic ptr);
-void		julia(t_graphic ptr);
+void		julia(t_graphic *ptr);
+void		init_ready(t_ready *r, t_graphic *ptr);
 void		init_ptr(t_graphic *ptr);
 t_complex	complex(double a, double b);
 float		mod(t_complex z);

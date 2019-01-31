@@ -2,18 +2,10 @@
 
 static void	switch_design(t_graphic *ptr)
 {
-	if (ptr->design != 0 && ptr->design != 3)
+	if (ptr->design != 3)
 		ptr->design++;
-	else if (ptr->design == 0)
-	{
-		ptr->design = 1;
-		ptr->palette = 0;
-	}
-	else if (ptr->design == 3)
-	{
+	else
 		ptr->design = 0;
-		ptr->palette = 1;
-	}
 }
 
 static void	switch_intern(t_graphic *ptr)

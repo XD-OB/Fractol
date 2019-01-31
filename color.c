@@ -22,9 +22,9 @@ void	palette_color(t_graphic *ptr)
 
 int	design_color(t_graphic ptr, int k)
 {
-	if (ptr.design == 0 && ptr.palette != 0)
+	if (ptr.design == 0)
 		return (ptr.map[k % 16]);
-	else if (ptr.palette == 0)
+	else
 	{
 		if (ptr.design == 1)
 			return (rgb_map(k*2, k*10, k*5));
