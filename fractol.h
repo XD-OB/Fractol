@@ -63,6 +63,7 @@ enum
 	MANDELBROT,
 	DOUADY,
 	FEIGENBAUM,
+	COSINE,
 	NONE
 };
 
@@ -104,6 +105,7 @@ void		error(void);
 void		fractal(t_graphic *ptr);
 void		mandelbrot(t_graphic ptr);
 void		feigenbaum(t_graphic ptr);
+void		cosine(t_graphic ptr);
 void		julia(t_graphic ptr);
 void		init_ptr(t_graphic *ptr);
 t_complex	complex(double a, double b);

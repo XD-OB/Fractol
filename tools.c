@@ -7,12 +7,13 @@ void		error()
 	ft_putstr("                      * Mandelbrot\n");
 	ft_putstr("                      * Douady\n");
 	ft_putstr("                      * Feigenbaum\n");
+	ft_putstr("                      * Cosine\n");
 	exit(-1);
 }
 
 void		init_ptr(t_graphic *ptr)
 {
-	ptr->max_iter = 300;
+	ptr->max_iter = 100;
 	ptr->palette = 0;
 	ptr->design = 2;
 	palette_color(ptr);
