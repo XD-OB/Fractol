@@ -54,22 +54,37 @@ void		julia(t_graphic *ptr)
 	pthread_t	ti;
 	t_ready		r;
 
-	i = 0; 
 	init_ready(&r, ptr);
-	//i = 0; 
-	//r.p = 1;
-	//r.q = 1;
-	//printf("r.p  %d\nr.q  %d\n", r.p, r.q);
-	//pthread_create(&tid[i], NULL, part_julia, (void*)&r);
-	//pthread_join(tid[i], NULL);
-	//i = 1;
-	//r.p = 1;
-	//r.q = 2;
-	//pthread_create(&tid[i], NULL, part_julia, (void*)&r);
-	//pthread_join(tid[i], NULL);
+	r.p = 0;
+	while (++r.p <= NBR_THREAD)
+	{
+		r.q = 0;
+		while (++r.q <= NBR_THREAD)
+		{
+			pthread_create(&tid[(r.p - 1) * (r.q -  1) + (r.q + 1)], NULL, part_julia, (void*)&r);
+			pthread_join(tid[(r.p - 1) * (r.q -  1) + (r.q + 1)], NULL);
+		}
+	}
+	i = -1;
+	while (++i < NBR_THREAD * NBR_THREAD)
+		pthread_join(tid[i], NULL);
+/* 
+	init_ready(&r, ptr);
+	i = 0; 
+	r.p = 1;
+	r.q = 1;
+	printf("r.p  %d\nr.q  %d\n", r.p, r.q);
+	pthread_create(&tid[i], NULL, part_julia, (void*)&r);
+	pthread_join(tid[i], NULL);
+	i = 1;
+	r.p = 1;
+	r.q = 2;
+	pthread_create(&tid[i], NULL, part_julia, (void*)&r);
+	pthread_join(tid[i], NULL);
 	i = 2; 
 	r.p = 1;
 	r.q = 3;
 	pthread_create(&tid[i], NULL, part_julia, (void*)&r);
 	pthread_join(tid[i], NULL);
+*/
 }
