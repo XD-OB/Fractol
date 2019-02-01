@@ -45,8 +45,9 @@ void		julia(t_graphic *ptr)
 	int		i;
 	int		j;
 	pthread_t	id_thread[DIV * DIV];
-	t_ready		r[DIV * DIV];
+	t_ready		*r;
 
+	r = (t_ready*)malloc(sizeof(t_ready) * DIV * DIV);
 	i = -1;
 	while(++i < DIV * DIV)
 		init_ready(&r[i], ptr);
@@ -66,4 +67,5 @@ void		julia(t_graphic *ptr)
 		pthread_create(&id_thread[i], NULL, part_julia, (void*)(&r[i]));
 	while(++k < DIV * DIV)
 		pthread_join(id_thread[k], NULL);
+	free(r);
 }

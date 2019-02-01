@@ -28,8 +28,8 @@
 
 # define P(x, y) sqrt(pow(x - 1 / 4, 2) + pow(y, 2))
 
-# define MAX_ITER 3000
-# define DIV 100
+# define MAX_ITER 2000
+# define DIV 20
 # define JULIA_C 0.0005
 
 # define K_ESC 53
