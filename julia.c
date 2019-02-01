@@ -7,8 +7,9 @@ void	*hello(void *vargp)
 	return NULL;
 }
 
-void	*part_julia(t_ready *r)
+void	*part_julia(void *varg)
 {
+	t_ready		*r;
 	t_graphic	*ptr;
 	t_complex	z;
 	t_complex	z1;
@@ -16,13 +17,14 @@ void	*part_julia(t_ready *r)
 	float		i;
 	float		j;
 
+	r = (t_ready*)varg;
 	ptr = r->ptr;
-	i = 0;
-	i = (HEIGHT * (r->p - 1)) / NBR_THREAD;
-	while (i < (HEIGHT * r->p) / NBR_THREAD)
+	printf("r->p  %d\nr->q  %d\n", r->p, r->q);
+	i = (HEIGHT * (r->p - 1) / NBR_THREAD);
+	while (i <= (HEIGHT / NBR_THREAD) * r->p)
 	{
-		j = (WIDTH * (r->q - 1)) / NBR_THREAD;
-		while (j < (WIDTH * r->q) / NBR_THREAD)
+		j = (WIDTH * (r->q - 1) / NBR_THREAD);
+		while (j <= ((WIDTH / NBR_THREAD) * r->q))
 		{
 			z.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr->zoom;
 			z.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;
@@ -41,26 +43,33 @@ void	*part_julia(t_ready *r)
 		}
 		i++;
 	}
-	return NULL;
+	return (NULL);
 }
 
 void		julia(t_graphic *ptr)
 {
 	int		i;
 	int		j;
-	pthread_t	tid;
+	pthread_t	tid[NBR_THREAD * NBR_THREAD];
+	pthread_t	ti;
 	t_ready		r;
-	char		*str = "hi\n";
 
+	i = 0; 
 	init_ready(&r, ptr);
-	r.p = 0;
-	while (++r.p <= NBR_THREAD)
-	{
-		r.q = 0;
-		while (++r.q <= NBR_THREAD)
-			//pthread_create(&tid, NULL, hello, (void*)str);
-			part_julia(&r);
-	}
-	printf("%d", r.ptr->type);
-	//pthread_exit(NULL);
+	//i = 0; 
+	//r.p = 1;
+	//r.q = 1;
+	//printf("r.p  %d\nr.q  %d\n", r.p, r.q);
+	//pthread_create(&tid[i], NULL, part_julia, (void*)&r);
+	//pthread_join(tid[i], NULL);
+	//i = 1;
+	//r.p = 1;
+	//r.q = 2;
+	//pthread_create(&tid[i], NULL, part_julia, (void*)&r);
+	//pthread_join(tid[i], NULL);
+	i = 2; 
+	r.p = 1;
+	r.q = 3;
+	pthread_create(&tid[i], NULL, part_julia, (void*)&r);
+	pthread_join(tid[i], NULL);
 }
