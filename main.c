@@ -23,11 +23,11 @@ void		fractal(t_graphic *ptr)
 	int	j;
 
 	if (ptr->type == FEIGENBAUM)
-		feigenbaum(*ptr);
+		feigenbaum(ptr);
 	if (ptr->type == MANDELBROT)
-		mandelbrot(*ptr);
+		mandelbrot(ptr);
 	if (ptr->type == COSINE)
-		cosine(*ptr);
+		cosine(ptr);
 	if (ptr->type == DOUADY)
 		ptr->j_cte = complex(-0.123, 0.745);
 	if (ptr->type == JULIA || ptr->type == DOUADY)

@@ -12,7 +12,6 @@ void	*part_julia(void *varg)
 
 	r = (t_ready*)varg;
 	ptr = r->ptr;
-	printf("r->p  %d\nr->q  %d\n", r->p, r->q);
 	i = (HEIGHT * (r->p - 1) / DIV);
 	while (i <= (HEIGHT / DIV) * r->p)
 	{
@@ -44,8 +43,8 @@ void		julia(t_graphic *ptr)
 	int		k;
 	int		i;
 	int		j;
-	pthread_t	id_thread[DIV * DIV];
 	t_ready		*r;
+	pthread_t	id_thread[DIV * DIV];
 
 	r = (t_ready*)malloc(sizeof(t_ready) * DIV * DIV);
 	i = -1;

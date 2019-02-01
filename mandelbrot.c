@@ -1,7 +1,9 @@
 #include "fractol.h"
 
-static void	part_mandel(t_graphic ptr, int p, int q)
+void	*part_mandel(void *varg)
 {
+	t_ready		*r;
+	t_graphic	*ptr;
 	t_complex	c;
 	t_complex	z;
 	t_complex	z1;
@@ -9,42 +11,61 @@ static void	part_mandel(t_graphic ptr, int p, int q)
 	int	i;
 	int	j;
 
-	i = (HEIGHT * (p - 1)) / DIV;
-	while (i < (HEIGHT * p) / DIV)
+	r = (t_ready*)varg;
+	ptr = r->ptr;
+	i = (HEIGHT * (r->p - 1)) / DIV;
+	while (i < (HEIGHT * r->p) / DIV)
 	{
-		c.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr.zoom;
-		j = (WIDTH * (q - 1)) / DIV;
-		while (j < (WIDTH * q) / DIV)
+		c.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr->zoom;
+		j = (WIDTH * (r->q - 1)) / DIV;
+		while (j < (WIDTH * r->q) / DIV)
 		{
-			c.re = (j - WIDTH/2.0) * 4/WIDTH * ptr.zoom;	
+			c.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;	
 			z = complex(0, 0);
 			k = -1;
-			while (mod(z) <= 2 && ++k < ptr.max_iter)
+			while (mod(z) <= 2 && ++k < ptr->max_iter)
 			{
-				z1.re = pow((pow(z.re, 2) + pow(z.im, 2)), (ptr.m_puis / 2.0)) * cos(ptr.m_puis * atan2(z.im, z.re)) + c.re;
-				z1.im = pow((pow(z.re, 2) + pow(z.im, 2)), (ptr.m_puis / 2.0)) * sin(ptr.m_puis * atan2(z.im, z.re)) + c.im;
+				z1.re = pow((pow(z.re, 2) + pow(z.im, 2)), (ptr->m_puis / 2.0)) * cos(ptr->m_puis * atan2(z.im, z.re)) + c.re;
+				z1.im = pow((pow(z.re, 2) + pow(z.im, 2)), (ptr->m_puis / 2.0)) * sin(ptr->m_puis * atan2(z.im, z.re)) + c.im;
 				z = z1;
 			}
-			if (k < ptr.max_iter)
-				img_put_pixel(&ptr, j, i, design_color(ptr, k));
+			if (k < ptr->max_iter)
+				img_put_pixel(ptr, j, i, design_color(*ptr, k));
 			else
-				img_put_pixel(&ptr, j, i, intern_color(ptr, k, mod(z)));
+				img_put_pixel(ptr, j, i, intern_color(*ptr, k, mod(z)));
 			j++;
 		}
 		i++;
 	}
+	return (NULL);
 }
-
-void		mandelbrot(t_graphic ptr)
+void	mandelbrot(t_graphic *ptr)
 {
-	int	i;
-	int	j;
+	int		k;
+	int		i;
+	int		j;
+	t_ready		*r;
+	pthread_t	id_thread[DIV * DIV];
 
+	r = (t_ready*)malloc(sizeof(t_ready) * DIV * DIV);
+	i = -1;
+	while(++i < DIV * DIV)
+		init_ready(&r[i], ptr);
 	i = 0;
-	while (++i <= DIV)
+	while(++i <= DIV)
 	{
 		j = 0;
-		while (++j <= DIV)
-			part_mandel(ptr, i, j);
+		while(++j <= DIV)
+		{
+			r[((i - 1) * DIV) + (j - 1)].p = i;
+			r[((i - 1) * DIV) + (j - 1)].q = j;
+		}
 	}
+	k = -1;
+	i = -1;
+	while(++i < DIV * DIV)
+		pthread_create(&id_thread[i], NULL, part_mandel, (void*)(&r[i]));
+	while(++k < DIV * DIV)
+		pthread_join(id_thread[k], NULL);
+	free(r);
 }
