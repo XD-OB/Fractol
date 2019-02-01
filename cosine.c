@@ -9,12 +9,12 @@ static void	part_cosine(t_graphic ptr, int p, int q)
 	int	i;
 	int	j;
 
-	i = (HEIGHT * (p - 1)) / NBR_THREAD;
-	while (i < (HEIGHT * p) / NBR_THREAD)
+	i = (HEIGHT * (p - 1)) / DIV;
+	while (i < (HEIGHT * p) / DIV)
 	{
 		c.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr.zoom;
-		j = (WIDTH * (q - 1)) / NBR_THREAD;
-		while (j < (WIDTH * q) / NBR_THREAD)
+		j = (WIDTH * (q - 1)) / DIV;
+		while (j < (WIDTH * q) / DIV)
 		{
 			c.re = (j - WIDTH/2.0) * 4/WIDTH * ptr.zoom;	
 			z = complex(0, 0);
@@ -41,10 +41,10 @@ void		cosine(t_graphic ptr)
 	int	j;
 
 	i = 0;
-	while (++i <= NBR_THREAD)
+	while (++i <= DIV)
 	{
 		j = 0;
-		while (++j <= NBR_THREAD)
+		while (++j <= DIV)
 			part_cosine(ptr, i, j);
 	}
 }

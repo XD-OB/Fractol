@@ -10,12 +10,12 @@ static void	part_feigen(t_graphic ptr, int p, int q)
 	int	i;
 	int	j;
 
-	i = (HEIGHT * (p - 1)) / NBR_THREAD;
-	while (i < (HEIGHT * p) / NBR_THREAD)
+	i = (HEIGHT * (p - 1)) / DIV;
+	while (i < (HEIGHT * p) / DIV)
 	{
 		tmp.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr.zoom;
-		j = (WIDTH * (q - 1)) / NBR_THREAD;
-		while (j < (WIDTH * q) / NBR_THREAD)
+		j = (WIDTH * (q - 1)) / DIV;
+		while (j < (WIDTH * q) / DIV)
 		{
 			tmp.re = (j - WIDTH/2.0) * 4/WIDTH * ptr.zoom;
 			c.re = pow(tmp.re, 3) - 3 * tmp.re * pow(tmp.im, 2);
@@ -49,10 +49,10 @@ void		feigenbaum(t_graphic ptr)
 	int	j;
 
 	i = 0;
-	while (++i <= NBR_THREAD)
+	while (++i <= DIV)
 	{
 		j = 0;
-		while (++j <= NBR_THREAD)
+		while (++j <= DIV)
 			part_feigen(ptr, i, j);
 	}
 }

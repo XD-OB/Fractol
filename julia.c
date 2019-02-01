@@ -1,12 +1,5 @@
 #include "fractol.h"
 
-void	*hello(void *vargp)
-{
-	char	*myid = (char*)vargp;
-	ft_putstr(myid);
-	return NULL;
-}
-
 void	*part_julia(void *varg)
 {
 	t_ready		*r;
@@ -20,11 +13,11 @@ void	*part_julia(void *varg)
 	r = (t_ready*)varg;
 	ptr = r->ptr;
 	printf("r->p  %d\nr->q  %d\n", r->p, r->q);
-	i = (HEIGHT * (r->p - 1) / NBR_THREAD);
-	while (i <= (HEIGHT / NBR_THREAD) * r->p)
+	i = (HEIGHT * (r->p - 1) / DIV);
+	while (i <= (HEIGHT / DIV) * r->p)
 	{
-		j = (WIDTH * (r->q - 1) / NBR_THREAD);
-		while (j <= ((WIDTH / NBR_THREAD) * r->q))
+		j = (WIDTH * (r->q - 1) / DIV);
+		while (j <= ((WIDTH / DIV) * r->q))
 		{
 			z.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr->zoom;
 			z.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;
@@ -48,43 +41,29 @@ void	*part_julia(void *varg)
 
 void		julia(t_graphic *ptr)
 {
+	int		k;
 	int		i;
 	int		j;
-	pthread_t	tid[NBR_THREAD * NBR_THREAD];
-	pthread_t	ti;
-	t_ready		r;
+	pthread_t	id_thread[DIV * DIV];
+	t_ready		r[DIV * DIV];
 
-	init_ready(&r, ptr);
-	r.p = 0;
-	while (++r.p <= NBR_THREAD)
+	i = -1;
+	while(++i < DIV * DIV)
+		init_ready(&r[i], ptr);
+	i = 0;
+	while(++i <= DIV)
 	{
-		r.q = 0;
-		while (++r.q <= NBR_THREAD)
+		j = 0;
+		while(++j <= DIV)
 		{
-			pthread_create(&tid[(r.p - 1) * (r.q -  1) + (r.q + 1)], NULL, part_julia, (void*)&r);
-			pthread_join(tid[(r.p - 1) * (r.q -  1) + (r.q + 1)], NULL);
+			r[((i - 1) * DIV) + (j - 1)].p = i;
+			r[((i - 1) * DIV) + (j - 1)].q = j;
 		}
 	}
+	k = -1;
 	i = -1;
-	while (++i < NBR_THREAD * NBR_THREAD)
-		pthread_join(tid[i], NULL);
-/* 
-	init_ready(&r, ptr);
-	i = 0; 
-	r.p = 1;
-	r.q = 1;
-	printf("r.p  %d\nr.q  %d\n", r.p, r.q);
-	pthread_create(&tid[i], NULL, part_julia, (void*)&r);
-	pthread_join(tid[i], NULL);
-	i = 1;
-	r.p = 1;
-	r.q = 2;
-	pthread_create(&tid[i], NULL, part_julia, (void*)&r);
-	pthread_join(tid[i], NULL);
-	i = 2; 
-	r.p = 1;
-	r.q = 3;
-	pthread_create(&tid[i], NULL, part_julia, (void*)&r);
-	pthread_join(tid[i], NULL);
-*/
+	while(++i < DIV * DIV)
+		pthread_create(&id_thread[i], NULL, part_julia, (void*)(&r[i]));
+	while(++k < DIV * DIV)
+		pthread_join(id_thread[k], NULL);
 }

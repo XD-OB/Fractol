@@ -75,7 +75,7 @@ int			key_event(int keycode, t_graphic *ptr)
 	if (keycode == K_SPACE)
 		init_ptr(ptr);
 	//mlx_clear_window(ptr->mlx, ptr->win);
-	img_clear(ptr);
+	//img_clear(ptr);
 	fractal(ptr);
 	return (1);
 }

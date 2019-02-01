@@ -13,7 +13,7 @@ void		error()
 
 void		init_ptr(t_graphic *ptr)
 {
-	ptr->max_iter = 100;
+	ptr->max_iter = MAX_ITER;
 	ptr->design = 0;
 	ptr->intern = 3;
 	palette_color(ptr);
