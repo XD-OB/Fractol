@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 06:31:41 by obelouch          #+#    #+#             */
-/*   Updated: 2019/01/30 22:44:07 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/02 12:07:16 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,30 @@ typedef struct	s_ready
 	int		q;
 }		t_ready;
 
+typedef struct		s_point
+{
+		float		x;
+		float		y;
+}					t_point;
+
+
+void			traceline(t_graphic *ptr, t_point pi, t_point pf, int color);
+void			whitescreen(t_graphic *ptr);
+t_point			point(int x, int y);
+void			infcircle(t_point p, int r, t_graphic ptr, int n);
 void		palette_color(t_graphic *ptr);
-int		hsv(double h, double s, double v);
+int			hsv(double h, double s, double v);
 int			design_color(t_graphic ptr, int k);
 int			intern_color(t_graphic ptr, int k, double m_z);
 int			rgb_map(int r, int g, int b);
 void		error(void);
 void		fractal(t_graphic *ptr);
 void		mandelbrot(t_graphic *ptr);
+void		multibrot(t_graphic *ptr);
 void		burnship(t_graphic *ptr);
 void		feigenbaum(t_graphic *ptr);
 void		cosine(t_graphic *ptr);
+void		star_julia(t_graphic *ptr);
 void		julia(t_graphic *ptr);
 void		init_ready(t_ready *r, t_graphic *ptr);
 void		init_ptr(t_graphic *ptr);

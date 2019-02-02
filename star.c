@@ -1,32 +1,30 @@
 #include "fractol.h"
 
-void	*part_ship(void *varg)
+void	*part_star(void *varg)
 {
 	t_ready		*r;
 	t_graphic	*ptr;
-	t_complex	c;
 	t_complex	z;
 	t_complex	z1;
-	int	k;
-	int	i;
-	int	j;
+	int		k;
+	float		i;
+	float		j;
 
 	r = (t_ready*)varg;
 	ptr = r->ptr;
-	i = (HEIGHT * (r->p - 1)) / DIV;
-	while (i < (HEIGHT * r->p) / DIV)
+	i = (HEIGHT * (r->p - 1) / DIV);
+	while (i <= (HEIGHT / DIV) * r->p)
 	{
-		c.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr->zoom;
-		j = (WIDTH * (r->q - 1)) / DIV;
-		while (j < (WIDTH * r->q) / DIV)
+		j = (WIDTH * (r->q - 1) / DIV);
+		while (j <= ((WIDTH / DIV) * r->q))
 		{
-			c.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;	
-			z = complex(0, 0);
+			z.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr->zoom;
+			z.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;
 			k = -1;
 			while (mod(z) <= 2 && ++k < ptr->max_iter)
 			{
-				z1.re = pow(fabs(z.re), 2) - pow(fabs(z.im), 2) + c.re;
-				z1.im = fabs(2 * z.re * z.im) + c.im;
+				z1.re = pow(pow(z.re, 2) + pow(z.im, 2), 2.5) * cos(5 * atan2(z.im, z.re)) - 0.5;
+				z1.im = pow(pow(z.re, 2) + pow(z.im, 2), 2.5) * sin(5 * atan2(z.im, z.re)) + 0.64;
 				z = z1;
 			}
 			if (k < ptr->max_iter)
@@ -39,7 +37,8 @@ void	*part_ship(void *varg)
 	}
 	return (NULL);
 }
-void	burnship(t_graphic *ptr)
+
+void		star_julia(t_graphic *ptr)
 {
 	int		k;
 	int		i;
@@ -64,7 +63,7 @@ void	burnship(t_graphic *ptr)
 	k = -1;
 	i = -1;
 	while(++i < DIV * DIV)
-		pthread_create(&id_thread[i], NULL, part_ship, (void*)(&r[i]));
+		pthread_create(&id_thread[i], NULL, part_star, (void*)(&r[i]));
 	while(++k < DIV * DIV)
 		pthread_join(id_thread[k], NULL);
 	free(r);

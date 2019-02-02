@@ -4,10 +4,14 @@ void		error()
 {
 	ft_putstr("Usage: ./fractol  type\n\n");
 	ft_putstr("Available fractals:   * Julia\n");
+	ft_putstr("                      * StarJulia\n");
 	ft_putstr("                      * Mandelbrot\n");
+	ft_putstr("                      * Multibrot\n");
 	ft_putstr("                      * Douady\n");
 	ft_putstr("                      * Feigenbaum\n");
 	ft_putstr("                      * Cosine\n");
+	ft_putstr("                      * BurningShip\n");
+	ft_putstr("                      * InfinityCircles\n");
 	exit(-1);
 }
 
@@ -19,7 +23,7 @@ void		init_ptr(t_graphic *ptr)
 	palette_color(ptr);
 	ptr->zoom = 1;
 	ptr->j_cte = complex(-0.7, 0.27015);
-	ptr->m_puis = 2;
+	ptr->m_puis = 3;
 	ptr->j_puis = 2;
 	init_img(ptr);
 }

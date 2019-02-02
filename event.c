@@ -2,7 +2,7 @@
 
 static void	switch_design(t_graphic *ptr)
 {
-	if (ptr->design != 4)
+	if (ptr->design != 5)
 		ptr->design++;
 	else
 		ptr->design = 0;
@@ -70,6 +70,8 @@ int			key_event(int keycode, t_graphic *ptr)
 		ptr->zoom -= 0.05;
 	else if (keycode == K_1)
 		ptr->zoom += 0.05;
+	else if (keycode == K_P && ptr->type == INFCIRCLE)
+		ptr->design == 0 ? (ptr->design = 1) : (ptr->design = 0);
 	if (ptr->type == JULIA)
 		julia_event(keycode, ptr);
 	if (ptr->type == MANDELBROT)

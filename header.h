@@ -11,13 +11,13 @@
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 
-# define WIDTH 900
-# define HEIGHT 600
+# define WIDTH 1200
+# define HEIGHT 800
 
 # define P(x, y) sqrt(pow(x - 1 / 4, 2) + pow(y, 2))
 
-# define MAX_ITER 50
-# define DIV 4
+# define MAX_ITER 200
+# define DIV 10
 # define JULIA_C 0.0005
 
 # define K_ESC 53
@@ -52,11 +52,14 @@
 enum
 {
 	JULIA,
+	STAR,
 	MANDELBROT,
+	MULTIBROT,
 	DOUADY,
 	FEIGENBAUM,
 	COSINE,
 	BURNSHIP,
+	INFCIRCLE,
 	NONE
 };
 

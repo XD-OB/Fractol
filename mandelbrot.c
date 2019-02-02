@@ -25,8 +25,8 @@ void	*part_mandel(void *varg)
 			k = -1;
 			while (mod(z) <= 2 && ++k < ptr->max_iter)
 			{
-				z1.re = pow((pow(fabs(z.re), 2) + pow(fabs(z.im), 2)), (ptr->m_puis / 2.0)) * cos(ptr->m_puis * atan2(fabs(z.im), fabs(z.re))) + c.re;
-				z1.im = pow((pow(fabs(z.re), 2) + pow(fabs(z.im), 2)), (ptr->m_puis / 2.0)) * sin(ptr->m_puis * atan2(fabs(z.im), fabs(z.re))) + c.im;
+				z1.re = pow(z.re, 2) - pow(z.im, 2) + c.re;
+				z1.im = 2 * z.re * z.im + c.im;
 				z = z1;
 			}
 			if (k < ptr->max_iter)

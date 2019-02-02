@@ -31,6 +31,8 @@ int	design_color(t_graphic ptr, int k)
 		return (rgb_map(SAN(0.3, k, 0), SAN(0.3, k, 2), SAN(0.3, k, 4)));
 	if (ptr.design == 4)
 		return (rgb_map(SAN(0.1, k, 0), SAN(0.2, k, 0), SAN(0.3, k, 0)));
+	if (ptr.design == 5)
+		return (hsv((int)(k / ptr.max_iter), 255, k < ptr.max_iter ? 255 : 0));
 	return (0xFFFFFF);
 }
 
