@@ -12,6 +12,8 @@ static void		fractal_type(t_graphic *ptr, char *str)
 		ptr->type = FEIGENBAUM;
 	else if (!strcmp(str, "Cosine"))
 		ptr->type = COSINE;
+	else if (!strcmp(str, "BurningShip"))
+		ptr->type = BURNSHIP;
 	else
 		ptr->type = NONE;
 
@@ -28,6 +30,8 @@ void		fractal(t_graphic *ptr)
 		mandelbrot(ptr);
 	if (ptr->type == COSINE)
 		cosine(ptr);
+	if (ptr->type == BURNSHIP)
+		burnship(ptr);
 	if (ptr->type == DOUADY)
 		ptr->j_cte = complex(-0.123, 0.745);
 	if (ptr->type == JULIA || ptr->type == DOUADY)

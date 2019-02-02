@@ -1,60 +1,70 @@
 #include "fractol.h"
 
-void	palette_color(t_graphic *ptr)
-{
-	ptr->map[0] = rgb_map(66, 30, 15);
-	ptr->map[1] = rgb_map(25, 7, 26);
-	ptr->map[2] = rgb_map(9, 1, 47);
-	ptr->map[3] = rgb_map(4, 4, 73);
-	ptr->map[4] = rgb_map(0, 7, 100);
-	ptr->map[5] = rgb_map(12, 44, 138);
-	ptr->map[6] = rgb_map(24, 82, 177);
-	ptr->map[7] = rgb_map(57, 125, 209);
-	ptr->map[8] = rgb_map(134, 181, 229);
-	ptr->map[9] = rgb_map(211, 236, 248);
-	ptr->map[10] = rgb_map(241, 233, 191);
-	ptr->map[11] = rgb_map(248, 201, 95);
-	ptr->map[12] = rgb_map(255, 170, 0);
-	ptr->map[13] = rgb_map(204, 128, 0);
-	ptr->map[14] = rgb_map(153, 87, 0);
-	ptr->map[15] = rgb_map(106, 52, 3);
-}
-
-int	design_color(t_graphic ptr, int k)
-{
-	if (ptr.design == 0)
-		return (ptr.map[k % 16]);
-	else
-	{
-		if (ptr.design == 1)
-			return (rgb_map(k*2, k*10, k*5));
-		if (ptr.design == 2)
-			return (rgb_map(sin(0.3 * k) * 127 + 128, sin(0.3*k+2)*127+128, sin(0.3*k+4)*127+128));
-		if (ptr.design == 3)
-			return (rgb_map(sin(0.1 * k) * 127 + 128, sin(0.2*k)*127+128, sin(0.3*k)*127+128));
-	}
-	return (0);
-}
-
-int	intern_color(t_graphic ptr, int k, double m_z)
-{
-	if (ptr.intern == 0)
-		return 0;
-	else if (ptr.intern == 1)
-		return (rgb_map(255, 255, 255));
-	else if (ptr.intern == 2)
-		return (rgb_map(k * 100 * sin(m_z), k * sin(m_z), 50 * k));
-	else if (ptr.intern == 3)
-		return (rgb_map(m_z * 20, m_z * 5, m_z * 150));
-	else if (ptr.intern == 4)
-		return (rgb_map(m_z * 300, 0, m_z * 450));
-	else if (ptr.intern == 5)
-		return (rgb_map(sin(m_z) * 200, sin(m_z / 2) * 200, sin(m_z / 4) * 200));
-	else
-		return (0);
-}
-
-int	rgb_map(int r, int g, int b)
+int		rgb_map(int r, int g, int b)
 {
 	return ((r<<16 & 0xFF0000) | (g<<8 & 0x00FF00) | (b & 0x0000FF));
+}
+
+static void	affect(double *color, double v1, double v2, double v3)
+{
+	color[0] = v1;
+	color[1] = v2;
+	color[2] = v3;
+}
+
+static int	set(int i)
+{
+	if ((i * 255) < 0)
+		return (0);
+	if (i > 1)
+		return (255);
+	return (i * 255);
+}
+
+static void	put_val(double *t, double s, double v, double H)
+{
+	t[0] = v * (1 - s);
+	t[1] = v * (1 - s * ((H / 60.0) - floor(H / 60.0)));
+	t[2] = v * (1 - s * (1 - ((H / 60.0) - floor(H / 60.0))));
+}
+
+int		hsv(double h, double s, double v)
+{
+	double	H;
+	double	tab[3];
+	double	color[3];
+
+	H = h;
+	while (H < 0)
+		H += 360;
+	while (H >= 360)
+		H -= 360;
+	if (v <= 0)
+		affect(color, 0, 0, 0);
+	else if (s <= 0)
+		affect(color, v, v, v);
+	else
+	{
+		put_val(tab, s, v, H);
+		if (floor(H / 60.0) == 0)
+			affect(color, v, tab[2], tab[0]);
+		else if (floor(H / 60.0) == 1)
+			affect(color, tab[1], v, tab[0]);
+		else if (floor(H / 60.0) == 2)
+			affect(color, tab[0], v, tab[2]);
+		else if (floor(H / 60.0) == 3)
+			affect(color, tab[0], tab[1], v);
+		else if (floor(H / 60.0) == 4)
+			affect(color, tab[2], tab[0], v);
+		else if (floor(H / 60.0) == 5)
+			affect(color, v, tab[0], tab[1]);
+		else if (floor(H / 60.0) == 6)
+			affect(color, v, tab[2], tab[0]);
+		else if (floor(H / 60.0) == -1)
+			affect(color, v, tab[0], tab[1]);
+		else
+			affect(color, v, v, v);
+	}
+	affect(color, set((int)color[0]), set((int)color[1]), set((int)color[2]));
+	return (rgb_map(color[0], color[1], color[2]));
 }

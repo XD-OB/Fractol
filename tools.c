@@ -15,7 +15,7 @@ void		init_ptr(t_graphic *ptr)
 {
 	ptr->max_iter = MAX_ITER;
 	ptr->design = 0;
-	ptr->intern = 3;
+	ptr->intern = 0;
 	palette_color(ptr);
 	ptr->zoom = 1;
 	ptr->j_cte = complex(-0.7, 0.27015);
