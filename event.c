@@ -2,7 +2,7 @@
 
 static void	switch_design(t_graphic *ptr)
 {
-	if (ptr->design != 5)
+	if (ptr->design != 6)
 		ptr->design++;
 	else
 		ptr->design = 0;
