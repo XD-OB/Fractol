@@ -7,6 +7,7 @@ void		error()
 	ft_putstr("                      * StarJulia\n");
 	ft_putstr("                      * Mandelbrot\n");
 	ft_putstr("                      * Multibrot\n");
+	ft_putstr("                      * Tricorn\n");
 	ft_putstr("                      * Douady\n");
 	ft_putstr("                      * Feigenbaum\n");
 	ft_putstr("                      * Cosine\n");
@@ -47,4 +48,9 @@ t_complex	complex(double a, double b)
 float	mod(t_complex z)
 {
 	return (sqrt(pow(z.re, 2) + pow(z.im, 2)));
+}
+
+float	lerp(float v0, float v1, float t)
+{
+	return ((1 - t) * v0 + t * v1);
 }

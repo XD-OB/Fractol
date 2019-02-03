@@ -11,8 +11,8 @@
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 
-# define WIDTH 1200
-# define HEIGHT 800
+# define WIDTH 900
+# define HEIGHT 600
 
 # define P(x, y) sqrt(pow(x - 1 / 4, 2) + pow(y, 2))
 
@@ -55,6 +55,7 @@ enum
 	STAR,
 	MANDELBROT,
 	MULTIBROT,
+	TRICORN,
 	DOUADY,
 	FEIGENBAUM,
 	COSINE,

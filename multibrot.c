@@ -22,11 +22,21 @@ void	*part_multi(void *varg)
 		{
 			c.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;	
 			z = complex(0, 0);
+			/*if (j < P(j, i) - 2 * pow(P(j, i), 2) + 1 / 4 || pow(j + 1, 2) + pow(i, 2) < 1/16)
+			{
+				img_put_pixel(ptr, j, i, 0xFF0000);
+				continue;
+			}*/
 			k = -1;
 			while (mod(z) <= 2 && ++k < ptr->max_iter)
 			{
 				z1.re = pow((pow(z.re, 2) + pow(z.im, 2)), (ptr->m_puis / 2.0)) * cos(ptr->m_puis * atan2(z.im, z.re)) + c.re;
 				z1.im = pow((pow(z.re, 2) + pow(z.im, 2)), (ptr->m_puis / 2.0)) * sin(ptr->m_puis * atan2(z.im, z.re)) + c.im;
+				if (z1.re == z.re && z1.im == z.im)
+				{
+					k = ptr->max_iter;
+					break ;
+				}
 				z = z1;
 			}
 			if (k < ptr->max_iter)

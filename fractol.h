@@ -59,7 +59,7 @@ typedef struct		s_point
 		float		y;
 }					t_point;
 
-
+float		lerp(float v0, float v1, float t);
 void			traceline(t_graphic *ptr, t_point pi, t_point pf, int color);
 void			whitescreen(t_graphic *ptr);
 t_point			point(int x, int y);
@@ -71,6 +71,7 @@ int			intern_color(t_graphic ptr, int k, double m_z);
 int			rgb_map(int r, int g, int b);
 void		error(void);
 void		fractal(t_graphic *ptr);
+void		tricorn(t_graphic *ptr);
 void		mandelbrot(t_graphic *ptr);
 void		multibrot(t_graphic *ptr);
 void		burnship(t_graphic *ptr);

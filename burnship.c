@@ -27,6 +27,11 @@ void	*part_ship(void *varg)
 			{
 				z1.re = pow(fabs(z.re), 2) - pow(fabs(z.im), 2) + c.re;
 				z1.im = fabs(2 * z.re * z.im) + c.im;
+				if (z1.re == z.re && z1.im == z.im)
+				{
+					k = ptr->max_iter;
+					break;
+				}
 				z = z1;
 			}
 			if (k < ptr->max_iter)

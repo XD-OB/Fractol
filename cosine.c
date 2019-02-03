@@ -27,6 +27,11 @@ void	*part_cosine(void *varg)
 			{
 				z1.re = cos(z.re) * cosh(z.im) + (c.re / (pow(c.re, 2) + pow(c.im, 2)));
 				z1.im = -(sin(z.re) * sinh(z.im) + (c.im / (pow(c.re, 2) + pow(c.im, 2))));
+				if (z1.re == z.re && z1.im == z.im)
+				{
+					k = ptr->max_iter;
+					break;
+				}
 				z = z1;
 			}
 			if (k < ptr->max_iter)

@@ -1,10 +1,9 @@
 #include "fractol.h"
 
-void	*part_feigen(void *varg)
+void	*part_corn(void *varg)
 {
 	t_ready		*r;
 	t_graphic	*ptr;
-	t_complex	tmp;
 	t_complex	c;
 	t_complex	z;
 	t_complex	z1;
@@ -17,23 +16,21 @@ void	*part_feigen(void *varg)
 	i = (HEIGHT * (r->p - 1)) / DIV;
 	while (i < (HEIGHT * r->p) / DIV)
 	{
-		tmp.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr->zoom;
+		c.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr->zoom;
 		j = (WIDTH * (r->q - 1)) / DIV;
 		while (j < (WIDTH * r->q) / DIV)
 		{
-			tmp.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;
-			c.re = pow(tmp.re, 3) - 3 * tmp.re * pow(tmp.im, 2);
-			c.im = 3 * pow(tmp.re, 2) * tmp.im - pow(tmp.im, 3);
+			c.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;	
 			z = complex(0, 0);
 			k = -1;
 			while (mod(z) <= 2 && ++k < ptr->max_iter)
 			{
-				z1.re = pow((pow(z.re, 2) + pow(z.im, 2)), ((ptr->m_puis - 1) / 2.0)) * cos((ptr->m_puis - 1) * atan2(z.im, z.re)) + c.re -1.401155;
-				z1.im = pow((pow(z.re, 2) + pow(z.im, 2)), ((ptr->m_puis - 1) / 2.0)) * sin((ptr->m_puis - 1) * atan2(z.im, z.re)) + c.im;
-				if (z.re == z1.re && z.im == z1.im)
+				z1.re = pow(z.re, 2) - pow(z.im, 2) + c.re;
+				z1.im = -2 * z.re * z.im + c.im;
+				if (z1.re == z.re && z1.im == z.im)
 				{
 					k = ptr->max_iter;
-					break ;
+					break;
 				}
 				z = z1;
 			}
@@ -48,7 +45,7 @@ void	*part_feigen(void *varg)
 	return (NULL);
 }
 
-void		feigenbaum(t_graphic *ptr)
+void	tricorn(t_graphic *ptr)
 {
 	int		k;
 	int		i;
@@ -73,7 +70,7 @@ void		feigenbaum(t_graphic *ptr)
 	k = -1;
 	i = -1;
 	while(++i < DIV * DIV)
-		pthread_create(&id_thread[i], NULL, part_feigen, (void*)(&r[i]));
+		pthread_create(&id_thread[i], NULL, part_corn, (void*)(&r[i]));
 	while(++k < DIV * DIV)
 		pthread_join(id_thread[k], NULL);
 	free(r);

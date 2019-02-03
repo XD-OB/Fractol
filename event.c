@@ -46,7 +46,7 @@ static void		julia_event(int keycode, t_graphic *ptr)
 		ptr->j_cte = complex(-0, 1);
 }
 
-static void		mandel_event(int keycode, t_graphic *ptr)
+static void		brot_event(int keycode, t_graphic *ptr)
 {
 	if (keycode == K_M)
 		ptr->m_puis++;
@@ -74,8 +74,8 @@ int			key_event(int keycode, t_graphic *ptr)
 		ptr->design == 0 ? (ptr->design = 1) : (ptr->design = 0);
 	if (ptr->type == JULIA)
 		julia_event(keycode, ptr);
-	if (ptr->type == MANDELBROT)
-		mandel_event(keycode, ptr);
+	if (ptr->type != MANDELBROT && ptr->type != JULIA)
+		brot_event(keycode, ptr);
 	if (keycode == K_SPACE)
 		init_ptr(ptr);
 	fractal(ptr);

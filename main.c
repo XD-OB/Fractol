@@ -6,6 +6,8 @@ static void		fractal_type(t_graphic *ptr, char *str)
 		ptr->type = MANDELBROT;
 	else if (!strcmp(str, "Multibrot"))
 		ptr->type = MULTIBROT;
+	else if (!strcmp(str, "Tricorn"))
+		ptr->type = TRICORN;
 	else if (!strcmp(str, "Julia"))
 		ptr->type = JULIA;
 	else if (!strcmp(str, "StarJulia"))
@@ -33,6 +35,8 @@ void		fractal(t_graphic *ptr)
 		mandelbrot(ptr);
 	if (ptr->type == MULTIBROT)
 		multibrot(ptr);
+	if (ptr->type == TRICORN)
+		tricorn(ptr);
 	if (ptr->type == INFCIRCLE)
 	{
 		whitescreen(ptr);
