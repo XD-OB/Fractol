@@ -1,37 +1,30 @@
 #include "fractol.h"
 
-void	*part_mandel(void *varg)
+void	*part_loop(void *varg)
 {
 	t_ready		*r;
 	t_graphic	*ptr;
-	t_complex	c;
 	t_complex	z;
 	t_complex	z1;
-	int	k;
-	int	i;
-	int	j;
+	int		k;
+	float		i;
+	float		j;
 
 	r = (t_ready*)varg;
 	ptr = r->ptr;
-	i = (HEIGHT * (r->p - 1)) / DIV;
-	while (i < (HEIGHT * r->p) / DIV)
+	i = (HEIGHT * (r->p - 1) / DIV);
+	while (i <= (HEIGHT / DIV) * r->p)
 	{
-		c.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr->zoom;
-		j = (WIDTH * (r->q - 1)) / DIV;
-		while (j < (WIDTH * r->q) / DIV)
+		j = (WIDTH * (r->q - 1) / DIV);
+		while (j <= ((WIDTH / DIV) * r->q))
 		{
-			c.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;	
-			z = complex(0, 0);
+			z.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr->zoom;
+			z.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;
 			k = -1;
 			while (z.re * z.re + z.im * z.im < 4 && ++k < ptr->max_iter)
 			{
-				z1.re = z.re * z.re - z.im * z.im + c.re;
-				z1.im = 2 * z.re * z.im + c.im;
-				if (z1.re == z.re && z1.im == z.im)
-					{
-						k = ptr->max_iter;
-						break ;
-					}
+				z1.re = pow(pow(z.re, 2) + pow(z.im, 2), 2.5) * cos(5 * atan2(z.im, z.re)) - 0.5;
+				z1.im = pow(pow(z.re, 2) + pow(z.im, 2), 2.5) * sin(5 * atan2(z.im, z.re)) + 0.64;
 				z = z1;
 			}
 			if (k < ptr->max_iter)
@@ -44,7 +37,8 @@ void	*part_mandel(void *varg)
 	}
 	return (NULL);
 }
-void	mandelbrot(t_graphic *ptr)
+
+void		loop(t_graphic *ptr)
 {
 	int		k;
 	int		i;
@@ -69,7 +63,7 @@ void	mandelbrot(t_graphic *ptr)
 	k = -1;
 	i = -1;
 	while(++i < DIV * DIV)
-		pthread_create(&id_thread[i], NULL, part_mandel, (void*)(&r[i]));
+		pthread_create(&id_thread[i], NULL, part_loop, (void*)(&r[i]));
 	while(++k < DIV * DIV)
 		pthread_join(id_thread[k], NULL);
 	free(r);

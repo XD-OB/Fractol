@@ -21,7 +21,7 @@ void	*part_julia(void *varg)
 			z.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr->zoom;
 			z.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;
 			k = -1;
-			while (mod(z) <= 2 && ++k < ptr->max_iter)
+			while (z.re * z.re + z.im * z.im < 4 && ++k < ptr->max_iter)
 			{
 				if (ptr->j_puis != 2)
 				{
@@ -38,7 +38,7 @@ void	*part_julia(void *varg)
 			if (k < ptr->max_iter)
 				img_put_pixel(ptr, j, i, design_color(*ptr, k));
 			else
-				img_put_pixel(ptr, j, i, intern_color(*ptr, k, mod(z)));
+				img_put_pixel(ptr, j, i, intern_color(*ptr, k, z));
 			j++;
 		}
 		i++;

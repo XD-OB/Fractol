@@ -21,7 +21,6 @@ void		init_ptr(t_graphic *ptr)
 	ptr->max_iter = MAX_ITER;
 	ptr->design = 0;
 	ptr->intern = 0;
-	palette_color(ptr);
 	ptr->zoom = 1;
 	ptr->j_cte = complex(-0.7, 0.27015);
 	ptr->m_puis = 3;
@@ -43,11 +42,6 @@ t_complex	complex(double a, double b)
 	z.re = a;
 	z.im = b;
 	return (z);
-}
-
-float	mod(t_complex z)
-{
-	return (sqrt(pow(z.re, 2) + pow(z.im, 2)));
 }
 
 float	lerp(float v0, float v1, float t)

@@ -23,7 +23,7 @@ void	*part_cosine(void *varg)
 			c.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;	
 			z = complex(0, 0);
 			k = -1;
-			while (mod(z) <= 2 && ++k < ptr->max_iter)
+			while (z.re * z.re + z.im * z.im < 4 && ++k < ptr->max_iter)
 			{
 				z1.re = cos(z.re) * cosh(z.im) + (c.re / (pow(c.re, 2) + pow(c.im, 2)));
 				z1.im = -(sin(z.re) * sinh(z.im) + (c.im / (pow(c.re, 2) + pow(c.im, 2))));
@@ -37,7 +37,7 @@ void	*part_cosine(void *varg)
 			if (k < ptr->max_iter)
 				img_put_pixel(ptr, j, i, design_color(*ptr, k));
 			else
-				img_put_pixel(ptr, j, i, intern_color(*ptr, k, mod(z)));
+				img_put_pixel(ptr, j, i, intern_color(*ptr, k, z));
 			j++;
 		}
 		i++;

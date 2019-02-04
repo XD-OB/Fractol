@@ -23,9 +23,9 @@ void	*part_corn(void *varg)
 			c.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;	
 			z = complex(0, 0);
 			k = -1;
-			while (mod(z) <= 2 && ++k < ptr->max_iter)
+			while (z.re * z.re + z.im * z.im < 4 && ++k < ptr->max_iter)
 			{
-				z1.re = pow(z.re, 2) - pow(z.im, 2) + c.re;
+				z1.re = z.re * z.re - z.im *z.im + c.re;
 				z1.im = -2 * z.re * z.im + c.im;
 				if (z1.re == z.re && z1.im == z.im)
 				{
@@ -37,7 +37,7 @@ void	*part_corn(void *varg)
 			if (k < ptr->max_iter)
 				img_put_pixel(ptr, j, i, design_color(*ptr, k));
 			else
-				img_put_pixel(ptr, j, i, intern_color(*ptr, k, mod(z)));
+				img_put_pixel(ptr, j, i, intern_color(*ptr, k, z));
 			j++;
 		}
 		i++;

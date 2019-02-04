@@ -12,6 +12,8 @@ static void		fractal_type(t_graphic *ptr, char *str)
 		ptr->type = JULIA;
 	else if (!strcmp(str, "StarJulia"))
 		ptr->type = STAR;
+	else if (!strcmp(str, "LoopJulia"))
+		ptr->type = LOOP;
 	else if (!strcmp(str, "Douady"))
 		ptr->type = DOUADY;
 	else if (!strcmp(str, "Feigenbaum"))
@@ -45,7 +47,9 @@ void		fractal(t_graphic *ptr)
 	if (ptr->type == COSINE)
 		cosine(ptr);
 	if (ptr->type == STAR)
-		star_julia(ptr);
+		star(ptr);
+	if (ptr->type == LOOP)
+		loop(ptr);
 	if (ptr->type == BURNSHIP)
 		burnship(ptr);
 	if (ptr->type == DOUADY)

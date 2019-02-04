@@ -26,7 +26,7 @@ void	*part_feigen(void *varg)
 			c.im = 3 * pow(tmp.re, 2) * tmp.im - pow(tmp.im, 3);
 			z = complex(0, 0);
 			k = -1;
-			while (mod(z) <= 2 && ++k < ptr->max_iter)
+			while (z.re * z.re + z.im * z.im < 4 && ++k < ptr->max_iter)
 			{
 				z1.re = pow((pow(z.re, 2) + pow(z.im, 2)), ((ptr->m_puis - 1) / 2.0)) * cos((ptr->m_puis - 1) * atan2(z.im, z.re)) + c.re -1.401155;
 				z1.im = pow((pow(z.re, 2) + pow(z.im, 2)), ((ptr->m_puis - 1) / 2.0)) * sin((ptr->m_puis - 1) * atan2(z.im, z.re)) + c.im;
@@ -40,7 +40,7 @@ void	*part_feigen(void *varg)
 			if (k < ptr->max_iter)
 				img_put_pixel(ptr, j, i, design_color(*ptr, k));
 			else
-				img_put_pixel(ptr, j, i, intern_color(*ptr, k, mod(z)));
+				img_put_pixel(ptr, j, i, intern_color(*ptr, k, z));
 			j++;
 		}
 		i++;

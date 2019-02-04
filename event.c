@@ -2,7 +2,7 @@
 
 static void	switch_design(t_graphic *ptr)
 {
-	if (ptr->design != 6)
+	if (ptr->design != 7)
 		ptr->design++;
 	else
 		ptr->design = 0;
@@ -14,6 +14,26 @@ static void	switch_intern(t_graphic *ptr)
 		ptr->intern = 0;
 	else
 		ptr->intern++;
+}
+
+void		change_map(t_graphic *ptr)
+{
+        ptr->map[0] = rgb_map(80, 80, 80);
+        ptr->map[1] = rgb_map(0, 153, 51);
+        ptr->map[2] = rgb_map(0, 200, 0);
+        ptr->map[3] = rgb_map(191, 255, 0);
+        ptr->map[4] = rgb_map(0, 255, 127);
+	ptr->map[5] = rgb_map(0, 191, 255);
+        ptr->map[6] = rgb_map(0, 127, 255);
+        ptr->map[7] = rgb_map(0, 0, 255);
+        ptr->map[8] = rgb_map(127, 0, 255);
+        ptr->map[9] = rgb_map(255, 0, 127);
+        ptr->map[10] = rgb_map(255, 0, 0);
+        ptr->map[11] = rgb_map(255, 63, 0);
+	ptr->map[12] = rgb_map(255, 127, 0);
+        ptr->map[13] = rgb_map(255, 191, 0);
+        ptr->map[14] = rgb_map(0, 0, 0);
+        ptr->map[15] = rgb_map(255, 255, 0);
 }
 
 static void		julia_event(int keycode, t_graphic *ptr)
