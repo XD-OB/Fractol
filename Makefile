@@ -6,7 +6,7 @@
 #    By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/06 14:55:40 by obelouch          #+#    #+#              #
-#    Updated: 2019/01/26 06:35:39 by obelouch         ###   ########.fr        #
+#    Updated: 2019/02/04 11:21:06 by obelouch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = fractol
 
 LIBFT = libft/libft.a
 
-SRC = *.c
+SRC = srcs/*.c fractals/*.c
 
 LIBFT_SRC = libft/*.c
 
@@ -22,7 +22,7 @@ LIBFT_OBJ = *.o
 
 LIBFT_H = libft/libft.h
 
-HEAD = fractol.h
+HEAD = includes/fractol.h
 
 OBJ = *.o
 

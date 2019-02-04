@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 06:31:41 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/02 12:07:16 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/04 11:10:55 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ typedef struct		s_point
 }					t_point;
 
 float		lerp(float v0, float v1, float t);
-void			traceline(t_graphic *ptr, t_point pi, t_point pf, int color);
 void			whitescreen(t_graphic *ptr);
 t_point			point(int x, int y);
 void			infcircle(t_point p, int r, t_graphic ptr, int n);

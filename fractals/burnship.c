@@ -1,6 +1,18 @@
-#include "fractol.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   burnship.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/04 11:08:27 by obelouch          #+#    #+#             */
+/*   Updated: 2019/02/04 11:08:31 by obelouch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	*part_cosine(void *varg)
+#include "../includes/fractol.h"
+
+void	*part_ship(void *varg)
 {
 	t_ready		*r;
 	t_graphic	*ptr;
@@ -25,8 +37,8 @@ void	*part_cosine(void *varg)
 			k = -1;
 			while (z.re * z.re + z.im * z.im < 4 && ++k < ptr->max_iter)
 			{
-				z1.re = cos(z.re) * cosh(z.im) + (c.re / (pow(c.re, 2) + pow(c.im, 2)));
-				z1.im = -(sin(z.re) * sinh(z.im) + (c.im / (pow(c.re, 2) + pow(c.im, 2))));
+				z1.re = fabs(z.re * z.re) - fabs(z.im * z.im) + c.re;
+				z1.im = fabs(2 * z.re * z.im) + c.im;
 				if (z1.re == z.re && z1.im == z.im)
 				{
 					k = ptr->max_iter;
@@ -44,8 +56,7 @@ void	*part_cosine(void *varg)
 	}
 	return (NULL);
 }
-
-void		cosine(t_graphic *ptr)
+void	burnship(t_graphic *ptr)
 {
 	int		k;
 	int		i;
@@ -70,7 +81,7 @@ void		cosine(t_graphic *ptr)
 	k = -1;
 	i = -1;
 	while(++i < DIV * DIV)
-		pthread_create(&id_thread[i], NULL, part_cosine, (void*)(&r[i]));
+		pthread_create(&id_thread[i], NULL, part_ship, (void*)(&r[i]));
 	while(++k < DIV * DIV)
 		pthread_join(id_thread[k], NULL);
 	free(r);

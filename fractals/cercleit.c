@@ -6,11 +6,11 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 08:44:06 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/02 10:41:42 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/04 11:08:37 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../includes/fractol.h"
 
 static void	draw_circle(t_point c, t_point p, t_graphic ptr)
 {

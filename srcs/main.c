@@ -1,4 +1,16 @@
-#include "fractol.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/04 11:12:25 by obelouch          #+#    #+#             */
+/*   Updated: 2019/02/04 11:12:34 by obelouch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/fractol.h"
 
 static void		fractal_type(t_graphic *ptr, char *str)
 {
@@ -56,10 +68,10 @@ void		fractal(t_graphic *ptr)
 	}
 	if (ptr->type == COSINE)
 		cosine(ptr);
-	if (ptr->type == STAR)
-		star(ptr);
 	if (ptr->type == BURNSHIP)
 		burnship(ptr);
+	if (ptr->type == STAR)
+		ptr->j_cte = complex(-0.6, 0.6);
 	if (ptr->type == DOUADY)
 		ptr->j_cte = complex(-0.123, 0.745);
 	if (ptr->type == INTERN)

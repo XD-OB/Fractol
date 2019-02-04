@@ -1,6 +1,18 @@
-#include "fractol.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/04 11:12:40 by obelouch          #+#    #+#             */
+/*   Updated: 2019/02/04 11:13:18 by obelouch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void		error()
+#include "../includes/fractol.h"
+
+void		error(void)
 {
 	ft_putstr("Usage: ./fractol  type\n\n");
 	ft_putstr("Available fractals:   * Julia\n");
@@ -48,7 +60,7 @@ t_complex	complex(double a, double b)
 	return (z);
 }
 
-float	lerp(float v0, float v1, float t)
+float		lerp(float v0, float v1, float t)
 {
 	return ((1 - t) * v0 + t * v1);
 }
