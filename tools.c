@@ -4,7 +4,9 @@ void		error()
 {
 	ft_putstr("Usage: ./fractol  type\n\n");
 	ft_putstr("Available fractals:   * Julia\n");
+	ft_putstr("                      * LoopJulia\n");
 	ft_putstr("                      * StarJulia\n");
+	ft_putstr("                      * CantorJulia\n");
 	ft_putstr("                      * Mandelbrot\n");
 	ft_putstr("                      * Multibrot\n");
 	ft_putstr("                      * Tricorn\n");
@@ -12,7 +14,9 @@ void		error()
 	ft_putstr("                      * Feigenbaum\n");
 	ft_putstr("                      * Cosine\n");
 	ft_putstr("                      * BurningShip\n");
-	ft_putstr("                      * InfinityCircles\n");
+	ft_putstr("                      * SJulia\n");
+	ft_putstr("                      * Galaxy\n");
+	ft_putstr("                      * LeafJulia\n");
 	exit(-1);
 }
 

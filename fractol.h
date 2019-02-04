@@ -80,7 +80,6 @@ void		feigenbaum(t_graphic *ptr);
 void		cosine(t_graphic *ptr);
 void		star(t_graphic *ptr);
 void		julia(t_graphic *ptr);
-void		loop(t_graphic *ptr);
 void		init_ready(t_ready *r, t_graphic *ptr);
 void		init_ptr(t_graphic *ptr);
 t_complex	complex(double a, double b);

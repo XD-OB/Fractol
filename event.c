@@ -51,7 +51,7 @@ static void		julia_event(int keycode, t_graphic *ptr)
 	else if (keycode == K_5)
 		ptr->j_cte.im -= JULIA_C;
 	else if (keycode == K_Y)
-		ptr->j_cte = complex(0.285, 0.01);
+		ptr->j_cte = complex(-0.8, 0.4);
 	else if (keycode == K_U)
 		ptr->j_cte = complex(-1.417022285618, 0.0099534);
 	else if (keycode == K_I)
@@ -59,9 +59,9 @@ static void		julia_event(int keycode, t_graphic *ptr)
 	else if (keycode == K_O)
 		ptr->j_cte = complex(-0.038088, 0.9754633);
 	else if (keycode == K_P)
-		ptr->j_cte = complex(-0.4, 0.6);
+		ptr->j_cte = complex(-0.3, 0.5);
 	else if (keycode == K_OPEN_ACO)
-		ptr->j_cte = complex(-0.8, 0.156);
+		ptr->j_cte = complex(-0.8, 0);
 	else if (keycode == K_CLOSE_ACO)
 		ptr->j_cte = complex(-0, 1);
 }

@@ -1,6 +1,6 @@
 #include "fractol.h"
 
-void	*part_flower(void *varg)
+void	*part_star(void *varg)
 {
 	t_ready		*r;
 	t_graphic	*ptr;
@@ -66,7 +66,7 @@ void		star(t_graphic *ptr)
 	k = -1;
 	i = -1;
 	while(++i < DIV * DIV)
-		pthread_create(&id_thread[i], NULL, part_flower, (void*)(&r[i]));
+		pthread_create(&id_thread[i], NULL, part_star, (void*)(&r[i]));
 	while(++k < DIV * DIV)
 		pthread_join(id_thread[k], NULL);
 	free(r);

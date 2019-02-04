@@ -24,6 +24,16 @@ static void		fractal_type(t_graphic *ptr, char *str)
 		ptr->type = BURNSHIP;
 	else if (!strcmp(str, "InfinityCircles"))
 		ptr->type = INFCIRCLE;
+	else if (!strcmp(str, "LeafJulia"))
+		ptr->type = LEAF;
+	else if (!strcmp(str, "CantorJulia"))
+		ptr->type = CANTOR;
+	else if (!strcmp(str, "Galaxy"))
+		ptr->type = GALAXY;
+	else if (!strcmp(str, "InternJulia"))
+		ptr->type = INTERN;
+	else if (!strcmp(str, "SJulia"))
+		ptr->type = SJULIA;
 	else
 		ptr->type = NONE;
 
@@ -48,13 +58,25 @@ void		fractal(t_graphic *ptr)
 		cosine(ptr);
 	if (ptr->type == STAR)
 		star(ptr);
-	if (ptr->type == LOOP)
-		loop(ptr);
 	if (ptr->type == BURNSHIP)
 		burnship(ptr);
 	if (ptr->type == DOUADY)
 		ptr->j_cte = complex(-0.123, 0.745);
-	if (ptr->type == JULIA || ptr->type == DOUADY)
+	if (ptr->type == INTERN)
+		ptr->j_cte = complex(-0.285, 0.01);
+	if (ptr->type == GALAXY)
+		ptr->j_cte = complex(-0.4, 0.6);
+	if (ptr->type == SJULIA)
+		ptr->j_cte = complex(-0.8, 0.156);
+	if (ptr->type == LEAF)
+		ptr->j_cte = complex(0.285, 0.013);
+	if (ptr->type == CANTOR)
+		ptr->j_cte = complex(0.285, 0.01);
+	if (ptr->type == LOOP)
+		ptr->j_cte = complex(-0.5, 0.64);
+	if (ptr->type == JULIA || ptr->type == DOUADY || ptr->type == INTERN || ptr->type == GALAXY )
+		julia(ptr);
+	if (ptr->type == SJULIA || ptr->type == LEAF || ptr->type == CANTOR || ptr->type == LOOP)
 		julia(ptr);
 	if (ptr->type != INFCIRCLE)
 		mlx_put_image_to_window(ptr, ptr->win, ptr->image.void_ptr, 0, 0);
