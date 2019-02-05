@@ -34,18 +34,26 @@ void		error(void)
 
 void		init_ptr(t_graphic *ptr)
 {
-	ptr->max_iter = MAX_ITER;
+	ptr->max_iter = 50;
 	ptr->design = 0;
 	ptr->intern = 0;
-	ptr->zoom = 1;
+	ptr->zoom = 300;
 	ptr->j_cte = complex(-0.7, 0.27015);
 	ptr->m_puis = 3;
 	ptr->j_puis = 2;
 	init_img(ptr);
 }
 
+void		init_mouse(t_mouse *mouse)
+{
+	mouse->x = -2.05;
+	mouse->y = -1.3;
+	mouse->isclick = 0;
+}
+
 void		init_ready(t_ready *r, t_graphic *ptr)
 {
+	init_mouse(&(r->mouse));
 	r->ptr = ptr;
 	r->p = 0;
 	r->q = 0;

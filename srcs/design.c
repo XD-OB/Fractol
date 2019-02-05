@@ -61,7 +61,7 @@ int	design_color(t_graphic ptr, int k)
 int	intern_color(t_graphic ptr, int k, t_complex z)
 {
 	if (ptr.intern == 1)
-		return (hsv(190, k / ptr.max_iter, 0.24));
+		return (hsv(255 * k / ptr.max_iter, 255, k <  ptr.max_iter ? k : 0.0));
 	if (ptr.intern == 2)
 		return (rgb_map(k * 100 * sin(sqrt(z.re * z.re + z.im * z.im)), k * sin(sqrt(z.re * z.re + z.im * z.im)), 50 * k));
 	if (ptr.intern == 3)

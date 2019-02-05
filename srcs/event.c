@@ -86,30 +86,41 @@ static void		brot_event(int keycode, t_graphic *ptr)
 		ptr->m_puis--;
 }
 
-int			key_event(int keycode, t_graphic *ptr)
+int			mouse_event(int mousecode, int x, int y, t_ready *r)
+{
+	
+	if (mousecode == 4 || mousecode == 1)
+		ft_zoom(x, y, r);
+	if (mousecode == 5 || mousecode == 2)
+		ft_unzoom(x, y, r);
+	fractal(r->ptr, r);
+	return (1);
+}
+
+int			key_event(int keycode, t_ready *r)
 {
 	if (keycode == K_ESC)
 		exit(1);
 	else if (keycode == K_X)
-		switch_intern(ptr);
+		switch_intern(r->ptr);
 	else if (keycode == K_C)
-		switch_design(ptr);
+		switch_design(r->ptr);
 	else if (keycode == K_PLUS)
-		ptr->max_iter += 10;
-	else if (keycode == K_MINUS && ptr->max_iter > 10)
-		ptr->max_iter -= 5;
+		r->ptr->max_iter += 10;
+	else if (keycode == K_MINUS && r->ptr->max_iter > 10)
+		r->ptr->max_iter -= 5;
 	else if (keycode == K_2)
-		ptr->zoom -= 0.05;
+		r->ptr->zoom -= 0.05;
 	else if (keycode == K_1)
-		ptr->zoom += 0.05;
-	else if (keycode == K_P && ptr->type == INFCIRCLE)
-		ptr->design == 0 ? (ptr->design = 1) : (ptr->design = 0);
-	if (ptr->type == JULIA)
-		julia_event(keycode, ptr);
-	if (ptr->type != MANDELBROT && ptr->type != JULIA)
-		brot_event(keycode, ptr);
+		r->ptr->zoom += 0.05;
+	else if (keycode == K_P && r->ptr->type == INFCIRCLE)
+		r->ptr->design == 0 ? (r->ptr->design = 1) : (r->ptr->design = 0);
+	if (r->ptr->type == JULIA)
+		julia_event(keycode, r->ptr);
+	if (r->ptr->type != MANDELBROT && r->ptr->type != JULIA)
+		brot_event(keycode, r->ptr);
 	if (keycode == K_SPACE)
-		init_ptr(ptr);
-	fractal(ptr);
+		init_ptr(r->ptr);
+	fractal(r->ptr, r);
 	return (1);
 }

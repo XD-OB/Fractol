@@ -20,19 +20,19 @@ void	*part_mandel(void *varg)
 	t_complex	z;
 	t_complex	z1;
 	int	k;
-	int	i;
-	int	j;
+	double	i;
+	double	j;
 
 	r = (t_ready*)varg;
 	ptr = r->ptr;
 	i = (HEIGHT * (r->p - 1)) / DIV;
 	while (i < (HEIGHT * r->p) / DIV)
 	{
-		c.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr->zoom;
+		c.im = i / ptr->zoom + (r->mouse).y;
 		j = (WIDTH * (r->q - 1)) / DIV;
 		while (j < (WIDTH * r->q) / DIV)
 		{
-			c.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;	
+			c.re = j / ptr->zoom + (r->mouse).x;
 			z = complex(0, 0);
 			k = -1;
 			while (z.re * z.re + z.im * z.im < 4 && ++k < ptr->max_iter)
@@ -56,33 +56,33 @@ void	*part_mandel(void *varg)
 	}
 	return (NULL);
 }
-void	mandelbrot(t_graphic *ptr)
+void	mandelbrot(t_ready *r)
 {
 	int		k;
 	int		i;
 	int		j;
-	t_ready		*r;
+	t_ready		*tmp;
 	pthread_t	id_thread[DIV * DIV];
 
-	r = (t_ready*)malloc(sizeof(t_ready) * DIV * DIV);
+	tmp = (t_ready*)malloc(sizeof(t_ready) * DIV * DIV);
 	i = -1;
 	while(++i < DIV * DIV)
-		init_ready(&r[i], ptr);
+		tmp[i] = *r;
 	i = 0;
 	while(++i <= DIV)
 	{
 		j = 0;
 		while(++j <= DIV)
 		{
-			r[((i - 1) * DIV) + (j - 1)].p = i;
-			r[((i - 1) * DIV) + (j - 1)].q = j;
+			tmp[((i - 1) * DIV) + (j - 1)].p = i;
+			tmp[((i - 1) * DIV) + (j - 1)].q = j;
 		}
 	}
 	k = -1;
 	i = -1;
 	while(++i < DIV * DIV)
-		pthread_create(&id_thread[i], NULL, part_mandel, (void*)(&r[i]));
+		pthread_create(&id_thread[i], NULL, part_mandel, (void*)(&tmp[i]));
 	while(++k < DIV * DIV)
 		pthread_join(id_thread[k], NULL);
-	free(r);
+	free(tmp);
 }

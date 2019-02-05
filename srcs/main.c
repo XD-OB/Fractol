@@ -51,12 +51,12 @@ static void		fractal_type(t_graphic *ptr, char *str)
 
 }
 
-void		fractal(t_graphic *ptr)
+void		fractal(t_graphic *ptr, t_ready *r)
 {
 	if (ptr->type == FEIGENBAUM)
 		feigenbaum(ptr);
 	if (ptr->type == MANDELBROT)
-		mandelbrot(ptr);
+		mandelbrot(r);
 	if (ptr->type == MULTIBROT)
 		multibrot(ptr);
 	if (ptr->type == TRICORN)
@@ -97,16 +97,19 @@ void		fractal(t_graphic *ptr)
 int			main(int ac, char **av)
 {
 	t_graphic	ptr;
+	t_ready		r;
 
+	r.ptr = &ptr;
 	if (ac != 2) 
 		error();
-	init_ptr(&ptr);
-	fractal_type(&ptr, av[1]);
-	if (ptr.type == NONE)
+	init_ptr(r.ptr);
+	fractal_type(r.ptr, av[1]);
+	if ((r.ptr)->type == NONE)
 		error();
-	ptr.mlx = mlx_init();
-	ptr.win = mlx_new_window(ptr.mlx, WIDTH, HEIGHT, "fractol");
-	fractal(&ptr);
-	mlx_key_hook(ptr.win, key_event, (void*)&ptr);
-	mlx_loop(ptr.mlx);
+	(r.ptr)->mlx = mlx_init();
+	(r.ptr)->win = mlx_new_window((r.ptr)->mlx, WIDTH, HEIGHT, "fractol");
+	fractal(r.ptr, &r);
+	mlx_key_hook((r.ptr)->win, key_event, (void*)&r);
+	mlx_mouse_hook((r.ptr)->win, mouse_event, (void*)&r);
+	mlx_loop((r.ptr)->mlx);
 }
