@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:12:25 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/04 11:12:34 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/06 20:28:23 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ static void		fractal_type(t_graphic *ptr, char *str)
 		ptr->type = SJULIA;
 	else
 		ptr->type = NONE;
-
 }
 
 void		fractal(t_graphic *ptr, t_ready *r)
@@ -86,7 +85,7 @@ void		fractal(t_graphic *ptr, t_ready *r)
 		ptr->j_cte = complex(0.285, 0.01);
 	if (ptr->type == LOOP)
 		ptr->j_cte = complex(-0.5, 0.64);
-	if (ptr->type == JULIA || ptr->type == DOUADY || ptr->type == INTERN || ptr->type == GALAXY )
+	if (ptr->type == JULIA || ptr->type == DOUADY || ptr->type == INTERN || ptr->type == GALAXY)
 		julia(r);
 	if (ptr->type == SJULIA || ptr->type == LEAF || ptr->type == CANTOR || ptr->type == LOOP)
 		julia(r);
@@ -100,7 +99,7 @@ int			main(int ac, char **av)
 	t_ready		r;
 
 	r.ptr = &ptr;
-	if (ac != 2) 
+	if (ac != 2)
 		error();
 	init_ptr(r.ptr);
 	init_ready(&r, r.ptr);
@@ -108,12 +107,14 @@ int			main(int ac, char **av)
 	if ((r.ptr)->type == NONE)
 		error();
 	(r.ptr)->mlx = mlx_init();
-	(r.ptr)->win = mlx_new_window((r.ptr)->mlx, WIDTH, HEIGHT, "Fract'ol obelouch");
+	(r.ptr)->win = mlx_new_window((r.ptr)->mlx, WIDTH, HEIGHT,
+			"Fract'ol obelouch");
 	fractal(r.ptr, &r);
 	mlx_key_hook((r.ptr)->win, key_event, &r);
 	mlx_mouse_hook((r.ptr)->win, mouse_event, &r);
-	mlx_mouse_hook((r.ptr)->win, mouse_move, &r);
+	mlx_hook((r.ptr)->win, 6, 1L << 6, mouse_move, &r);
+	mlx_hook((r.ptr)->win, 17, 1L << 17, win_close, &r);
+	mlx_hook((r.ptr)->win, 2, 1L << 2, key_press, &r);
 	mlx_loop((r.ptr)->mlx);
-	mlx_destroy_window((r.ptr)->mlx, (r.ptr)->win);
 	return (0);
 }

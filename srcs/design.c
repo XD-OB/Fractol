@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:11:21 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/04 11:11:35 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/06 20:24:04 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,17 @@ int	design_color(t_graphic ptr, int k)
 	if (ptr.design == 1)
 		return (palette(k));
 	if (ptr.design == 2)
-		return (rgb_map(k*2, k*10, k*5));
+		return (rgb_map(k * 2, k * 10, k * 5));
 	if (ptr.design == 3)
 		return (rgb_map(SAN(0.4, k, 0), SAN(0.4, k, 2), SAN(0.4, k, 4)));
 	if (ptr.design == 4)
 		return (rgb_map(SAN(0.1, k, 0), SAN(0.2, k, 0), SAN(0.3, k, 0)));
 	if (ptr.design == 5)
-		return (rgb_map(k % 32, k % 64 * 64 ? k % 64 * 64 : 0x00FF00, k % 45 * 16));
+		return (rgb_map(k % 32, k % 64 * 64 ? k % 64 * 64 : 0x00FF00,
+					k % 45 * 16));
 	if (ptr.design == 6)
-		return ((k << 21) + (k << 10) + k * 8 ? (k << 21) + (k << 10) + k * 8 : 0x330011);
+		return ((k << 21) + (k << 10) + k * 8 ?
+				(k << 21) + (k << 10) + k * 8 : 0x330011);
 	if (ptr.design == 7)
 		return (change_map(k));
 	if (ptr.design == 8)
@@ -62,14 +64,21 @@ int	design_color(t_graphic ptr, int k)
 int	intern_color(t_graphic ptr, int k, t_complex z)
 {
 	if (ptr.intern == 1)
-		return (hsv(255 * k / ptr.max_iter, 255, k <  ptr.max_iter ? k : 0.0));
+		return (hsv(255 * k / ptr.max_iter, 255,
+					k <  ptr.max_iter ? k : 0.0));
 	if (ptr.intern == 2)
-		return (rgb_map(k * 100 * sin(sqrt(z.re * z.re + z.im * z.im)), k * sin(sqrt(z.re * z.re + z.im * z.im)), 50 * k));
+		return (rgb_map(k * 100 * sin(sqrt(z.re * z.re + z.im * z.im)),
+					k * sin(sqrt(z.re * z.re + z.im * z.im)), 50 * k));
 	if (ptr.intern == 3)
-		return (rgb_map(sqrt(z.re * z.re + z.im * z.im) * 20, sqrt(z.re * z.re + z.im * z.im) * 5, sqrt(z.re * z.re + z.im * z.im) * 150));
+		return (rgb_map(sqrt(z.re * z.re + z.im * z.im) * 20,
+					sqrt(z.re * z.re + z.im * z.im) * 5,
+					sqrt(z.re * z.re + z.im * z.im) * 150));
 	if (ptr.intern == 4)
-		return (rgb_map(sqrt(z.re * z.re + z.im * z.im) * 300, 0, sqrt(z.re * z.re + z.im * z.im) * 450));
+		return (rgb_map(sqrt(z.re * z.re + z.im * z.im) * 300, 0,
+					sqrt(z.re * z.re + z.im * z.im) * 450));
 	if (ptr.intern == 5)
-		return (rgb_map(sin(z.re * z.re + z.im * z.im) * 200, sin((z.re * z.re + z.im * z.im) / 2) * 200, sin((z.re * z.re + z.im * z.im) / 4) * 200));
+		return (rgb_map(sin(z.re * z.re + z.im * z.im) * 200,
+					sin((z.re * z.re + z.im * z.im) / 2) * 200,
+					sin((z.re * z.re + z.im * z.im) / 4) * 200));
 	return (0);
 }

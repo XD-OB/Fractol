@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 06:31:41 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/04 11:10:55 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/06 20:19:06 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 # include "header.h"
 # include "structs.h"
 
+int			win_close(t_ready *r);
 void		init_mouse(t_mouse *mouse);
 int		mouse_event(int mcode, int x, int y, t_ready *r);
-int		mouse_move(int mcode, int x, int y, t_ready *r);
+int		mouse_move(int x, int y, t_ready *r);
+int		key_press(int keycode, t_ready *r);
 void		ft_zoom(int x, int y, t_ready *r);
 void		ft_unzoom(int x, int y, t_ready *r);
 float		lerp(float v0, float v1, float t);

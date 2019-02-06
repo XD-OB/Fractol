@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:11:51 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/04 11:33:28 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/06 20:25:40 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,18 +195,35 @@ int			mouse_event(int mousecode, int x, int y, t_ready *r)
 	return (1);
 }
 
-int			mouse_move(int mousecode, int x, int y, t_ready *r)
+int			mouse_move(int x, int y, t_ready *r)
 {
 	t_complex	*c;
 
 	c = &(r->ptr->j_cte);
-	if (r->ptr->type == JULIA && x > 0 && y > 0 && y < HEIGHT && x < WIDTH)
+	if (r->ptr->type == JULIA && x > 0 && y > 0 && y < HEIGHT && x < WIDTH && r->mouse.isclick == 1)
 	{
 		c->re = (float)WIDTH / 1200 - (float)x / 1000; 
 		c->im = (float)HEIGHT / 1200 - (float)y / 1000;
 	}
-	fractal(r->ptr, r);
+		fractal(r->ptr, r);
 	return (1);
+}
+
+int			win_close(t_ready *r)
+{
+	(void)r;
+	exit(0);
+	return (0);
+}
+
+int			key_press(int keycode, t_ready *r)
+{
+	t_mouse		*mouse;
+
+	mouse = &(r->mouse);
+	if (keycode == 3)
+		mouse->isclick = 1;
+	return (0);
 }
 
 int			key_event(int keycode, t_ready *r)
@@ -229,7 +246,12 @@ int			key_event(int keycode, t_ready *r)
 	else if (keycode == K_1)
 		r->ptr->zoom += 0.05;
 	else if (keycode == K_P && r->ptr->type == INFCIRCLE)
-		r->ptr->design == 0 ? (r->ptr->design = 1) : (r->ptr->design = 0);
+	{
+		if (r->ptr->design == 0)
+			r->ptr->design = 1
+		else
+			r->ptr->design = 0;
+	}
 	else if (keycode == K_UP)
 		mouse->y -= 30 / r->ptr->zoom;
 	else if (keycode == K_DOWN)
