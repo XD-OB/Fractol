@@ -108,9 +108,11 @@ int			main(int ac, char **av)
 	if ((r.ptr)->type == NONE)
 		error();
 	(r.ptr)->mlx = mlx_init();
-	(r.ptr)->win = mlx_new_window((r.ptr)->mlx, WIDTH, HEIGHT, "fractol");
+	(r.ptr)->win = mlx_new_window((r.ptr)->mlx, WIDTH, HEIGHT, "Fract'ol obelouch");
 	fractal(r.ptr, &r);
-	mlx_key_hook((r.ptr)->win, key_event, (void*)&r);
-	mlx_mouse_hook((r.ptr)->win, mouse_event, (void*)&r);
+	mlx_key_hook((r.ptr)->win, key_event, &r);
+	mlx_mouse_hook((r.ptr)->win, mouse_event, &r);
+	mlx_hook((r.ptr)->win, 6, 1 << 8, mouse_move, &r);
 	mlx_loop((r.ptr)->mlx);
+	return (0);
 }

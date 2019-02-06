@@ -28,11 +28,10 @@ typedef struct		s_graphic
 	void*		mlx;
 	void*		win;
 	int		max_iter;
-	int		map[16];
 	int		design;
 	int		intern;
 	int		type;
-	float		zoom;
+	double		zoom;
 	t_image		image;
 	t_complex	j_cte;
 	float		j_puis;

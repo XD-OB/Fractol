@@ -18,14 +18,17 @@
 
 void		init_mouse(t_mouse *mouse);
 int		mouse_event(int mcode, int x, int y, t_ready *r);
+int		mouse_move(int mcode, int x, int y, t_ready *r);
 void		ft_zoom(int x, int y, t_ready *r);
 void		ft_unzoom(int x, int y, t_ready *r);
 float		lerp(float v0, float v1, float t);
 void			whitescreen(t_graphic *ptr);
 t_point			point(int x, int y);
 void			infcircle(t_point p, int r, t_graphic ptr, int n);
-void		change_map(t_graphic *ptr);
-void		palette_color(t_graphic *ptr);
+int		change_map(int n);
+int		change_map2(int n);
+int		change_map3(int n);
+int		palette(int n);
 int			hsv(double h, double s, double v);
 int			design_color(t_graphic ptr, int k);
 int			intern_color(t_graphic ptr, int k, t_complex z);
