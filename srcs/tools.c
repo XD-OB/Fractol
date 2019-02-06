@@ -29,6 +29,7 @@ void		error(void)
 	ft_putstr("                      * SJulia\n");
 	ft_putstr("                      * Galaxy\n");
 	ft_putstr("                      * LeafJulia\n");
+	ft_putstr("                      * InfinityCircles\n");
 	exit(-1);
 }
 

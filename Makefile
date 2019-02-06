@@ -26,9 +26,13 @@ HEAD = includes/fractol.h
 
 OBJ = *.o
 
-LIB = -L ./mlx -lmlx -L ./libft -lft -lm -lpthread 
-
-FRAME = -framework OpenGL -framework Appkit
+ifeq ($(OS), Linux)
+	LIB = -L ./mlx_X11 -lmlx -L ./libft -lft -lm -lpthread
+	FRAME = -lXext -lX11
+else
+	LIB = -L ./mlx -lmlx -L ./libft -lft -lm -lpthread 
+	FRAME = -framework OpenGL -framework Appkit
+endif
 
 FLAG = -Wall -Wextra -Werror -std=gnu99 -pedantic
 

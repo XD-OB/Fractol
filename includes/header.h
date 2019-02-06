@@ -18,7 +18,7 @@
 
 # define MAX_ITER 50
 # define DIV 5
-# define JULIA_C 0.0005
+# define JULIA_C 0.001
 
 # define K_ESC 53
 # define K_UP 126
