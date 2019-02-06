@@ -14,7 +14,7 @@
 
 void	*part_feigen(void *varg)
 {
-	t_ready		*r;
+	t_fractol		*r;
 	t_graphic	*ptr;
 	t_complex	tmp;
 	t_complex	c;
@@ -24,7 +24,7 @@ void	*part_feigen(void *varg)
 	int	i;
 	int	j;
 
-	r = (t_ready*)varg;
+	r = (t_fractol*)varg;
 	ptr = r->ptr;
 	i = (HEIGHT * (r->p - 1)) / DIV;
 	while (i < (HEIGHT * r->p) / DIV)
@@ -60,15 +60,15 @@ void	*part_feigen(void *varg)
 	return (NULL);
 }
 
-void		feigenbaum(t_ready *r)
+void		feigenbaum(t_fractol *r)
 {
 	int		k;
 	int		i;
 	int		j;
-	t_ready		*tmp;
+	t_fractol		*tmp;
 	pthread_t	id_thread[DIV * DIV];
 
-	tmp = (t_ready*)malloc(sizeof(t_ready) * DIV * DIV);
+	tmp = (t_fractol*)malloc(sizeof(t_fractol) * DIV * DIV);
 	i = -1;
 	while(++i < DIV * DIV)
 		tmp[i] = *r;

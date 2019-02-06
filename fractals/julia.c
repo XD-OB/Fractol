@@ -14,7 +14,7 @@
 
 void	*part_julia(void *varg)
 {
-	t_ready		*r;
+	t_fractol		*r;
 	t_graphic	*ptr;
 	t_complex	z;
 	t_complex	z1;
@@ -22,7 +22,7 @@ void	*part_julia(void *varg)
 	float		i;
 	float		j;
 
-	r = (t_ready*)varg;
+	r = (t_fractol*)varg;
 	ptr = r->ptr;
 	i = (HEIGHT * (r->p - 1) / DIV);
 	while (i <= (HEIGHT / DIV) * r->p)
@@ -58,15 +58,15 @@ void	*part_julia(void *varg)
 	return (NULL);
 }
 
-void		julia(t_ready *r)
+void		julia(t_fractol *r)
 {
 	int		k;
 	int		i;
 	int		j;
-	t_ready		*tmp;
+	t_fractol		*tmp;
 	pthread_t	id_thread[DIV * DIV];
 
-	tmp = (t_ready*)malloc(sizeof(t_ready) * DIV * DIV);
+	tmp = (t_fractol*)malloc(sizeof(t_fractol) * DIV * DIV);
 	i = -1;
 	while(++i < DIV * DIV)
 		tmp[i] = *r;

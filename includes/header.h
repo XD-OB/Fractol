@@ -29,10 +29,16 @@
 # define K_RIGHT 124
 # define K_LEFT 123
 
+# define SCROLL_UP 4
+# define SCROLL_DOWN 5
+# define B_RIGHT 2
+# define B_LEFT 1
+
 # define K_MINUS 78
 # define K_PLUS 69
 # define K_SPACE 49
 # define K_C 8
+# define K_F 3
 # define K_M 46
 # define K_N 45
 # define K_Y 16

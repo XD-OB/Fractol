@@ -38,7 +38,7 @@ typedef struct		s_graphic
 	float		m_puis;
 }			t_graphic;
 
-typedef struct	s_ready
+typedef struct	s_fractol
 {
 	double		x1;
 	double		x2;
@@ -50,7 +50,7 @@ typedef struct	s_ready
 	t_mouse		mouse;
 	int		p;
 	int		q;
-}		t_ready;
+}		t_fractol;
 
 typedef struct	s_point
 {

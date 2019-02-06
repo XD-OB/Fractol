@@ -152,14 +152,6 @@ static void		julia_event(int keycode, t_graphic *ptr)
 		ptr->j_puis++;
 	else if (keycode == K_J)
 		ptr->j_puis--;
-	else if (keycode == K_7)
-		ptr->j_cte.re += JULIA_C;
-	else if (keycode == K_8)
-		ptr->j_cte.im += JULIA_C;
-	else if (keycode == K_4)
-		ptr->j_cte.re -= JULIA_C;
-	else if (keycode == K_5)
-		ptr->j_cte.im -= JULIA_C;
 	else if (keycode == K_Y)
 		ptr->j_cte = complex(-0.8, 0.4);
 	else if (keycode == K_U)
@@ -184,18 +176,18 @@ static void		brot_event(int keycode, t_graphic *ptr)
 		ptr->m_puis--;
 }
 
-int			mouse_event(int mousecode, int x, int y, t_ready *r)
+int			mouse_event(int mousecode, int x, int y, t_fractol *r)
 {
 	
-	if (mousecode == 4 || mousecode == 1)
+	if (mousecode == SCROLL_UP || mousecode == B_LEFT)
 		ft_zoom(x, y, r);
-	if (mousecode == 5 || mousecode == 2)
+	if (mousecode == SCROLL_DOWN || mousecode == B_RIGHT)
 		ft_unzoom(x, y, r);
 	fractal(r->ptr, r);
 	return (1);
 }
 
-int			mouse_move(int x, int y, t_ready *r)
+int			mouse_move(int x, int y, t_fractol *r)
 {
 	t_complex	*c;
 
@@ -209,24 +201,29 @@ int			mouse_move(int x, int y, t_ready *r)
 	return (1);
 }
 
-int			win_close(t_ready *r)
+int			win_close(t_fractol *r)
 {
 	(void)r;
 	exit(0);
 	return (0);
 }
 
-int			key_press(int keycode, t_ready *r)
+int			key_press(int keycode, t_fractol *r)
 {
 	t_mouse		*mouse;
 
 	mouse = &(r->mouse);
-	if (keycode == 3)
-		mouse->isclick = 1;
+	if (keycode == K_F)
+	{
+		if (mouse->isclick == 0)
+			mouse->isclick = 1;
+		else
+			mouse->isclick = 0;
+	}
 	return (0);
 }
 
-int			key_event(int keycode, t_ready *r)
+int			key_event(int keycode, t_fractol *r)
 {
 	t_mouse		*mouse;
 
@@ -241,14 +238,10 @@ int			key_event(int keycode, t_ready *r)
 		r->ptr->max_iter += 10;
 	else if (keycode == K_MINUS && r->ptr->max_iter > 10)
 		r->ptr->max_iter -= 5;
-	else if (keycode == K_2)
-		r->ptr->zoom -= 0.05;
-	else if (keycode == K_1)
-		r->ptr->zoom += 0.05;
 	else if (keycode == K_P && r->ptr->type == INFCIRCLE)
 	{
 		if (r->ptr->design == 0)
-			r->ptr->design = 1
+			r->ptr->design = 1;
 		else
 			r->ptr->design = 0;
 	}

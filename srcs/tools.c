@@ -12,27 +12,6 @@
 
 #include "../includes/fractol.h"
 
-void		error(void)
-{
-	ft_putstr("\033[32Usage: ./fractol  type\n\n");
-	ft_putstr("Available fractals:   * Julia\n");
-	ft_putstr("                      * LoopJulia\n");
-	ft_putstr("                      * StarJulia\n");
-	ft_putstr("                      * CantorJulia\n");
-	ft_putstr("                      * Mandelbrot\n");
-	ft_putstr("                      * Multibrot\n");
-	ft_putstr("                      * Tricorn\n");
-	ft_putstr("                      * Douady\n");
-	ft_putstr("                      * Feigenbaum\n");
-	ft_putstr("                      * Cosine\n");
-	ft_putstr("                      * BurningShip\n");
-	ft_putstr("                      * SJulia\n");
-	ft_putstr("                      * Galaxy\n");
-	ft_putstr("                      * LeafJulia\n");
-	ft_putstr("                      * InfinityCircles\n");
-	exit(-1);
-}
-
 void		init_ptr(t_graphic *ptr)
 {
 	ptr->max_iter = 50;
@@ -52,7 +31,7 @@ void		init_mouse(t_mouse *mouse)
 	mouse->isclick = 0;
 }
 
-void		init_ready(t_ready *r, t_graphic *ptr)
+void		init_fractol(t_fractol *r, t_graphic *ptr)
 {
 	r->width = WIDTH;
 	r->height = HEIGHT;
