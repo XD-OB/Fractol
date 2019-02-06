@@ -16,7 +16,7 @@
 
 # define P(x, y) sqrt(pow(x - 1 / 4, 2) + pow(y, 2))
 
-# define MAX_ITER 100
+# define MAX_ITER 50
 # define DIV 5
 # define JULIA_C 0.0005
 

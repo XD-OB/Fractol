@@ -37,7 +37,7 @@ void		init_ptr(t_graphic *ptr)
 	ptr->max_iter = 50;
 	ptr->design = 0;
 	ptr->intern = 0;
-	ptr->zoom = 300;
+	ptr->zoom = 200;
 	ptr->j_cte = complex(-0.7, 0.27015);
 	ptr->m_puis = 3;
 	ptr->j_puis = 2;
@@ -53,6 +53,8 @@ void		init_mouse(t_mouse *mouse)
 
 void		init_ready(t_ready *r, t_graphic *ptr)
 {
+	r->width = WIDTH;
+	r->height = HEIGHT;
 	init_mouse(&(r->mouse));
 	r->ptr = ptr;
 	r->p = 0;

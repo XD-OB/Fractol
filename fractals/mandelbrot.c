@@ -25,12 +25,14 @@ void	*part_mandel(void *varg)
 
 	r = (t_ready*)varg;
 	ptr = r->ptr;
-	i = (HEIGHT * (r->p - 1)) / DIV;
-	while (i < (HEIGHT * r->p) / DIV)
+	r->width = WIDTH;
+	r->height = HEIGHT;
+	i = (r->height * (r->p - 1)) / DIV;
+	while (i < (r->height * r->p) / DIV)
 	{
 		c.im = i / ptr->zoom + (r->mouse).y;
-		j = (WIDTH * (r->q - 1)) / DIV;
-		while (j < (WIDTH * r->q) / DIV)
+		j = (r->width * (r->q - 1)) / DIV;
+		while (j < (r->width * r->q) / DIV)
 		{
 			c.re = j / ptr->zoom + (r->mouse).x;
 			z = complex(0, 0);

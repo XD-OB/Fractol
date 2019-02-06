@@ -103,6 +103,7 @@ int			main(int ac, char **av)
 	if (ac != 2) 
 		error();
 	init_ptr(r.ptr);
+	init_ready(&r, r.ptr);
 	fractal_type(r.ptr, av[1]);
 	if ((r.ptr)->type == NONE)
 		error();

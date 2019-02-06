@@ -41,6 +41,12 @@ typedef struct		s_graphic
 
 typedef struct	s_ready
 {
+	double		x1;
+	double		x2;
+	double		y1;
+	double		y2;
+	int		width;
+	int		height;
 	t_graphic	*ptr;
 	t_mouse		mouse;
 	int		p;
