@@ -29,11 +29,11 @@ void	*part_feigen(void *varg)
 	i = (HEIGHT * (r->p - 1)) / DIV;
 	while (i < (HEIGHT * r->p) / DIV)
 	{
-		tmp.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr->zoom;
+		tmp.im = i / ptr->zoom + (r->mouse).y;
 		j = (WIDTH * (r->q - 1)) / DIV;
 		while (j < (WIDTH * r->q) / DIV)
 		{
-			tmp.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;
+			tmp.re = j / ptr->zoom + (r->mouse).x;
 			c.re = pow(tmp.re, 3) - 3 * tmp.re * pow(tmp.im, 2);
 			c.im = 3 * pow(tmp.re, 2) * tmp.im - pow(tmp.im, 3);
 			z = complex(0, 0);
@@ -60,33 +60,33 @@ void	*part_feigen(void *varg)
 	return (NULL);
 }
 
-void		feigenbaum(t_graphic *ptr)
+void		feigenbaum(t_ready *r)
 {
 	int		k;
 	int		i;
 	int		j;
-	t_ready		*r;
+	t_ready		*tmp;
 	pthread_t	id_thread[DIV * DIV];
 
-	r = (t_ready*)malloc(sizeof(t_ready) * DIV * DIV);
+	tmp = (t_ready*)malloc(sizeof(t_ready) * DIV * DIV);
 	i = -1;
 	while(++i < DIV * DIV)
-		init_ready(&r[i], ptr);
+		tmp[i] = *r;
 	i = 0;
 	while(++i <= DIV)
 	{
 		j = 0;
 		while(++j <= DIV)
 		{
-			r[((i - 1) * DIV) + (j - 1)].p = i;
-			r[((i - 1) * DIV) + (j - 1)].q = j;
+			tmp[((i - 1) * DIV) + (j - 1)].p = i;
+			tmp[((i - 1) * DIV) + (j - 1)].q = j;
 		}
 	}
 	k = -1;
 	i = -1;
 	while(++i < DIV * DIV)
-		pthread_create(&id_thread[i], NULL, part_feigen, (void*)(&r[i]));
+		pthread_create(&id_thread[i], NULL, part_feigen, (void*)(&tmp[i]));
 	while(++k < DIV * DIV)
 		pthread_join(id_thread[k], NULL);
-	free(r);
+	free(tmp);
 }

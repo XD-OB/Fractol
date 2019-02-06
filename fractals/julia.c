@@ -30,8 +30,8 @@ void	*part_julia(void *varg)
 		j = (WIDTH * (r->q - 1) / DIV);
 		while (j <= ((WIDTH / DIV) * r->q))
 		{
-			z.im = (i - HEIGHT/2.0) * 4/WIDTH * ptr->zoom;
-			z.re = (j - WIDTH/2.0) * 4/WIDTH * ptr->zoom;
+			z.im = i / ptr->zoom + (r->mouse).y;
+			z.re = j / ptr->zoom + (r->mouse).x;
 			k = -1;
 			while (z.re * z.re + z.im * z.im < 4 && ++k < ptr->max_iter)
 			{
@@ -58,33 +58,34 @@ void	*part_julia(void *varg)
 	return (NULL);
 }
 
-void		julia(t_graphic *ptr)
+void		julia(t_ready *r)
 {
 	int		k;
 	int		i;
 	int		j;
-	t_ready		*r;
+	t_ready		*tmp;
 	pthread_t	id_thread[DIV * DIV];
 
-	r = (t_ready*)malloc(sizeof(t_ready) * DIV * DIV);
+	tmp = (t_ready*)malloc(sizeof(t_ready) * DIV * DIV);
 	i = -1;
 	while(++i < DIV * DIV)
-		init_ready(&r[i], ptr);
+		tmp[i] = *r;
 	i = 0;
 	while(++i <= DIV)
 	{
 		j = 0;
 		while(++j <= DIV)
 		{
-			r[((i - 1) * DIV) + (j - 1)].p = i;
-			r[((i - 1) * DIV) + (j - 1)].q = j;
+			tmp[((i - 1) * DIV) + (j - 1)].p = i;
+			tmp[((i - 1) * DIV) + (j - 1)].q = j;
 		}
 	}
 	k = -1;
 	i = -1;
 	while(++i < DIV * DIV)
-		pthread_create(&id_thread[i], NULL, part_julia, (void*)(&r[i]));
+		pthread_create(&id_thread[i], NULL, part_julia, (void*)(&tmp[i]));
 	while(++k < DIV * DIV)
 		pthread_join(id_thread[k], NULL);
-	free(r);
+	k = -1;
+	free(tmp);
 }

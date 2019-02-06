@@ -119,13 +119,13 @@ int			key_event(int keycode, t_ready *r)
 	else if (keycode == K_P && r->ptr->type == INFCIRCLE)
 		r->ptr->design == 0 ? (r->ptr->design = 1) : (r->ptr->design = 0);
 	else if (keycode == K_UP)
-		mouse->y += 30 / r->ptr->zoom;
-	else if (keycode == K_DOWN)
 		mouse->y -= 30 / r->ptr->zoom;
+	else if (keycode == K_DOWN)
+		mouse->y += 30 / r->ptr->zoom;
 	else if (keycode == K_LEFT)
-		mouse->x += 30 / r->ptr->zoom;
-	else if (keycode == K_RIGHT)
 		mouse->x -= 30 / r->ptr->zoom;
+	else if (keycode == K_RIGHT)
+		mouse->x += 30 / r->ptr->zoom;
 	if (r->ptr->type == JULIA)
 		julia_event(keycode, r->ptr);
 	if (r->ptr->type != MANDELBROT && r->ptr->type != JULIA)

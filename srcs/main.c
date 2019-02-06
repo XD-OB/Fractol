@@ -54,22 +54,22 @@ static void		fractal_type(t_graphic *ptr, char *str)
 void		fractal(t_graphic *ptr, t_ready *r)
 {
 	if (ptr->type == FEIGENBAUM)
-		feigenbaum(ptr);
+		feigenbaum(r);
 	if (ptr->type == MANDELBROT)
 		mandelbrot(r);
 	if (ptr->type == MULTIBROT)
-		multibrot(ptr);
+		multibrot(r);
 	if (ptr->type == TRICORN)
-		tricorn(ptr);
+		tricorn(r);
 	if (ptr->type == INFCIRCLE)
 	{
 		whitescreen(ptr);
 		infcircle(point(WIDTH / 2, HEIGHT / 2), (HEIGHT / 2) - ((2 / 100) * HEIGHT), *ptr, ptr->design + 1);
 	}
 	if (ptr->type == COSINE)
-		cosine(ptr);
+		cosine(r);
 	if (ptr->type == BURNSHIP)
-		burnship(ptr);
+		burnship(r);
 	if (ptr->type == STAR)
 		ptr->j_cte = complex(-0.6, 0.6);
 	if (ptr->type == DOUADY)
@@ -87,9 +87,9 @@ void		fractal(t_graphic *ptr, t_ready *r)
 	if (ptr->type == LOOP)
 		ptr->j_cte = complex(-0.5, 0.64);
 	if (ptr->type == JULIA || ptr->type == DOUADY || ptr->type == INTERN || ptr->type == GALAXY )
-		julia(ptr);
+		julia(r);
 	if (ptr->type == SJULIA || ptr->type == LEAF || ptr->type == CANTOR || ptr->type == LOOP)
-		julia(ptr);
+		julia(r);
 	if (ptr->type != INFCIRCLE)
 		mlx_put_image_to_window(ptr, ptr->win, ptr->image.void_ptr, 0, 0);
 }

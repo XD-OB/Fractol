@@ -76,9 +76,6 @@ void	whitescreen(t_graphic *ptr)
 
 void	infcircle(t_point c, int r, t_graphic ptr, int n)
 {
-	int		width;
-	int		height;
-	
 	if (r > 8)
 	{
 		if (n == 2)
