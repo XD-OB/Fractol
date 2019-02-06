@@ -202,8 +202,8 @@ int			mouse_move(int mousecode, int x, int y, t_ready *r)
 	c = &(r->ptr->j_cte);
 	if (r->ptr->type == JULIA && x > 0 && y > 0 && y < HEIGHT && x < WIDTH)
 	{
-		c->re = x / r->ptr->zoom; 
-		c->im = y / r->ptr->zoom; 
+		c->re = (float)WIDTH / 1200 - (float)x / 1000; 
+		c->im = (float)HEIGHT / 1200 - (float)y / 1000;
 	}
 	fractal(r->ptr, r);
 	return (1);

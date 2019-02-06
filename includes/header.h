@@ -20,6 +20,9 @@
 # define DIV 5
 # define JULIA_C 0.001
 
+#define	PTR_MOTION_MASK (1L<<6)
+#define MOTION_NOTIFY 6
+
 # define K_ESC 53
 # define K_UP 126
 # define K_DOWN 125

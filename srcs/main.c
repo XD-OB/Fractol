@@ -112,7 +112,8 @@ int			main(int ac, char **av)
 	fractal(r.ptr, &r);
 	mlx_key_hook((r.ptr)->win, key_event, &r);
 	mlx_mouse_hook((r.ptr)->win, mouse_event, &r);
-	mlx_hook((r.ptr)->win, 6, 1 << 8, mouse_move, &r);
+	mlx_mouse_hook((r.ptr)->win, mouse_move, &r);
 	mlx_loop((r.ptr)->mlx);
+	mlx_destroy_window((r.ptr)->mlx, (r.ptr)->win);
 	return (0);
 }
