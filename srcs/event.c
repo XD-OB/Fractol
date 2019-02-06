@@ -192,7 +192,7 @@ int			mouse_move(int x, int y, t_fractol *r)
 	t_complex	*c;
 
 	c = &(r->ptr->j_cte);
-	if (r->ptr->type == JULIA && x > 0 && y > 0 && y < HEIGHT && x < WIDTH && r->mouse.isclick == 1)
+	if (r->type == JULIA && x > 0 && y > 0 && y < HEIGHT && x < WIDTH && r->mouse.isclick == 1)
 	{
 		c->re = (float)WIDTH / 1200 - (float)x / 1000; 
 		c->im = (float)HEIGHT / 1200 - (float)y / 1000;
@@ -238,7 +238,7 @@ int			key_event(int keycode, t_fractol *r)
 		r->ptr->max_iter += 10;
 	else if (keycode == K_MINUS && r->ptr->max_iter > 10)
 		r->ptr->max_iter -= 5;
-	else if (keycode == K_P && r->ptr->type == INFCIRCLE)
+	else if (keycode == K_P && r->type == INFCIRCLE)
 	{
 		if (r->ptr->design == 0)
 			r->ptr->design = 1;
@@ -253,9 +253,9 @@ int			key_event(int keycode, t_fractol *r)
 		mouse->x -= 30 / r->ptr->zoom;
 	else if (keycode == K_RIGHT)
 		mouse->x += 30 / r->ptr->zoom;
-	if (r->ptr->type == JULIA)
+	if (r->type == JULIA)
 		julia_event(keycode, r->ptr);
-	if (r->ptr->type != MANDELBROT && r->ptr->type != JULIA)
+	if (r->type != MANDELBROT && r->type != JULIA)
 		brot_event(keycode, r->ptr);
 	if (keycode == K_SPACE)
 	{

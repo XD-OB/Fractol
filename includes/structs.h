@@ -30,7 +30,6 @@ typedef struct		s_graphic
 	int		max_iter;
 	int		design;
 	int		intern;
-	int		type;
 	double		zoom;
 	t_image		image;
 	t_complex	j_cte;
@@ -40,14 +39,9 @@ typedef struct		s_graphic
 
 typedef struct	s_fractol
 {
-	double		x1;
-	double		x2;
-	double		y1;
-	double		y2;
-	int		width;
-	int		height;
 	t_graphic	*ptr;
 	t_mouse		mouse;
+	int		type;
 	int		p;
 	int		q;
 }		t_fractol;

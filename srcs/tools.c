@@ -33,8 +33,6 @@ void		init_mouse(t_mouse *mouse)
 
 void		init_fractol(t_fractol *r, t_graphic *ptr)
 {
-	r->width = WIDTH;
-	r->height = HEIGHT;
 	init_mouse(&(r->mouse));
 	r->ptr = ptr;
 	r->p = 0;
