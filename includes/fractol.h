@@ -38,7 +38,7 @@ int			design_color(t_graphic ptr, int k);
 int			intern_color(t_graphic ptr, int k, t_complex z);
 int			rgb_map(int r, int g, int b);
 void		error(void);
-void		fractal(t_graphic *ptr, t_fractol *r);
+void		fractal(t_fractol *r);
 void		tricorn(t_fractol *r);
 void		mandelbrot(t_fractol *r);
 void		multibrot(t_fractol *r);

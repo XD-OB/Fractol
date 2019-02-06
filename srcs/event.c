@@ -183,7 +183,7 @@ int			mouse_event(int mousecode, int x, int y, t_fractol *r)
 		ft_zoom(x, y, r);
 	if (mousecode == SCROLL_DOWN || mousecode == B_RIGHT)
 		ft_unzoom(x, y, r);
-	fractal(r->ptr, r);
+	fractal(r);
 	return (1);
 }
 
@@ -197,7 +197,7 @@ int			mouse_move(int x, int y, t_fractol *r)
 		c->re = (float)WIDTH / 1200 - (float)x / 1000; 
 		c->im = (float)HEIGHT / 1200 - (float)y / 1000;
 	}
-		fractal(r->ptr, r);
+		fractal(r);
 	return (1);
 }
 
@@ -262,6 +262,6 @@ int			key_event(int keycode, t_fractol *r)
 		init_mouse(&(r->mouse));
 		init_ptr(r->ptr);
 	}
-	fractal(r->ptr, r);
+	fractal(r);
 	return (1);
 }

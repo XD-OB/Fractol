@@ -50,47 +50,47 @@ static void		fractal_type(t_graphic *ptr, char *str)
 		ptr->type = NONE;
 }
 
-void		fractal(t_graphic *ptr, t_fractol *r)
+void		fractal(t_fractol *r)
 {
-	if (ptr->type == FEIGENBAUM)
+	if (r->ptr->type == FEIGENBAUM)
 		feigenbaum(r);
-	if (ptr->type == MANDELBROT)
+	if (r->ptr->type == MANDELBROT)
 		mandelbrot(r);
-	if (ptr->type == MULTIBROT)
+	if (r->ptr->type == MULTIBROT)
 		multibrot(r);
-	if (ptr->type == TRICORN)
+	if (r->ptr->type == TRICORN)
 		tricorn(r);
-	if (ptr->type == INFCIRCLE)
+	if (r->ptr->type == INFCIRCLE)
 	{
-		whitescreen(ptr);
-		infcircle(point(WIDTH / 2, HEIGHT / 2), (HEIGHT / 2) - ((2 / 100) * HEIGHT), *ptr, ptr->design + 1);
+		whitescreen(r->ptr);
+		infcircle(point(WIDTH / 2, HEIGHT / 2), (HEIGHT / 2) - ((2 / 100) * HEIGHT), *(r->ptr), r->ptr->design + 1);
 	}
-	if (ptr->type == COSINE)
+	if (r->ptr->type == COSINE)
 		cosine(r);
-	if (ptr->type == BURNSHIP)
+	if (r->ptr->type == BURNSHIP)
 		burnship(r);
-	if (ptr->type == STAR)
-		ptr->j_cte = complex(-0.6, 0.6);
-	if (ptr->type == DOUADY)
-		ptr->j_cte = complex(-0.123, 0.745);
-	if (ptr->type == INTERN)
-		ptr->j_cte = complex(-0.285, 0.01);
-	if (ptr->type == GALAXY)
-		ptr->j_cte = complex(-0.4, 0.6);
-	if (ptr->type == SJULIA)
-		ptr->j_cte = complex(-0.8, 0.156);
-	if (ptr->type == LEAF)
-		ptr->j_cte = complex(0.285, 0.013);
-	if (ptr->type == CANTOR)
-		ptr->j_cte = complex(0.285, 0.01);
-	if (ptr->type == LOOP)
-		ptr->j_cte = complex(-0.5, 0.64);
-	if (ptr->type == JULIA || ptr->type == DOUADY || ptr->type == INTERN || ptr->type == GALAXY)
+	if (r->ptr->type == STAR)
+		r->ptr->j_cte = complex(-0.6, 0.6);
+	if (r->ptr->type == DOUADY)
+		r->ptr->j_cte = complex(-0.123, 0.745);
+	if (r->ptr->type == INTERN)
+		r->ptr->j_cte = complex(-0.285, 0.01);
+	if (r->ptr->type == GALAXY)
+		r->ptr->j_cte = complex(-0.4, 0.6);
+	if (r->ptr->type == SJULIA)
+		r->ptr->j_cte = complex(-0.8, 0.156);
+	if (r->ptr->type == LEAF)
+		r->ptr->j_cte = complex(0.285, 0.013);
+	if (r->ptr->type == CANTOR)
+		r->ptr->j_cte = complex(0.285, 0.01);
+	if (r->ptr->type == LOOP)
+		r->ptr->j_cte = complex(-0.5, 0.64);
+	if (r->ptr->type == JULIA || r->ptr->type == DOUADY || r->ptr->type == INTERN || r->ptr->type == GALAXY)
 		julia(r);
-	if (ptr->type == SJULIA || ptr->type == LEAF || ptr->type == CANTOR || ptr->type == LOOP)
+	if (r->ptr->type == SJULIA || r->ptr->type == LEAF || r->ptr->type == CANTOR || r->ptr->type == LOOP)
 		julia(r);
-	if (ptr->type != INFCIRCLE)
-		mlx_put_image_to_window(ptr, ptr->win, ptr->image.void_ptr, 0, 0);
+	if (r->ptr->type != INFCIRCLE)
+		mlx_put_image_to_window(r->ptr, r->ptr->win, r->ptr->image.void_ptr, 0, 0);
 }
 
 int			main(int ac, char **av)
@@ -112,7 +112,7 @@ int			main(int ac, char **av)
 		menu_mandel();
 	(r.ptr)->mlx = mlx_init();
 	(r.ptr)->win = mlx_new_window((r.ptr)->mlx, WIDTH, HEIGHT, "Fract'ol obelouch");
-	fractal(r.ptr, &r);
+	fractal(&r);
 	mlx_key_hook((r.ptr)->win, key_event, &r);
 	mlx_mouse_hook((r.ptr)->win, mouse_event, &r);
 	mlx_hook((r.ptr)->win, 6, 1L << 6, mouse_move, &r);
