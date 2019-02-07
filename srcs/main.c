@@ -22,6 +22,8 @@ static void		fractal_type(t_fractol *r, char *str)
 		r->type = TRICORN;
 	else if (!strcmp(str, "Julia"))
 		r->type = JULIA;
+	else if (!strcmp(str, "MultiJulia"))
+		r->type = MULTIJULIA;
 	else if (!strcmp(str, "StarJulia"))
 		r->type = STAR;
 	else if (!strcmp(str, "LoopJulia"))
@@ -69,6 +71,8 @@ void		fractal(t_fractol *r)
 		cosine(r);
 	if (r->type == BURNSHIP)
 		burnship(r);
+	if (r->type == MULTIJULIA)
+		multijulia(r);
 	if (r->type == STAR)
 		r->ptr->j_cte = complex(-0.6, 0.6);
 	if (r->type == DOUADY)

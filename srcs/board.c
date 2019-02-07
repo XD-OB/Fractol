@@ -4,6 +4,7 @@ void		error(void)
 {
 	ft_putstr("\033[32Usage: ./fractol  type\n\n");
 	ft_putstr("Available fractals:   * Julia\n");
+	ft_putstr("                      * MultiJulia\n");
 	ft_putstr("                      * LoopJulia\n");
 	ft_putstr("                      * StarJulia\n");
 	ft_putstr("                      * CantorJulia\n");

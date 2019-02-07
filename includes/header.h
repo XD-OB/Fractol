@@ -76,6 +76,7 @@ enum
 	GALAXY,
 	INTERN,
 	CANTOR,
+	MULTIJULIA,
 	NONE
 };
 

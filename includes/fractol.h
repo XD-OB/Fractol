@@ -46,6 +46,7 @@ void		burnship(t_fractol *r);
 void		feigenbaum(t_fractol *r);
 void		cosine(t_fractol *r);
 void		star(t_graphic *ptr);
+void		multijulia(t_fractol *r);
 void		julia(t_fractol *r);
 void		init_fractol(t_fractol *r, t_graphic *ptr);
 void		init_ptr(t_graphic *ptr);

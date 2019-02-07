@@ -12,7 +12,7 @@
 
 #include "../includes/fractol.h"
 
-void	*part_julia(void *varg)
+void	*part_multijul(void *varg)
 {
 	t_fractol		*r;
 	t_graphic	*ptr;
@@ -35,8 +35,8 @@ void	*part_julia(void *varg)
 			{
 				if (ptr->j_puis != 2)
 				{
-					z[1].re = pow(z[0].re, 2) - pow(z[0].im, 2) + ptr->j_cte.re;
-					z[1].im = 2 * pow(z[0].re, 2) * pow(z[0].im, 2) + ptr->j_cte.im;
+					z[1].re = pow(pow(z[0].re, 2) + pow(z[0].im, 2), ptr->j_puis / 2) * cos(ptr->j_puis * atan2(z[0].im, z[0].re)) + ptr->j_cte.re;
+					z[1].im = pow(pow(z[0].re, 2) + pow(z[0].im, 2), ptr->j_puis / 2) * sin(ptr->j_puis * atan2(z[0].im, z[0].re)) + ptr->j_cte.im;
 				}
 				if (ptr->j_puis == 2)
 				{
@@ -56,7 +56,7 @@ void	*part_julia(void *varg)
 	return (NULL);
 }
 
-void		julia(t_fractol *r)
+void		multijulia(t_fractol *r)
 {
 	int		k;
 	int		ind[2];
@@ -80,7 +80,7 @@ void		julia(t_fractol *r)
 	k = -1;
 	ind[0] = -1;
 	while(++ind[0] < DIV * DIV)
-		pthread_create(&id_thread[ind[0]], NULL, part_julia, (void*)(&tmp[ind[0]]));
+		pthread_create(&id_thread[ind[0]], NULL, part_multijul, (void*)(&tmp[ind[0]]));
 	while(++k < DIV * DIV)
 		pthread_join(id_thread[k], NULL);
 	k = -1;
