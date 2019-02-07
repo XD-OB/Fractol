@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:09:27 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/04 11:09:36 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/07 15:19:10 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	*part_mandel(void *varg)
 				z[0] = z[1];
 			}
 			if (k < r->ptr->max_iter)
-				img_put_pixel(r->ptr, ind[1], ind[0], design_color(*(r->ptr), k));
+				img_put_pixel(r->ptr, ind[1], ind[0], outer(*(r->ptr), k));
 			else
-				img_put_pixel(r->ptr, ind[1], ind[0], intern_color(*(r->ptr), k, z[0]));
+				img_put_pixel(r->ptr, ind[1], ind[0], inner(*(r->ptr), k, z[0]));
 			ind[1]++;
 		}
 		ind[0]++;

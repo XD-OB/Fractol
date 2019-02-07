@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:12:25 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/06 20:28:23 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/07 15:28:12 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void		fractal(t_fractol *r)
 		r->ptr->j_cte = complex(-0.5, 0.64);
 	if (r->type == JULIA || r->type == DOUADY || r->type == INTERN || r->type == GALAXY)
 		julia(r);
-	if (r->type == SJULIA || r->type == LEAF || r->type == CANTOR || r->type == LOOP)
+	if (r->type == SJULIA || r->type == LEAF || r->type == CANTOR || r->type == LOOP || r->type == STAR)
 		julia(r);
 	if (r->type != INFCIRCLE)
 		mlx_put_image_to_window(r->ptr, r->ptr->win, r->ptr->image.void_ptr, 0, 0);

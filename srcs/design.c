@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:11:21 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/06 20:24:04 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/07 15:14:22 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	palette(int k)
 	return (map[k % 16]);
 }
 
-int	design_color(t_graphic ptr, int k)
+int	outer(t_graphic ptr, int k)
 {
 	if (ptr.design == 1)
 		return (palette(k));
@@ -50,8 +50,12 @@ int	design_color(t_graphic ptr, int k)
 		return (rgb_map(k % 32, k % 64 * 64 ? k % 64 * 64 : 0x00FF00,
 					k % 45 * 16));
 	if (ptr.design == 6)
-		return ((k << 21) + (k << 10) + k * 8 ?
-				(k << 21) + (k << 10) + k * 8 : 0x330011);
+	{
+		if ((k << 21) + (k << 10) + k * 8 != 0)
+			return ((k << 21) + (k << 10) + k * 8);
+		else
+			return (0x330011);
+	}
 	if (ptr.design == 7)
 		return (change_map(k));
 	if (ptr.design == 8)
@@ -61,7 +65,7 @@ int	design_color(t_graphic ptr, int k)
 	return (0xFFFFFF);
 }
 
-int	intern_color(t_graphic ptr, int k, t_complex z)
+int	inner(t_graphic ptr, int k, t_complex z)
 {
 	if (ptr.intern == 1)
 		return (hsv(255 * k / ptr.max_iter, 255,

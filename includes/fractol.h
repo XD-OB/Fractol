@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 06:31:41 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/07 13:40:29 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/07 15:11:54 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			win_close(t_fractol *r);
 void		init_mouse(t_mouse *mouse);
 int			mouse_event(int mcode, int x, int y, t_fractol *r);
 int			mouse_move(int x, int y, t_fractol *r);
-int			key_press(int keycode, t_fractol *r);
+int			key_press(int kcode, t_fractol *r);
 void		ft_zoom(int x, int y, t_fractol *r);
 void		ft_unzoom(int x, int y, t_fractol *r);
 float		lerp(float v0, float v1, float t);
@@ -35,8 +35,8 @@ int			change_map2(int n);
 int			change_map3(int n);
 int			palette(int n);
 int			hsv(double h, double s, double v);
-int			design_color(t_graphic ptr, int k);
-int			intern_color(t_graphic ptr, int k, t_complex z);
+int			outer(t_graphic ptr, int k);
+int			inner(t_graphic ptr, int k, t_complex z);
 int			rgb_map(int r, int g, int b);
 void		error(void);
 void		fractal(t_fractol *r);

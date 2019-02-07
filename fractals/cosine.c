@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:08:46 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/04 11:08:54 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/07 16:37:19 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	*part_cosine(void *varg)
 				z = z1;
 			}
 			if (k < ptr->max_iter)
-				img_put_pixel(ptr, j, i, design_color(*ptr, k));
+				img_put_pixel(ptr, j, i, outer(*ptr, k));
 			else
-				img_put_pixel(ptr, j, i, intern_color(*ptr, k, z));
+				img_put_pixel(ptr, j, i, inner(*ptr, k, z));
 			j++;
 		}
 		i++;
@@ -67,13 +67,13 @@ void		cosine(t_fractol *r)
 
 	tmp = (t_fractol*)malloc(sizeof(t_fractol) * DIV * DIV);
 	i = -1;
-	while(++i < DIV * DIV)
+	while (++i < DIV * DIV)
 		tmp[i] = *r;
 	i = 0;
-	while(++i <= DIV)
+	while (++i <= DIV)
 	{
 		j = 0;
-		while(++j <= DIV)
+		while (++j <= DIV)
 		{
 			tmp[((i - 1) * DIV) + (j - 1)].p = i;
 			tmp[((i - 1) * DIV) + (j - 1)].q = j;
@@ -81,9 +81,9 @@ void		cosine(t_fractol *r)
 	}
 	k = -1;
 	i = -1;
-	while(++i < DIV * DIV)
+	while (++i < DIV * DIV)
 		pthread_create(&id_thread[i], NULL, part_cosine, (void*)(&tmp[i]));
-	while(++k < DIV * DIV)
+	while (++k < DIV * DIV)
 		pthread_join(id_thread[k], NULL);
 	free(tmp);
 }

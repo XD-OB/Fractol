@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:09:58 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/04 11:10:08 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/07 15:20:05 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	*part_corn(void *varg)
 				z = z1;
 			}
 			if (k < ptr->max_iter)
-				img_put_pixel(ptr, j, i, design_color(*ptr, k));
+				img_put_pixel(ptr, j, i, outer(*ptr, k));
 			else
-				img_put_pixel(ptr, j, i, intern_color(*ptr, k, z));
+				img_put_pixel(ptr, j, i, inner(*ptr, k, z));
 			j++;
 		}
 		i++;

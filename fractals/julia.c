@@ -6,13 +6,13 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:09:15 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/07 15:09:33 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/07 16:05:04 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-static void		fillz(t_graphic *ptr, t_complex *z)
+static void		jfillz(t_graphic *ptr, t_complex *z)
 {
 	z[1].re = z[0].re * z[0].re - z[0].im * z[0].im + ptr->j_cte.re;
 	z[1].im = 2 * z[0].re * z[0].im + ptr->j_cte.im;
@@ -37,11 +37,12 @@ static void		*part_j(void *varg)
 			z[0].re = ind[1] / r->ptr->zoom + (r->mouse).x;
 			k = -1;
 			while (mod2(z[0]) < 4 && ++k < r->ptr->max_iter)
-				fillz(r->ptr, z);
+				jfillz(r->ptr, z);
 			if (k < r->ptr->max_iter)
-				img_put_pixel(r->ptr, ind[1], ind[0], design_color(*(r->ptr), k));
+				img_put_pixel(r->ptr, ind[1], ind[0], outer(*(r->ptr), k));
 			else
-				img_put_pixel(r->ptr, ind[1], ind[0], intern_color(*(r->ptr), k, z[0]));
+				img_put_pixel(r->ptr, ind[1], ind[0], inner(*(r->ptr),
+							k, z[0]));
 		}
 	}
 	return (NULL);
