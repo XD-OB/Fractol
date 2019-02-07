@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:08:46 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/07 16:37:19 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/07 16:57:49 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,42 +17,39 @@ void	*part_cosine(void *varg)
 	t_fractol		*r;
 	t_graphic	*ptr;
 	t_complex	c;
-	t_complex	z;
-	t_complex	z1;
+	t_complex	z[2];
 	int	k;
 	int	i;
 	int	j;
 
 	r = (t_fractol*)varg;
 	ptr = r->ptr;
-	i = (HEIGHT * (r->p - 1)) / DIV;
-	while (i < (HEIGHT * r->p) / DIV)
+	i = ((HEIGHT * (r->p - 1)) / DIV) - 1;
+	while (++i < (HEIGHT * r->p) / DIV)
 	{
 		c.im = i / ptr->zoom + (r->mouse).y;	
-		j = (WIDTH * (r->q - 1)) / DIV;
-		while (j < (WIDTH * r->q) / DIV)
+		j = ((WIDTH * (r->q - 1)) / DIV) - 1;
+		while (++j < (WIDTH * r->q) / DIV)
 		{
 			c.re = j / ptr->zoom + (r->mouse).x;	
-			z = complex(0, 0);
+			z[0] = complex(0, 0);
 			k = -1;
-			while (z.re * z.re + z.im * z.im < 4 && ++k < ptr->max_iter)
+			while (mod2(z[0]) < 4 && ++k < ptr->max_iter)
 			{
-				z1.re = cos(z.re) * cosh(z.im) + (c.re / (pow(c.re, 2) + pow(c.im, 2)));
-				z1.im = -(sin(z.re) * sinh(z.im) + (c.im / (pow(c.re, 2) + pow(c.im, 2))));
-				if (z1.re == z.re && z1.im == z.im)
+				z[1].re = cos(z[0].re) * cosh(z[0].im) + (c.re / (pow(c.re, 2) + pow(c.im, 2)));
+				z[1].im = -(sin(z[0].re) * sinh(z[0].im) + (c.im / (pow(c.re, 2) + pow(c.im, 2))));
+				if (z[1].re == z[0].re && z[1].im == z[0].im)
 				{
 					k = ptr->max_iter;
 					break;
 				}
-				z = z1;
+				z[0] = z[1];
 			}
 			if (k < ptr->max_iter)
 				img_put_pixel(ptr, j, i, outer(*ptr, k));
 			else
-				img_put_pixel(ptr, j, i, inner(*ptr, k, z));
-			j++;
+				img_put_pixel(ptr, j, i, inner(*ptr, k, z[0]));
 		}
-		i++;
 	}
 	return (NULL);
 }
