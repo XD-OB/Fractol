@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 06:31:41 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/06 20:19:06 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/07 13:40:29 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,24 @@
 # include "header.h"
 # include "structs.h"
 
-void			menu_julia(void);
-void			menu_mandel(void);
+void		menu_julia(void);
+void		menu_mandel(void);
 int			win_close(t_fractol *r);
 void		init_mouse(t_mouse *mouse);
-int		mouse_event(int mcode, int x, int y, t_fractol *r);
-int		mouse_move(int x, int y, t_fractol *r);
-int		key_press(int keycode, t_fractol *r);
+int			mouse_event(int mcode, int x, int y, t_fractol *r);
+int			mouse_move(int x, int y, t_fractol *r);
+int			key_press(int keycode, t_fractol *r);
 void		ft_zoom(int x, int y, t_fractol *r);
 void		ft_unzoom(int x, int y, t_fractol *r);
 float		lerp(float v0, float v1, float t);
-void			whitescreen(t_graphic *ptr);
-t_point			point(int x, int y);
-void			infcircle(t_point p, int r, t_graphic ptr, int n);
-int		change_map(int n);
-int		change_map2(int n);
-int		change_map3(int n);
-int		palette(int n);
+float		mod2(t_complex c);
+void		whitescreen(t_graphic *ptr);
+t_point		point(int x, int y);
+void		infcircle(t_point p, int r, t_graphic ptr, int n);
+int			change_map(int n);
+int			change_map2(int n);
+int			change_map3(int n);
+int			palette(int n);
 int			hsv(double h, double s, double v);
 int			design_color(t_graphic ptr, int k);
 int			intern_color(t_graphic ptr, int k, t_complex z);

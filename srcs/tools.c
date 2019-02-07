@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:12:40 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/04 11:13:18 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/07 13:39:24 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ t_complex	complex(double a, double b)
 	z.re = a;
 	z.im = b;
 	return (z);
+}
+
+float		mod2(t_complex z)
+{
+	return (z.re * z.re + z.im * z.im);
 }
 
 float		lerp(float v0, float v1, float t)
