@@ -6,29 +6,24 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:08:27 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/07 16:36:14 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/08 12:29:13 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-static int		bfillz(t_complex *z)
+static int		bfillz(t_graphic *ptr, int *ind, t_complex *z)
 {
 	z[1].re = fabs(z[0].re * z[0].re) -
 		fabs(z[0].im * z[0].im) + z[2].re;
 	z[1].im = fabs(2 * z[0].re * z[0].im) + z[2].im;
 	if (z[1].re == z[0].re && z[1].im == z[0].im)
+	{
+		ind[2] = ptr->max_iter;
 		return (1);
+	}
 	z[0] = z[1];
 	return (0);
-}
-
-static void		bput_in(t_graphic *ptr, int *ind, t_complex c)
-{
-	if (ind[2] < ptr->max_iter)
-		img_put_pixel(ptr, ind[1], ind[0], outer(*ptr, ind[2]));
-	else
-		img_put_pixel(ptr, ind[1], ind[0], inner(*ptr, ind[2], c));
 }
 
 static void		*part_ship(void *varg)
@@ -49,11 +44,12 @@ static void		*part_ship(void *varg)
 			z[0] = complex(0, 0);
 			ind[2] = -1;
 			while (mod2(z[0]) < 4 && ++ind[2] < r->ptr->max_iter)
-			{
-				if (bfillz(z))
-					ind[2] = r->ptr->max_iter;
-			}
-			bput_in(r->ptr, ind, z[0]);
+				bfillz(r->ptr, ind, z);
+			if (ind[2] < r->ptr->max_iter)
+				img_put_pixel(r->ptr, ind[1], ind[0], outer(*(r->ptr), ind[2]));
+			else
+				img_put_pixel(r->ptr, ind[1], ind[0],
+						inner(*(r->ptr), ind[2], z[0]));
 		}
 	}
 	return (NULL);

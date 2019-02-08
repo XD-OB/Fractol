@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:09:15 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/07 16:05:04 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/08 09:37:05 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,40 +48,31 @@ static void		*part_j(void *varg)
 	return (NULL);
 }
 
-static void		fullpq(t_fractol *fract)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (++i <= DIV)
-	{
-		j = 0;
-		while (++j <= DIV)
-		{
-			fract[((i - 1) * DIV) + (j - 1)].p = i;
-			fract[((i - 1) * DIV) + (j - 1)].q = j;
-		}
-	}
-}
-
 void			julia(t_fractol *r)
 {
-	int			i;
-	int			k;
+	int			ind[3];
 	t_fractol	*tmp;
 	pthread_t	id[DIV * DIV];
 
 	tmp = (t_fractol*)malloc(sizeof(t_fractol) * DIV * DIV);
-	i = -1;
-	while (++i < DIV * DIV)
-		tmp[i] = *r;
-	fullpq(tmp);
-	k = -1;
-	i = -1;
-	while (++i < DIV * DIV)
-		pthread_create(&id[i], NULL, part_j, (void*)(&tmp[i]));
-	while (++k < DIV * DIV)
-		pthread_join(id[k], NULL);
+	ind[0] = -1;
+	while (++ind[0] < DIV * DIV)
+		tmp[ind[0]] = *r;
+	ind[0] = 0;
+	while (++ind[0] <= DIV)
+	{
+		ind[1] = 0;
+		while (++ind[1] <= DIV)
+		{
+			tmp[((ind[0] - 1) * DIV) + (ind[1] - 1)].p = ind[0];
+			tmp[((ind[0] - 1) * DIV) + (ind[1] - 1)].q = ind[1];
+		}
+	}
+	ind[2] = -1;
+	ind[0] = -1;
+	while (++ind[0] < DIV * DIV)
+		pthread_create(&id[ind[0]], NULL, part_j, (void*)(&tmp[ind[0]]));
+	while (++ind[2] < DIV * DIV)
+		pthread_join(id[ind[2]], NULL);
 	free(tmp);
 }

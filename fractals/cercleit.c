@@ -6,13 +6,13 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/02 08:44:06 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/04 11:08:37 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/08 08:38:09 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-static void	draw_circle(t_point c, t_point p, t_graphic ptr)
+static void		draw_circle(t_point c, t_point p, t_graphic ptr)
 {
 	mlx_pixel_put(ptr.mlx, ptr.win, c.x + p.x, c.y + p.y, 0);
 	mlx_pixel_put(ptr.mlx, ptr.win, c.x - p.x, c.y + p.y, 0);
@@ -24,7 +24,7 @@ static void	draw_circle(t_point c, t_point p, t_graphic ptr)
 	mlx_pixel_put(ptr.mlx, ptr.win, c.x - p.y, c.y - p.x, 0);
 }
 
-void	circle(t_point c, int r, t_graphic ptr)
+void			circle(t_point c, int r, t_graphic ptr)
 {
 	int			d;
 	t_point		p;
@@ -47,7 +47,7 @@ void	circle(t_point c, int r, t_graphic ptr)
 	}
 }
 
-t_point	point(int x, int y)
+t_point			point(int x, int y)
 {
 	t_point	p;
 
@@ -56,7 +56,7 @@ t_point	point(int x, int y)
 	return (p);
 }
 
-void	whitescreen(t_graphic *ptr)
+void			whitescreen(t_graphic *ptr)
 {
 	int		x;
 	int		y;
@@ -74,7 +74,7 @@ void	whitescreen(t_graphic *ptr)
 	}
 }
 
-void	infcircle(t_point c, int r, t_graphic ptr, int n)
+void			infcircle(t_point c, int r, t_graphic ptr, int n)
 {
 	if (r > 8)
 	{

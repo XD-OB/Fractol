@@ -17,7 +17,7 @@
 # define P(x, y) sqrt(pow(x - 1 / 4, 2) + pow(y, 2))
 
 # define MAX_ITER 50
-# define DIV 5
+# define DIV 10
 # define JULIA_C 0.001
 
 #define	PTR_MOTION_MASK (1L<<6)

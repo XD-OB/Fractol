@@ -6,87 +6,89 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:09:01 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/07 15:18:31 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/08 10:26:38 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	*part_feigen(void *varg)
+static int		ffillz(t_graphic *ptr, int *ind, t_complex *z)
 {
-	t_fractol		*r;
-	t_graphic	*ptr;
-	t_complex	tmp;
-	t_complex	c;
-	t_complex	z;
-	t_complex	z1;
-	int	k;
-	int	i;
-	int	j;
+	z[1].re = pow((pow(z[0].re, 2) + pow(z[0].im, 2)),
+			((ptr->m_puis - 1) / 2.0)) * cos((ptr->m_puis - 1)
+			* atan2(z[0].im, z[0].re)) + z[2].re - 1.401155;
+	z[1].im = pow((pow(z[0].re, 2) + pow(z[0].im, 2)),
+			((ptr->m_puis - 1) / 2.0)) * sin((ptr->m_puis - 1)
+			* atan2(z[0].im, z[0].re)) + z[2].im;
+	if (z[1].re == z[0].re && z[1].im == z[0].im)
+	{
+		ind[2] = ptr->max_iter;
+		return (1);
+	}
+	z[0] = z[1];
+	return (0);
+}
+
+static void		fput_in(t_graphic *ptr, int *ind, t_complex c)
+{
+	if (ind[2] < ptr->max_iter)
+		img_put_pixel(ptr, ind[1], ind[0], outer(*ptr, ind[2]));
+	else
+		img_put_pixel(ptr, ind[1], ind[0], inner(*ptr, ind[2], c));
+}
+
+static void		*part_feigen(void *varg)
+{
+	t_fractol	*r;
+	t_complex	z[4];
+	int			ind[3];
 
 	r = (t_fractol*)varg;
-	ptr = r->ptr;
-	i = (HEIGHT * (r->p - 1)) / DIV;
-	while (i < (HEIGHT * r->p) / DIV)
+	ind[0] = ((HEIGHT * (r->p - 1)) / DIV) - 1;
+	while (++ind[0] < (HEIGHT * r->p) / DIV)
 	{
-		tmp.im = i / ptr->zoom + (r->mouse).y;
-		j = (WIDTH * (r->q - 1)) / DIV;
-		while (j < (WIDTH * r->q) / DIV)
+		z[3].im = ind[0] / r->ptr->zoom + (r->mouse).y;
+		ind[1] = ((WIDTH * (r->q - 1)) / DIV) - 1;
+		while (++ind[1] < (WIDTH * r->q) / DIV)
 		{
-			tmp.re = j / ptr->zoom + (r->mouse).x;
-			c.re = pow(tmp.re, 3) - 3 * tmp.re * pow(tmp.im, 2);
-			c.im = 3 * pow(tmp.re, 2) * tmp.im - pow(tmp.im, 3);
-			z = complex(0, 0);
-			k = -1;
-			while (z.re * z.re + z.im * z.im < 4 && ++k < ptr->max_iter)
-			{
-				z1.re = pow((pow(z.re, 2) + pow(z.im, 2)), ((ptr->m_puis - 1) / 2.0)) * cos((ptr->m_puis - 1) * atan2(z.im, z.re)) + c.re -1.401155;
-				z1.im = pow((pow(z.re, 2) + pow(z.im, 2)), ((ptr->m_puis - 1) / 2.0)) * sin((ptr->m_puis - 1) * atan2(z.im, z.re)) + c.im;
-				if (z.re == z1.re && z.im == z1.im)
-				{
-					k = ptr->max_iter;
-					break ;
-				}
-				z = z1;
-			}
-			if (k < ptr->max_iter)
-				img_put_pixel(ptr, j, i, outer(*ptr, k));
-			else
-				img_put_pixel(ptr, j, i, inner(*ptr, k, z));
-			j++;
+			z[3].re = ind[1] / r->ptr->zoom + (r->mouse).x;
+			z[2].re = pow(z[3].re, 3) - 3 * z[3].re * pow(z[3].im, 2);
+			z[2].im = 3 * pow(z[3].re, 2) * z[3].im - pow(z[3].im, 3);
+			z[0] = complex(0, 0);
+			ind[2] = -1;
+			while (mod2(z[0]) < 4 && ++ind[2] < r->ptr->max_iter)
+				ffillz(r->ptr, ind, z);
+			fput_in(r->ptr, ind, z[0]);
 		}
-		i++;
 	}
 	return (NULL);
 }
 
-void		feigenbaum(t_fractol *r)
+void			feigenbaum(t_fractol *r)
 {
-	int		k;
-	int		i;
-	int		j;
-	t_fractol		*tmp;
-	pthread_t	id_thread[DIV * DIV];
+	int			ind[3];
+	t_fractol	*tmp;
+	pthread_t	id[DIV * DIV];
 
 	tmp = (t_fractol*)malloc(sizeof(t_fractol) * DIV * DIV);
-	i = -1;
-	while(++i < DIV * DIV)
-		tmp[i] = *r;
-	i = 0;
-	while(++i <= DIV)
+	ind[0] = -1;
+	while (++ind[0] < DIV * DIV)
+		tmp[ind[0]] = *r;
+	ind[0] = 0;
+	while (++ind[0] <= DIV)
 	{
-		j = 0;
-		while(++j <= DIV)
+		ind[1] = 0;
+		while (++ind[1] <= DIV)
 		{
-			tmp[((i - 1) * DIV) + (j - 1)].p = i;
-			tmp[((i - 1) * DIV) + (j - 1)].q = j;
+			tmp[((ind[0] - 1) * DIV) + (ind[1] - 1)].p = ind[0];
+			tmp[((ind[0] - 1) * DIV) + (ind[1] - 1)].q = ind[1];
 		}
 	}
-	k = -1;
-	i = -1;
-	while(++i < DIV * DIV)
-		pthread_create(&id_thread[i], NULL, part_feigen, (void*)(&tmp[i]));
-	while(++k < DIV * DIV)
-		pthread_join(id_thread[k], NULL);
+	ind[2] = -1;
+	ind[0] = -1;
+	while (++ind[0] < DIV * DIV)
+		pthread_create(&id[ind[0]], NULL, part_feigen, (void*)(&tmp[ind[0]]));
+	while (++ind[2] < DIV * DIV)
+		pthread_join(id[ind[2]], NULL);
 	free(tmp);
 }
