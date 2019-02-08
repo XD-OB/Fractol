@@ -3,8 +3,8 @@
 
 typedef struct		s_complex
 {
-	float		re;
-	float		im;
+	long double		re;
+	long double		im;
 }			t_complex;
 
 typedef struct		s_image
@@ -19,7 +19,7 @@ typedef struct		s_image
 typedef struct          s_mouse
 {
         double             x;
-        double             y;
+        double          y;
         int             isclick;
 }                       t_mouse;
 
@@ -27,14 +27,14 @@ typedef struct		s_graphic
 {
 	void*		mlx;
 	void*		win;
-	int		max_iter;
+	unsigned int		max_iter;
 	int		design;
 	int		intern;
-	double		zoom;
+	long double		zoom;
 	t_image		image;
 	t_complex	j_cte;
-	float		j_puis;
-	float		m_puis;
+	int		j_puis;
+	int		m_puis;
 }			t_graphic;
 
 typedef struct	s_fractol

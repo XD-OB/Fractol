@@ -13,7 +13,7 @@
 #include "../includes/fractol.h"
 #define	SAN(n, p, l) (sin(n * p + l) * 127 + 128)
 
-int	palette(int k)
+static int	init_map(int k)
 {
 	int	map[16];
 
@@ -39,7 +39,7 @@ int	palette(int k)
 int	outer(t_graphic ptr, int k)
 {
 	if (ptr.design == 1)
-		return (palette(k));
+		return (init_map(k));
 	if (ptr.design == 2)
 		return (rgb_map(k * 2, k * 10, k * 5));
 	if (ptr.design == 3)

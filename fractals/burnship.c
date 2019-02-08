@@ -14,9 +14,9 @@
 
 static int		bfillz(t_graphic *ptr, int *ind, t_complex *z)
 {
-	z[1].re = fabs(z[0].re * z[0].re) -
-		fabs(z[0].im * z[0].im) + z[2].re;
-	z[1].im = fabs(2 * z[0].re * z[0].im) + z[2].im;
+	z[1].re = fabsl(z[0].re * z[0].re) -
+		fabsl(z[0].im * z[0].im) + z[2].re;
+	z[1].im = fabsl(2 * z[0].re * z[0].im) + z[2].im;
 	if (z[1].re == z[0].re && z[1].im == z[0].im)
 	{
 		ind[2] = ptr->max_iter;
