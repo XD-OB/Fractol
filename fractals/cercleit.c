@@ -47,15 +47,6 @@ void			circle(t_point c, int r, t_graphic ptr)
 	}
 }
 
-t_point			point(int x, int y)
-{
-	t_point	p;
-
-	p.x = x;
-	p.y = y;
-	return (p);
-}
-
 void			whitescreen(t_graphic *ptr)
 {
 	int		x;

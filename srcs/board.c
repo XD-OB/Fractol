@@ -15,22 +15,22 @@
 void		error(void)
 {
 	ft_putstr("\033[31mUsage: ./fractol  type\n\n");
-	ft_putstr("\033[0mAvailable fractals:   \033[1;32m* Julia\n");
-	ft_putstr("                      \033[1;32m* MultiJulia\n");
-	ft_putstr("                      \033[1;32m* LoopJulia\n");
-	ft_putstr("                      \033[1;32m* StarJulia\n");
-	ft_putstr("                      \033[1;32m* CantorJulia\n");
-	ft_putstr("                      \033[1;32m* Mandelbrot\n");
-	ft_putstr("                      \033[1;32m* Multibrot\n");
-	ft_putstr("                      \033[1;32m* Tricorn\n");
-	ft_putstr("                      \033[1;32m* Douady\n");
-	ft_putstr("                      \033[1;32m* Feigenbaum\n");
-	ft_putstr("                      \033[1;32m* Cosine\n");
-	ft_putstr("                      \033[1;32m* BurningShip\n");
-	ft_putstr("                      \033[1;32m* SJulia\n");
-	ft_putstr("                      \033[1;32m* Galaxy\n");
-	ft_putstr("                      \033[1;32m* LeafJulia\n");
-	ft_putstr("                      \033[1;32m* InfinityCircles\n");
+	ft_putstr("\033[1;35mAvailable fractals:  \033[1;32m* Julia\n");
+	ft_putstr("                     \033[1;32m* MultiJulia\n");
+	ft_putstr("                     \033[1;32m* LoopJulia\n");
+	ft_putstr("                     \033[1;32m* StarJulia\n");
+	ft_putstr("                     \033[1;32m* CantorJulia\n");
+	ft_putstr("                     \033[1;32m* Mandelbrot\n");
+	ft_putstr("                     \033[1;32m* Multibrot\n");
+	ft_putstr("                     \033[1;32m* Tricorn\n");
+	ft_putstr("                     \033[1;32m* Douady\n");
+	ft_putstr("                     \033[1;32m* Feigenbaum\n");
+	ft_putstr("                     \033[1;32m* Cosine\n");
+	ft_putstr("                     \033[1;32m* BurningShip\n");
+	ft_putstr("                     \033[1;32m* SJulia\n");
+	ft_putstr("                     \033[1;32m* Galaxy\n");
+	ft_putstr("                     \033[1;32m* LeafJulia\n");
+	ft_putstr("                     \033[1;32m* InfinityCircles\n\n\033[0;0m");
 	exit(-1);
 }
 
@@ -49,7 +49,7 @@ void	menu_julia(void)
 	ft_putstr("   | -      -Max Iteration+      +   \033[0;36m|\n");
 	ft_putstr("   | J          -Power+          K   \033[0;36m|\n");
 	ft_putstr("   | Y U I O P { }:\033[1;34m Change Types     \033[0;36m|\n");
-	ft_putstr("   -----------------------------------\n");
+	ft_putstr("   -----------------------------------\n\033[0;0m");
 	
 }
 
