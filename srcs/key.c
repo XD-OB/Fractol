@@ -77,6 +77,8 @@ static void		general_event(int kcode, t_fractol *f)
 		init_mouse(&(f->mouse));
 		init_ptr(f->ptr);
 	}
+	if (f->type == JULIA)
+		julia_event(kcode, f->ptr);
 }
 
 int				key_event(int kcode, t_fractol *f)
@@ -85,7 +87,14 @@ int				key_event(int kcode, t_fractol *f)
 
 	general_event(kcode, f);
 	mouse = &(f->mouse);
-	if (kcode == K_UP)
+	if (kcode == K_1)
+	{
+		if(f->type != MULTIJULIA)
+			f->type++;
+		else
+			f->type = JULIA;
+	}
+	else if (kcode == K_UP)
 		mouse->y -= 30 / f->ptr->zoom;
 	else if (kcode == K_DOWN)
 		mouse->y += 30 / f->ptr->zoom;
@@ -93,8 +102,6 @@ int				key_event(int kcode, t_fractol *f)
 		mouse->x -= 30 / f->ptr->zoom;
 	else if (kcode == K_RIGHT)
 		mouse->x += 30 / f->ptr->zoom;
-	if (f->type == JULIA)
-		julia_event(kcode, f->ptr);
 	if (f->type != MANDELBROT && f->type != JULIA)
 	{
 		if (kcode == K_M)

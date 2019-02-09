@@ -43,6 +43,7 @@ static void		menu_julia(void)
 	ft_putstr("   | F           :\033[1;34m Lock/Free Motion  \033[0;36m|\n");
 	ft_putstr("   | Arrows      :\033[1;34m  Move             \033[0;36m|\n");
 	ft_putstr("   | Motion      :\033[1;34m Change Type       \033[0;36m|\n");
+	ft_putstr("   | 1           :\033[1;34m Change Fractal    \033[0;36m|\n");
 	ft_putstr("   | SCROLL  :\033[1;34m DOWN  -Zoom+  UP      \033[0;36m|\n");
 	ft_putstr("   | BOUTTON :\033[1;34m RIGHT -Zoom+ LEFT     \033[0;36m|\n");
 	ft_putstr("   | X  Intern   Color   Extern  C   \033[0;36m|\n");
@@ -60,6 +61,7 @@ static void		menu_mandel(void)
 	ft_putstr("   | ESC         :\033[1;34m   Close           \033[0;36m|\n");
 	ft_putstr("   | SPACE       :\033[1;34m  Initialize       \033[0;36m|\n");
 	ft_putstr("   | Arrows      :\033[1;34m  Move             \033[0;36m|\n");
+	ft_putstr("   | 1           :\033[1;34m Change Fractal    \033[0;36m|\n");
 	ft_putstr("   | SCROLL  :\033[1;34m DOWN  -Zoom+  UP      \033[0;36m|\n");
 	ft_putstr("   | BOUTTON :\033[1;34m RIGHT -Zoom+ LEFT     \033[0;36m|\n");
 	ft_putstr("   | X  Intern   Color   Extern  C   \033[0;36m|\n");
