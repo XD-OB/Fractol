@@ -6,16 +6,22 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:11:21 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/09 14:48:18 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/09 21:21:59 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
-#define	SAN(n, p, l) (sin(n * p + l) * 127 + 128)
 
-static int	map(int k)
+static float	son(float s, int i, float l)
 {
-	int	map[16];
+	if (l == -44)
+		return (sin((s * s) / i) * 200);
+	return (sin(s * i + l) * 127 + 128);
+}
+
+static int		map(int k)
+{
+	int		map[16];
 
 	map[0] = rgb_map(0, 0, 26);
 	map[1] = rgb_map(9, 1, 47);
@@ -36,16 +42,25 @@ static int	map(int k)
 	return (map[k % 16]);
 }
 
-int			outer(t_graphic ptr, int k)
+static int		part_outer(t_graphic ptr, int k)
+{
+	if (ptr.design == 7)
+		return (change_map(k));
+	if (ptr.design == 8)
+		return (change_map2(k));
+	return (change_map3(k));
+}
+
+int				outer(t_graphic ptr, int k)
 {
 	if (ptr.design == 1)
 		return (map(k));
 	if (ptr.design == 2)
 		return (rgb_map(k * 2, k * 10, k * 5));
 	if (ptr.design == 3)
-		return (rgb_map(SAN(0.4, k, 0), SAN(0.4, k, 2), SAN(0.4, k, 4)));
+		return (rgb_map(son(0.4, k, 0), son(0.4, k, 2), son(0.4, k, 4)));
 	if (ptr.design == 4)
-		return (rgb_map(SAN(0.1, k, 0), SAN(0.2, k, 0), SAN(0.3, k, 0)));
+		return (rgb_map(son(0.1, k, 0), son(0.2, k, 0), son(0.3, k, 0)));
 	if (ptr.design == 5)
 	{
 		if (k % 64 * 64)
@@ -60,20 +75,16 @@ int			outer(t_graphic ptr, int k)
 		else
 			return (0x330011);
 	}
-	if (ptr.design == 7)
-		return (change_map(k));
-	if (ptr.design == 8)
-		return (change_map2(k));
-	if (ptr.design == 9)
-		return (change_map3(k));
+	if (ptr.design == 7 || ptr.design == 8 || ptr.design == 9)
+		return (part_outer(ptr, k));
 	return (0xFFFFFF);
 }
 
-int			inner(t_graphic ptr, int k, t_complex z)
+int				inner(t_graphic ptr, int k, t_complex z)
 {
-	float s;
+	float	s;
 
-	s = sqrt(mod2(z)); 
+	s = sqrt(mod2(z));
 	if (ptr.intern == 1)
 		return (rgb_map(k * 100 * sin(s), k * sin(s), 50 * k));
 	if (ptr.intern == 2)
@@ -81,7 +92,6 @@ int			inner(t_graphic ptr, int k, t_complex z)
 	if (ptr.intern == 3)
 		return (rgb_map(s * 300, 0, s * 450));
 	if (ptr.intern == 4)
-		return (rgb_map(sin(s * s) * 200, sin((s * s) / 2) * 200,
-		sin((s * s) / 4) * 200));
+		return (rgb_map(son(s, 1, -44), son(s, 2, -44), son(s, 4, -44)));
 	return (0);
 }

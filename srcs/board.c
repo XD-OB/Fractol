@@ -6,13 +6,13 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 11:22:19 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/09 14:25:24 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/09 21:05:09 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void	error(void)
+void			error(void)
 {
 	ft_putstr("\033[31mUsage: ./fractol  type\n\n");
 	ft_putstr("\033[1;35mAvailable fractals:  \033[1;32m* Julia\n");
@@ -33,7 +33,7 @@ void	error(void)
 	exit(-1);
 }
 
-static void	menu_julia(void)
+static void		menu_julia(void)
 {
 	ft_putstr("\033[36m\n   ######### \033[1;32mMADE BY ");
 	ft_putstr("OBELOUCH \033[0;36m########\n");
@@ -52,7 +52,7 @@ static void	menu_julia(void)
 	ft_putstr("   -----------------------------------\n\033[0;0m");
 }
 
-static void	menu_mandel(void)
+static void		menu_mandel(void)
 {
 	ft_putstr("\033[36m\n   ######### \033[1;32mMADE BY ");
 	ft_putstr("OBELOUCH \033[0;36m########\n");
@@ -68,7 +68,7 @@ static void	menu_mandel(void)
 	ft_putstr("   -----------------------------------\033[0;0m\n");
 }
 
-void		menu(t_fractol f)
+void			menu(t_fractol f)
 {
 	if (f.type == NONE)
 		error();

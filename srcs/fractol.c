@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fractol.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/09 21:02:48 by obelouch          #+#    #+#             */
+/*   Updated: 2019/02/09 21:04:06 by obelouch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fractol.h"
 
-static void	fractbrot(t_fractol *f)
+static void		fractbrot(t_fractol *f)
 {
 	if (f->type == MANDELBROT)
 		mandelbrot(f);
@@ -16,8 +28,8 @@ static void	fractbrot(t_fractol *f)
 		feigenbaum(f);
 }
 
-static void	fractjul(t_fractol *f, int *jul)
-{	
+static void		fractjul(t_fractol *f, int *jul)
+{
 	if (f->type == STAR)
 		f->ptr->j_cte = complex(-0.6, 0.6);
 	else if (f->type == DOUADY)
@@ -38,9 +50,9 @@ static void	fractjul(t_fractol *f, int *jul)
 		*jul = 0;
 }
 
-void		fractal(t_fractol *f)
+void			fractal(t_fractol *f)
 {
-	int	jul;
+	int		jul;
 
 	jul = 1;
 	fractbrot(f);
@@ -81,7 +93,7 @@ static void		part_fractype(t_fractol *f, char *str)
 		f->type = SJULIA;
 }
 
-void		fractal_type(t_fractol *f, char *str)
+void			fractal_type(t_fractol *f, char *str)
 {
 	part_fractype(f, str);
 	if (!strcmp(str, "Mandelbrot"))
