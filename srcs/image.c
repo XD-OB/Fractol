@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:12:08 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/04 11:12:16 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/09 14:06:30 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	init_img(t_graphic *ptr)
 
 	tmp = &ptr->image;
 	tmp->void_ptr = mlx_new_image(ptr->mlx, WIDTH, HEIGHT);
-	tmp->img = mlx_get_data_addr(tmp->void_ptr, &tmp->bpp, &tmp->s_l, &tmp->endian);
+	tmp->img = mlx_get_data_addr(tmp->void_ptr, &tmp->bpp,
+			&tmp->s_l, &tmp->endian);
 }
 
 void	img_put_pixel(t_graphic *ptr, double x, double y, int color)

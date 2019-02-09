@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 20:28:35 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/08 11:22:12 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/09 14:14:41 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ float		mod2(t_complex z)
 	return (z.re * z.re + z.im * z.im);
 }
 
-t_point			point(int x, int y)
+t_point		point(int x, int y)
 {
 	t_point	p;
 

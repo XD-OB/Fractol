@@ -6,11 +6,24 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:09:58 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/08 12:59:53 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/09 14:25:55 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
+
+static int		tfillz(t_graphic *ptr, int *ind, t_complex *z)
+{
+	z[1].re = z[0].re * z[0].re - z[0].im * z[0].im + z[2].re;
+	z[1].im = 2 * z[0].re * z[0].im + z[2].im;
+	if (z[1].re == z[0].re && z[1].im == z[0].im)
+	{
+		ind[2] = ptr->max_iter;
+		return (1);
+	}
+	z[0] = z[1];
+	return (0);
+}
 
 static void		*part_corn(void *varg)
 {
@@ -30,20 +43,12 @@ static void		*part_corn(void *varg)
 			z[0] = complex(0, 0);
 			ind[2] = -1;
 			while (mod2(z[0]) < 4 && ++ind[2] < f->ptr->max_iter)
-			{
-				z[1].re = z[0].re * z[0].re - z[0].im * z[0].im + z[2].re;
-				z[1].im = -2 * z[0].re * z[0].im + z[2].im;
-				if (z[1].re == z[0].re && z[1].im == z[0].im)
-				{
-					ind[2] = f->ptr->max_iter;
-					break ;
-				}
-				z[0] = z[1];
-			}
+				tfillz(f->ptr, ind, z);
 			if (ind[2] < f->ptr->max_iter)
 				img_put_pixel(f->ptr, ind[1], ind[0], outer(*(f->ptr), ind[2]));
 			else
-				img_put_pixel(f->ptr, ind[1], ind[0], inner(*(f->ptr), ind[2], z[0]));
+				img_put_pixel(f->ptr, ind[1], ind[0],
+						inner(*(f->ptr), ind[2], z[0]));
 		}
 	}
 	return (NULL);

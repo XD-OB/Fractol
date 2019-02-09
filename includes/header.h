@@ -1,7 +1,19 @@
-#ifndef HEADER_H
-#define HEADER_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   header.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/09 13:54:06 by obelouch          #+#    #+#             */
+/*   Updated: 2019/02/09 13:54:10 by obelouch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <pthread.h>
+#ifndef HEADER_H
+# define HEADER_H
+
+# include <pthread.h>
 # include <stdio.h>
 # include <math.h>
 # include <unistd.h>
@@ -10,30 +22,21 @@
 # include <errno.h>
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
-
+# define P(x, y) sqrt(pow(x - 1 / 4, 2) + pow(y, 2))
 # define WIDTH 900
 # define HEIGHT 600
-
-# define P(x, y) sqrt(pow(x - 1 / 4, 2) + pow(y, 2))
-
 # define MAX_ITER 50
 # define DIV 10
 # define JULIA_C 0.001
-
-#define	PTR_MOTION_MASK (1L<<6)
-#define MOTION_NOTIFY 6
-
 # define K_ESC 53
 # define K_UP 126
 # define K_DOWN 125
 # define K_RIGHT 124
 # define K_LEFT 123
-
 # define SCROLL_UP 4
 # define SCROLL_DOWN 5
 # define B_RIGHT 2
 # define B_LEFT 1
-
 # define K_MINUS 78
 # define K_PLUS 69
 # define K_SPACE 49

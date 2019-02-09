@@ -6,7 +6,7 @@
 #    By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/06 14:55:40 by obelouch          #+#    #+#              #
-#    Updated: 2019/02/04 11:21:06 by obelouch         ###   ########.fr        #
+#    Updated: 2019/02/09 13:47:42 by obelouch         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,13 +26,9 @@ HEAD = includes/fractol.h
 
 OBJ = *.o
 
-ifeq ($(OS), Linux)
-	LIB = -L ./mlx_X11 -lmlx -L ./libft -lft -lm -lpthread
-	FRAME = -lXext -lX11
-else
-	LIB = -L ./mlx -lmlx -L ./libft -lft -lm -lpthread 
-	FRAME = -framework OpenGL -framework Appkit
-endif
+LIB = -L ./mlx -lmlx -L ./libft -lft -lm -lpthread
+
+FRAME = -framework OpenGL -framework Appkit
 
 FLAG = -Wall -Wextra -Werror -std=gnu99 -pedantic
 

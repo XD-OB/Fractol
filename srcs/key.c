@@ -6,13 +6,13 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:11:51 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/07 15:12:16 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/09 14:14:12 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-static void	switch_color(t_graphic *ptr, int ext)
+static void		switch_color(t_graphic *ptr, int ext)
 {
 	if (ext == 1)
 	{
@@ -23,7 +23,7 @@ static void	switch_color(t_graphic *ptr, int ext)
 	}
 	else
 	{
-		if (ptr->intern == 5)
+		if (ptr->intern == 4)
 			ptr->intern = 0;
 		else
 			ptr->intern++;
@@ -52,7 +52,7 @@ static void		julia_event(int kcode, t_graphic *ptr)
 		ptr->j_cte = complex(-0, 1);
 }
 
-static void	general_event(int kcode, t_fractol *f)
+static void		general_event(int kcode, t_fractol *f)
 {
 	if (kcode == K_ESC)
 		exit(1);
@@ -79,7 +79,7 @@ static void	general_event(int kcode, t_fractol *f)
 	}
 }
 
-int	key_event(int kcode, t_fractol *f)
+int				key_event(int kcode, t_fractol *f)
 {
 	t_mouse		*mouse;
 
@@ -106,7 +106,7 @@ int	key_event(int kcode, t_fractol *f)
 	return (1);
 }
 
-int		key_press(int kcode, t_fractol *r)
+int				key_press(int kcode, t_fractol *r)
 {
 	t_mouse		*mouse;
 

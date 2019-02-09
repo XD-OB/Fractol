@@ -6,12 +6,12 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 06:31:41 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/07 15:11:54 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/09 13:52:57 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
-#define	FRACTOL_H
+# define FRACTOL_H
 
 # include "header.h"
 # include "structs.h"
@@ -56,6 +56,5 @@ void		init_img(t_graphic *ptr);
 void		img_put_pixel(t_graphic *ptr, double x, double y, int color);
 void		img_clear(t_graphic *ptr);
 int			key_event(int keycode, t_fractol *r);
-
 
 #endif

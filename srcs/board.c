@@ -6,13 +6,13 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 11:22:19 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/08 11:51:37 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/09 14:25:24 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fractol.h"
 
-void		error(void)
+void	error(void)
 {
 	ft_putstr("\033[31mUsage: ./fractol  type\n\n");
 	ft_putstr("\033[1;35mAvailable fractals:  \033[1;32m* Julia\n");
@@ -36,7 +36,8 @@ void		error(void)
 
 void	menu_julia(void)
 {
-	ft_putstr("\033[36m\n   ######### \033[1;32mMADE BY OBELOUCH \033[0;36m########\n");
+	ft_putstr("\033[36m\n   ######### \033[1;32mMADE BY ");
+	ft_putstr("OBELOUCH \033[0;36m########\n");
 	ft_putstr("\033[0;36m   -----------------------------------\n");
 	ft_putstr("   | ESC         :\033[1;34m   Close           \033[0;36m|\n");
 	ft_putstr("   | SPACE       :\033[1;34m  Initialize       \033[0;36m|\n");
@@ -50,12 +51,12 @@ void	menu_julia(void)
 	ft_putstr("   | J          -Power+          K   \033[0;36m|\n");
 	ft_putstr("   | Y U I O P { }:\033[1;34m Change Types     \033[0;36m|\n");
 	ft_putstr("   -----------------------------------\n\033[0;0m");
-	
 }
 
 void	menu_mandel(void)
 {
-	ft_putstr("\033[36m\n   ######### \033[1;32mMADE BY OBELOUCH \033[0;36m########\n");
+	ft_putstr("\033[36m\n   ######### \033[1;32mMADE BY ");
+	ft_putstr("OBELOUCH \033[0;36m########\n");
 	ft_putstr("\033[36m   -----------------------------------\n");
 	ft_putstr("   | ESC         :\033[1;34m   Close           \033[0;36m|\n");
 	ft_putstr("   | SPACE       :\033[1;34m  Initialize       \033[0;36m|\n");
@@ -65,6 +66,5 @@ void	menu_mandel(void)
 	ft_putstr("   | X  Intern   Color   Extern  C   \033[0;36m|\n");
 	ft_putstr("   | -      -Max Iteration+      +   \033[0;36m|\n");
 	ft_putstr("   | J          -Power+          K   \033[0;36m|\n");
-	ft_putstr("   -----------------------------------\n");
-
+	ft_putstr("   -----------------------------------\033[0;0m\n");
 }
