@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:12:40 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/09 22:06:46 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/09 22:25:47 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	init_ptr(t_graphic *ptr)
 {
 	ptr->max_iter = MAX_ITER;
-	ptr->design = 0;
-	ptr->intern = 0;
+	ptr->design = 4;
+	ptr->intern = 2;
 	ptr->zoom = 200;
 	ptr->j_cte = complex(-0.7, 0.27015);
 	ptr->m_puis = 3;

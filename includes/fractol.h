@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 06:31:41 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/09 13:52:57 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/09 22:50:28 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void		ft_zoom(int x, int y, t_fractol *r);
 void		ft_unzoom(int x, int y, t_fractol *r);
 float		lerp(float v0, float v1, float t);
 float		mod2(t_complex c);
+int			wiki_map(int k);
 void		whitescreen(t_graphic *ptr);
 t_point		point(int x, int y);
 void		infcircle(t_point p, int r, t_graphic ptr, int n);

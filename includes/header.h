@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 13:54:06 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/09 13:54:10 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/09 23:10:11 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define P(x, y) sqrt(pow(x - 1 / 4, 2) + pow(y, 2))
 # define WIDTH 900
 # define HEIGHT 600
-# define MAX_ITER 50
+# define MAX_ITER 64
 # define DIV 10
 # define JULIA_C 0.001
 # define K_ESC 53
