@@ -47,9 +47,9 @@ void	ft_zoom(int x, int y, t_fractol *r)
 		- (y / ((r->ptr)->zoom * 1.3));
 	r->ptr->zoom *= 1.3;
 	if (r->ptr->zoom < 1000)
-		(r->ptr)->max_iter += 2;
+		(r->ptr)->max_iter++;
 	else
-		(r->ptr)->max_iter += 20;
+		(r->ptr)->max_iter += 50;
 }
 
 void	ft_unzoom(int x, int y, t_fractol *r)
@@ -59,5 +59,8 @@ void	ft_unzoom(int x, int y, t_fractol *r)
 	(&(r->mouse))->y = (y / (r->ptr)->zoom + (&(r->mouse))->y)
 		- (y / ((r->ptr)->zoom / 1.3));
 	r->ptr->zoom /= 1.3;
-	(r->ptr)->max_iter -= 10;
+	if (r->ptr->zoom < 1000)
+		(r->ptr)->max_iter--;
+	else
+		(r->ptr)->max_iter -= 50;
 }

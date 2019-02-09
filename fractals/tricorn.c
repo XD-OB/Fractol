@@ -15,7 +15,7 @@
 static int		tfillz(t_graphic *ptr, int *ind, t_complex *z)
 {
 	z[1].re = z[0].re * z[0].re - z[0].im * z[0].im + z[2].re;
-	z[1].im = 2 * z[0].re * z[0].im + z[2].im;
+	z[1].im = -2 * z[0].re * z[0].im + z[2].im;
 	if (z[1].re == z[0].re && z[1].im == z[0].im)
 	{
 		ind[2] = ptr->max_iter;

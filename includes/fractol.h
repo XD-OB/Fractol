@@ -16,8 +16,8 @@
 # include "header.h"
 # include "structs.h"
 
-void		menu_julia(void);
-void		menu_mandel(void);
+void		fractal_type(t_fractol *f, char *str);
+void		menu(t_fractol f);
 int			win_close(t_fractol *r);
 void		init_mouse(t_mouse *mouse);
 int			mouse_event(int mcode, int x, int y, t_fractol *r);
