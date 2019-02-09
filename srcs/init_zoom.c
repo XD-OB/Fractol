@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:12:40 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/09 14:08:02 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/09 22:06:46 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ void	init_mouse(t_mouse *mouse)
 	mouse->isclick = 0;
 }
 
-void	init_fractol(t_fractol *r, t_graphic *ptr)
+void	init_fractol(t_fractol *f, t_graphic *ptr)
 {
-	init_mouse(&(r->mouse));
-	r->ptr = ptr;
-	r->p = 0;
-	r->q = 0;
+	init_mouse(&(f->mouse));
+	f->ptr = ptr;
+	f->type = NONE;
+	f->p = 0;
+	f->q = 0;
 }
 
 void	ft_zoom(int x, int y, t_fractol *r)
@@ -46,10 +47,7 @@ void	ft_zoom(int x, int y, t_fractol *r)
 	(&(r->mouse))->y = (y / (r->ptr)->zoom + (&(r->mouse))->y)
 		- (y / ((r->ptr)->zoom * 1.3));
 	r->ptr->zoom *= 1.3;
-	if (r->ptr->zoom < 1000)
-		(r->ptr)->max_iter++;
-	else
-		(r->ptr)->max_iter += 50;
+	(r->ptr)->max_iter += 2;
 }
 
 void	ft_unzoom(int x, int y, t_fractol *r)
@@ -59,8 +57,6 @@ void	ft_unzoom(int x, int y, t_fractol *r)
 	(&(r->mouse))->y = (y / (r->ptr)->zoom + (&(r->mouse))->y)
 		- (y / ((r->ptr)->zoom / 1.3));
 	r->ptr->zoom /= 1.3;
-	if (r->ptr->zoom < 1000)
-		(r->ptr)->max_iter--;
-	else
-		(r->ptr)->max_iter -= 50;
+	if (r->ptr->max_iter > 5)
+		(r->ptr)->max_iter -= 2;
 }

@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 13:54:22 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/09 14:02:47 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/09 21:53:11 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct		s_mouse
 
 typedef struct		s_graphic
 {
-	void*			mlx;
-	void*			win;
+	void			*mlx;
+	void			*win;
 	unsigned int	max_iter;
 	int				design;
 	int				intern;
