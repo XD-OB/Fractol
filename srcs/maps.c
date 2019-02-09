@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 14:17:13 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/09 14:23:34 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/09 14:32:27 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int			change_map2(int k)
 
 static void	changeit1(int *design)
 {
+	design[20] = 0x005050;
 	design[21] = 0x005454;
 	design[22] = 0x005858;
 	design[23] = 0x005C5C;
@@ -80,6 +81,34 @@ static void	changeit1(int *design)
 	design[38] = 0x009898;
 	design[39] = 0x009C9C;
 	design[40] = 0x00A0A0;
+}
+
+static void	changeit2(int *design)
+{
+	design[41] = 0x00A4A4;
+	design[42] = 0x00A8A8;
+	design[43] = 0x00ACAC;
+	design[44] = 0x00B0B0;
+	design[45] = 0x00B4B4;
+	design[46] = 0x00B8B8;
+	design[47] = 0x00BCBC;
+	design[48] = 0x00C0C0;
+	design[49] = 0x00C4C4;
+	design[50] = 0x00C8C8;
+	design[51] = 0x00CCCC;
+	design[52] = 0x00D0D0;
+	design[53] = 0x00D4D4;
+	design[54] = 0x00D8D8;
+	design[55] = 0x00DCDC;
+	design[56] = 0x00E0E0;
+	design[57] = 0x00E4E4;
+	design[58] = 0x00E8E8;
+	design[59] = 0x00ECEC;
+	design[60] = 0x00F0F0;
+	design[61] = 0x00F4F4;
+	design[62] = 0x00F8F8;
+	design[63] = 0x00FCFC;
+	design[64] = 0x00FFFF;
 }
 
 int			change_map3(int k)
@@ -106,31 +135,7 @@ int			change_map3(int k)
 	design[17] = 0x004444;
 	design[18] = 0x004848;
 	design[19] = 0x004C4C;
-	design[20] = 0x005050;
 	changeit1(design);
-	design[41] = 0x00A4A4;
-	design[42] = 0x00A8A8;
-	design[43] = 0x00ACAC;
-	design[44] = 0x00B0B0;
-	design[45] = 0x00B4B4;
-	design[46] = 0x00B8B8;
-	design[47] = 0x00BCBC;
-	design[48] = 0x00C0C0;
-	design[49] = 0x00C4C4;
-	design[50] = 0x00C8C8;
-	design[51] = 0x00CCCC;
-	design[52] = 0x00D0D0;
-	design[53] = 0x00D4D4;
-	design[54] = 0x00D8D8;
-	design[55] = 0x00DCDC;
-	design[56] = 0x00E0E0;
-	design[57] = 0x00E4E4;
-	design[58] = 0x00E8E8;
-	design[59] = 0x00ECEC;
-	design[60] = 0x00F0F0;
-	design[61] = 0x00F4F4;
-	design[62] = 0x00F8F8;
-	design[63] = 0x00FCFC;
-	design[64] = 0x00FFFF;
+	changeit2(design);
 	return (design[k % 65]);
 }

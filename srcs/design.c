@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:11:21 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/09 14:14:25 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/09 14:48:18 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,17 @@ int			outer(t_graphic ptr, int k)
 
 int			inner(t_graphic ptr, int k, t_complex z)
 {
+	float s;
+
+	s = sqrt(mod2(z)); 
 	if (ptr.intern == 1)
-		return (rgb_map(k * 100 * sin(sqrt(z.re * z.re + z.im * z.im)),
-					k * sin(sqrt(z.re * z.re + z.im * z.im)), 50 * k));
+		return (rgb_map(k * 100 * sin(s), k * sin(s), 50 * k));
 	if (ptr.intern == 2)
-		return (rgb_map(sqrt(z.re * z.re + z.im * z.im) * 20,
-					sqrt(z.re * z.re + z.im * z.im) * 5,
-					sqrt(z.re * z.re + z.im * z.im) * 150));
+		return (rgb_map(s * 20, s * 5, s * 150));
 	if (ptr.intern == 3)
-		return (rgb_map(sqrt(z.re * z.re + z.im * z.im) * 300, 0,
-					sqrt(z.re * z.re + z.im * z.im) * 450));
+		return (rgb_map(s * 300, 0, s * 450));
 	if (ptr.intern == 4)
-		return (rgb_map(sin(z.re * z.re + z.im * z.im) * 200,
-					sin((z.re * z.re + z.im * z.im) / 2) * 200,
-					sin((z.re * z.re + z.im * z.im) / 4) * 200));
+		return (rgb_map(sin(s * s) * 200, sin((s * s) / 2) * 200,
+		sin((s * s) / 4) * 200));
 	return (0);
 }
