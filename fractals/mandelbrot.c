@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:09:27 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/10 22:31:21 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/10 23:49:57 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void		*part_mandel(void *varg)
 	while (++ind[0] < (HEIGHT * f->div) / DIV)
 	{
 		z[2].im = ind[0] / f->ptr->zoom + (f->mouse).y;
-		ind[1] = - 1;
+		ind[1] = -1;
 		while (++ind[1] < WIDTH)
 		{
 			z[2].re = ind[1] / f->ptr->zoom + (f->mouse).x;

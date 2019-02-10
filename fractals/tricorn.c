@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:09:58 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/10 22:29:25 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/10 23:49:20 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void		*part_corn(void *varg)
 	ind[0] = ((HEIGHT * (f->div - 1)) / DIV) - 1;
 	while (++ind[0] < (HEIGHT * f->div) / DIV)
 	{
-		ind[1] = - 1;
+		ind[1] = -1;
 		z[2].im = ind[0] / f->ptr->zoom + (f->mouse).y;
 		while (++ind[1] < WIDTH)
 		{

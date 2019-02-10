@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pallette1.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/10 23:54:32 by obelouch          #+#    #+#             */
+/*   Updated: 2019/02/10 23:56:37 by obelouch         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/fractol.h"
 
-static void	fill_wiki2(int *map)
+static void		fill_wiki2(int *map)
 {
 	map[31] = 0xF2E1A7;
 	map[32] = 0xF4D98F;
@@ -19,9 +31,9 @@ static void	fill_wiki2(int *map)
 	map[45] = 0xD28600;
 	map[46] = 0xCC8100;
 	map[47] = 0xC57B00;
-	map[48] = 0xBF7600;	
+	map[48] = 0xBF7600;
 	map[49] = 0xB26C00;
-	map[50] = 0xA56100;	
+	map[50] = 0xA56100;
 	map[51] = 0x995700;
 	map[52] = 0x8D4E00;
 	map[53] = 0x814501;
@@ -29,7 +41,7 @@ static void	fill_wiki2(int *map)
 	map[55] = 0x6A3303;
 }
 
-static void	fill_wiki1(int *map)
+static void		fill_wiki1(int *map)
 {
 	map[7] = 0x0C2B8A;
 	map[8] = 0x0D2F8E;
@@ -46,8 +58,8 @@ static void	fill_wiki1(int *map)
 	map[19] = 0x4B8BD6;
 	map[20] = 0x5F99DB;
 	map[21] = 0x72A7E0;
-	map[22] = 0x86B5E5;	
-	map[23] = 0x99C2E9;	
+	map[22] = 0x86B5E5;
+	map[23] = 0x99C2E9;
 	map[24] = 0xADD0EE;
 	map[25] = 0xC0DEF3;
 	map[26] = 0xD4ECF8;
@@ -57,7 +69,7 @@ static void	fill_wiki1(int *map)
 	map[30] = 0xF1E9BF;
 }
 
-int		wiki_map(int k)
+int				wiki_map(int k)
 {
 	int		map[56];
 

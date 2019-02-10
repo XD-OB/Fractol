@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:11:51 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/10 23:32:12 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/10 23:57:54 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int				key_event(int kcode, t_fractol *f)
 	mouse = &(f->mouse);
 	if (kcode == K_1)
 	{
-		if(f->type != CANTOR)
+		if (f->type != CANTOR)
 			f->type++;
 		else
 			f->type = JULIA;
@@ -101,7 +101,7 @@ int				key_event(int kcode, t_fractol *f)
 	else if (kcode == K_M)
 		f->ptr->m_puis++;
 	else if (kcode == K_N && f->ptr->m_puis >= 0)
-			f->ptr->m_puis--;
+		f->ptr->m_puis--;
 	fractal(f);
 	return (1);
 }

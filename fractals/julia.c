@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:09:15 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/10 22:30:37 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/10 23:51:00 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void		*part_j(void *varg)
 
 	f = (t_fractol*)varg;
 	ind[0] = ((HEIGHT * (f->div - 1)) / DIV) - 1;
-	while (++ind[0] < (HEIGHT * f->div)/ DIV)
+	while (++ind[0] < (HEIGHT * f->div) / DIV)
 	{
-		ind[1] = - 1;
+		ind[1] = -1;
 		while (++ind[1] < WIDTH)
 		{
 			ind[2] = -1;

@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:08:27 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/10 22:31:56 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/10 23:53:36 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void			burnship(t_fractol *f)
 	while (++ind[0] < DIV)
 	{
 		tmp[ind[0]] = *f;
-		tmp[ind[0]].div = ind[0]  + 1;
+		tmp[ind[0]].div = ind[0] + 1;
 	}
 	ind[1] = -1;
 	ind[0] = -1;

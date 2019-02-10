@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:08:46 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/10 22:31:03 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/10 23:52:53 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void		*part_cosine(void *varg)
 	while (++ind[0] < (HEIGHT * f->div) / DIV)
 	{
 		z[2].im = ind[0] / f->ptr->zoom + (f->mouse).y;
-		ind[1] = - 1;
+		ind[1] = -1;
 		while (++ind[1] < WIDTH)
 		{
 			z[2].re = ind[1] / f->ptr->zoom + (f->mouse).x;
@@ -70,7 +70,6 @@ void			cosine(t_fractol *f)
 	{
 		tmp[ind[0]] = *f;
 		tmp[ind[0]].div = ind[0] + 1;
-
 	}
 	ind[1] = -1;
 	ind[0] = -1;
