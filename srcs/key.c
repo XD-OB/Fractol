@@ -16,7 +16,7 @@ static void		switch_color(t_graphic *ptr, int ext)
 {
 	if (ext == 1)
 	{
-		if (ptr->design != 9)
+		if (ptr->design != 14)
 			ptr->design++;
 		else
 			ptr->design = 0;

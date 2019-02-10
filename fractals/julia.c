@@ -38,7 +38,7 @@ static void		*part_j(void *varg)
 			k = -1;
 			while (mod2(z[0]) < 4 && ++k < r->ptr->max_iter)
 				jfillz(r->ptr, z);
-			if (k < r->ptr->max_iter)
+			if (k != r->ptr->max_iter)
 				img_put_pixel(r->ptr, ind[1], ind[0], outer(*(r->ptr), k));
 			else
 				img_put_pixel(r->ptr, ind[1], ind[0], inner(*(r->ptr),

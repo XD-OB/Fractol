@@ -23,10 +23,10 @@
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 # define P(x, y) sqrt(pow(x - 1 / 4, 2) + pow(y, 2))
-# define WIDTH 900
-# define HEIGHT 600
-# define MAX_ITER 64
-# define DIV 10
+# define WIDTH 600
+# define HEIGHT 400
+# define MAX_ITER 50
+# define DIV 5
 # define JULIA_C 0.001
 # define K_ESC 53
 # define K_UP 126

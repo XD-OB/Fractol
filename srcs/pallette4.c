@@ -12,52 +12,6 @@
 
 #include "../includes/fractol.h"
 
-int			change_map(int k)
-{
-	int		design[16];
-
-	design[0] = 0x33CCCC;
-	design[1] = 0x009933;
-	design[2] = 0x00C800;
-	design[3] = 0xBFFF00;
-	design[4] = 0x00FF7F;
-	design[5] = 0x00BFFF;
-	design[6] = 0x007FFF;
-	design[7] = 0x0000FF;
-	design[8] = 0x7F00FF;
-	design[9] = 0xFF007F;
-	design[10] = 0xFF0000;
-	design[11] = 0xFF3F00;
-	design[12] = 0xFF7F00;
-	design[13] = 0xFFBF00;
-	design[14] = 0xFFB3E6;
-	design[15] = 0xFFFF00;
-	return (design[k % 16]);
-}
-
-int			change_map2(int k)
-{
-	int		design[16];
-
-	design[0] = 0x00FF00;
-	design[1] = 0x10DA50;
-	design[2] = 0x200210;
-	design[3] = 0x301488;
-	design[4] = 0x405922;
-	design[5] = 0x50ADAD;
-	design[6] = 0x60AD90;
-	design[7] = 0x70BBCC;
-	design[8] = 0x80DABC;
-	design[9] = 0x902121;
-	design[10] = 0xA032A3;
-	design[11] = 0xB0AB12;
-	design[12] = 0xC08243;
-	design[13] = 0xD06555;
-	design[14] = 0xE01341;
-	design[15] = 0xF0FFFF;
-	return (design[k % 16]);
-}
-
 static void	changeit1(int *design)
 {
 	design[20] = 0x005050;

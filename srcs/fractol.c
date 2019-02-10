@@ -21,7 +21,7 @@ static void		partfract(t_fractol *f)
 	else if (f->type == DOUADY)
 		f->ptr->j_cte = complex(-0.123, 0.745);
 	else if (f->type == INTERN)
-		f->ptr->j_cte = complex(-0.285, 0.01);
+		f->ptr->j_cte = complex(0.19, 0.8);
 	else if (f->type == GALAXY)
 		f->ptr->j_cte = complex(-0.4, 0.6);
 	else if (f->type == SJULIA)

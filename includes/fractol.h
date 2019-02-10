@@ -34,7 +34,7 @@ void		infcircle(t_point p, int r, t_graphic ptr, int n);
 int			change_map(int n);
 int			change_map2(int n);
 int			change_map3(int n);
-int			palette(int n);
+int			change_map4(int n);
 int			hsv(double h, double s, double v);
 int			outer(t_graphic ptr, int k);
 int			inner(t_graphic ptr, int k, t_complex z);
