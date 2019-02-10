@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:09:58 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/09 14:25:55 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/10 22:29:25 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ static void		*part_corn(void *varg)
 	int			ind[3];
 
 	f = (t_fractol*)varg;
-	ind[0] = ((HEIGHT * (f->p - 1)) / DIV) - 1;
-	while (++ind[0] < (HEIGHT * f->p) / DIV)
+	ind[0] = ((HEIGHT * (f->div - 1)) / DIV) - 1;
+	while (++ind[0] < (HEIGHT * f->div) / DIV)
 	{
+		ind[1] = - 1;
 		z[2].im = ind[0] / f->ptr->zoom + (f->mouse).y;
-		ind[1] = ((WIDTH * (f->q - 1)) / DIV) - 1;
-		while (++ind[1] < (WIDTH * f->q) / DIV)
+		while (++ind[1] < WIDTH)
 		{
-			z[2].re = ind[1] / f->ptr->zoom + (f->mouse).x;
-			z[0] = complex(0, 0);
 			ind[2] = -1;
+			z[0] = complex(0, 0);
+			z[2].re = ind[1] / f->ptr->zoom + (f->mouse).x;
 			while (mod2(z[0]) < 4 && ++ind[2] < f->ptr->max_iter)
 				tfillz(f->ptr, ind, z);
 			if (ind[2] < f->ptr->max_iter)
@@ -54,31 +54,24 @@ static void		*part_corn(void *varg)
 	return (NULL);
 }
 
-void			tricorn(t_fractol *r)
+void			tricorn(t_fractol *f)
 {
-	int			ind[3];
 	t_fractol	*tmp;
-	pthread_t	id[DIV * DIV];
+	int			ind[2];
+	pthread_t	id[DIV];
 
-	tmp = (t_fractol*)malloc(sizeof(t_fractol) * DIV * DIV);
+	tmp = (t_fractol*)malloc(sizeof(t_fractol) * DIV);
 	ind[0] = -1;
-	while (++ind[0] < DIV * DIV)
-		tmp[ind[0]] = *r;
-	ind[0] = 0;
-	while (++ind[0] <= DIV)
+	while (++ind[0] < DIV)
 	{
-		ind[1] = 0;
-		while (++ind[1] <= DIV)
-		{
-			tmp[((ind[0] - 1) * DIV) + (ind[1] - 1)].p = ind[0];
-			tmp[((ind[0] - 1) * DIV) + (ind[1] - 1)].q = ind[1];
-		}
+		tmp[ind[0]] = *f;
+		tmp[ind[0]].div = ind[0] + 1;
 	}
-	ind[2] = -1;
+	ind[1] = -1;
 	ind[0] = -1;
-	while (++ind[0] < DIV * DIV)
+	while (++ind[0] < DIV)
 		pthread_create(&id[ind[0]], NULL, part_corn, (void*)(&tmp[ind[0]]));
-	while (++ind[2] < DIV * DIV)
-		pthread_join(id[ind[2]], NULL);
+	while (++ind[1] < DIV)
+		pthread_join(id[ind[1]], NULL);
 	free(tmp);
 }

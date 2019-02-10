@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:09:01 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/08 10:26:38 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/10 22:30:52 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,56 +39,49 @@ static void		fput_in(t_graphic *ptr, int *ind, t_complex c)
 
 static void		*part_feigen(void *varg)
 {
-	t_fractol	*r;
+	t_fractol	*f;
 	t_complex	z[4];
 	int			ind[3];
 
-	r = (t_fractol*)varg;
-	ind[0] = ((HEIGHT * (r->p - 1)) / DIV) - 1;
-	while (++ind[0] < (HEIGHT * r->p) / DIV)
+	f = (t_fractol*)varg;
+	ind[0] = ((HEIGHT * (f->div - 1)) / DIV) - 1;
+	while (++ind[0] < (HEIGHT * f->div) / DIV)
 	{
-		z[3].im = ind[0] / r->ptr->zoom + (r->mouse).y;
-		ind[1] = ((WIDTH * (r->q - 1)) / DIV) - 1;
-		while (++ind[1] < (WIDTH * r->q) / DIV)
+		z[3].im = ind[0] / f->ptr->zoom + (f->mouse).y;
+		ind[1] = - 1;
+		while (++ind[1] < WIDTH)
 		{
-			z[3].re = ind[1] / r->ptr->zoom + (r->mouse).x;
-			z[2].re = pow(z[3].re, 3) - 3 * z[3].re * pow(z[3].im, 2);
-			z[2].im = 3 * pow(z[3].re, 2) * z[3].im - pow(z[3].im, 3);
+			z[3].re = ind[1] / f->ptr->zoom + (f->mouse).x;
+			z[2].re = pow(z[3].re, 3) - 3 * z[3].re * z[3].im * z[3].im;
+			z[2].im = 3 * z[3].re * z[3].re * z[3].im - pow(z[3].im, 3);
 			z[0] = complex(0, 0);
 			ind[2] = -1;
-			while (mod2(z[0]) < 4 && ++ind[2] < r->ptr->max_iter)
-				ffillz(r->ptr, ind, z);
-			fput_in(r->ptr, ind, z[0]);
+			while (mod2(z[0]) < 4 && ++ind[2] < f->ptr->max_iter)
+				ffillz(f->ptr, ind, z);
+			fput_in(f->ptr, ind, z[0]);
 		}
 	}
 	return (NULL);
 }
 
-void			feigenbaum(t_fractol *r)
+void			feigenbaum(t_fractol *f)
 {
-	int			ind[3];
+	int			ind[2];
 	t_fractol	*tmp;
-	pthread_t	id[DIV * DIV];
+	pthread_t	id[DIV];
 
-	tmp = (t_fractol*)malloc(sizeof(t_fractol) * DIV * DIV);
+	tmp = (t_fractol*)malloc(sizeof(t_fractol) * DIV);
 	ind[0] = -1;
-	while (++ind[0] < DIV * DIV)
-		tmp[ind[0]] = *r;
-	ind[0] = 0;
-	while (++ind[0] <= DIV)
+	while (++ind[0] < DIV)
 	{
-		ind[1] = 0;
-		while (++ind[1] <= DIV)
-		{
-			tmp[((ind[0] - 1) * DIV) + (ind[1] - 1)].p = ind[0];
-			tmp[((ind[0] - 1) * DIV) + (ind[1] - 1)].q = ind[1];
-		}
+		tmp[ind[0]] = *f;
+		tmp[ind[0]].div = ind[0] + 1;
 	}
-	ind[2] = -1;
+	ind[1] = -1;
 	ind[0] = -1;
-	while (++ind[0] < DIV * DIV)
+	while (++ind[0] < DIV)
 		pthread_create(&id[ind[0]], NULL, part_feigen, (void*)(&tmp[ind[0]]));
-	while (++ind[2] < DIV * DIV)
-		pthread_join(id[ind[2]], NULL);
+	while (++ind[1] < DIV)
+		pthread_join(id[ind[1]], NULL);
 	free(tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 13:54:22 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/09 21:53:11 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/10 22:54:31 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ typedef struct		s_graphic
 	long double		zoom;
 	t_image			image;
 	t_complex		j_cte;
-	int				j_puis;
 	int				m_puis;
 }					t_graphic;
 
@@ -54,8 +53,7 @@ typedef struct		s_fractol
 	t_graphic		*ptr;
 	t_mouse			mouse;
 	int				type;
-	int				p;
-	int				q;
+	int				div;
 }					t_fractol;
 
 typedef struct		s_point

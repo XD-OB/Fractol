@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 06:31:41 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/09 22:50:28 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/10 23:47:55 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ void		whitescreen(t_graphic *ptr);
 t_point		point(int x, int y);
 void		infcircle(t_point p, int r, t_graphic ptr, int n);
 int			change_map(int n);
-int			change_map2(int n);
-int			change_map3(int n);
-int			change_map4(int n);
 int			hsv(double h, double s, double v);
 int			outer(t_graphic ptr, int k);
 int			inner(t_graphic ptr, int k, t_complex z);
@@ -48,7 +45,6 @@ void		burnship(t_fractol *r);
 void		feigenbaum(t_fractol *r);
 void		cosine(t_fractol *r);
 void		star(t_graphic *ptr);
-void		multijulia(t_fractol *r);
 void		julia(t_fractol *r);
 void		init_fractol(t_fractol *r, t_graphic *ptr);
 void		init_ptr(t_graphic *ptr);

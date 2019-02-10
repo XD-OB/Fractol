@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:09:15 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/08 09:37:05 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/10 22:30:37 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,58 +21,50 @@ static void		jfillz(t_graphic *ptr, t_complex *z)
 
 static void		*part_j(void *varg)
 {
-	t_fractol	*r;
+	t_fractol	*f;
 	t_complex	z[2];
-	int			k;
-	double		ind[2];
+	int			ind[3];
 
-	r = (t_fractol*)varg;
-	ind[0] = (HEIGHT * (r->p - 1) / DIV) - 1;
-	while (++ind[0] <= (HEIGHT / DIV) * r->p)
+	f = (t_fractol*)varg;
+	ind[0] = ((HEIGHT * (f->div - 1)) / DIV) - 1;
+	while (++ind[0] < (HEIGHT * f->div)/ DIV)
 	{
-		ind[1] = (WIDTH * (r->q - 1) / DIV) - 1;
-		while (++ind[1] <= ((WIDTH / DIV) * r->q))
+		ind[1] = - 1;
+		while (++ind[1] < WIDTH)
 		{
-			z[0].im = ind[0] / r->ptr->zoom + (r->mouse).y;
-			z[0].re = ind[1] / r->ptr->zoom + (r->mouse).x;
-			k = -1;
-			while (mod2(z[0]) < 4 && ++k < r->ptr->max_iter)
-				jfillz(r->ptr, z);
-			if (k != r->ptr->max_iter)
-				img_put_pixel(r->ptr, ind[1], ind[0], outer(*(r->ptr), k));
+			ind[2] = -1;
+			z[0].re = ind[1] / f->ptr->zoom + (f->mouse).x;
+			z[0].im = ind[0] / f->ptr->zoom + (f->mouse).y;
+			while (mod2(z[0]) < 4 && ++ind[2] < f->ptr->max_iter)
+				jfillz(f->ptr, z);
+			if (ind[2] < f->ptr->max_iter)
+				img_put_pixel(f->ptr, ind[1], ind[0], outer(*(f->ptr), ind[2]));
 			else
-				img_put_pixel(r->ptr, ind[1], ind[0], inner(*(r->ptr),
-							k, z[0]));
+				img_put_pixel(f->ptr, ind[1], ind[0], inner(*(f->ptr),
+							ind[2], z[0]));
 		}
 	}
 	return (NULL);
 }
 
-void			julia(t_fractol *r)
+void			julia(t_fractol *f)
 {
-	int			ind[3];
+	int			ind[2];
 	t_fractol	*tmp;
-	pthread_t	id[DIV * DIV];
+	pthread_t	id[DIV];
 
-	tmp = (t_fractol*)malloc(sizeof(t_fractol) * DIV * DIV);
+	tmp = (t_fractol*)malloc(sizeof(t_fractol) * DIV);
 	ind[0] = -1;
-	while (++ind[0] < DIV * DIV)
-		tmp[ind[0]] = *r;
-	ind[0] = 0;
-	while (++ind[0] <= DIV)
+	while (++ind[0] < DIV)
 	{
-		ind[1] = 0;
-		while (++ind[1] <= DIV)
-		{
-			tmp[((ind[0] - 1) * DIV) + (ind[1] - 1)].p = ind[0];
-			tmp[((ind[0] - 1) * DIV) + (ind[1] - 1)].q = ind[1];
-		}
+		tmp[ind[0]] = *f;
+		tmp[ind[0]].div = ind[0] + 1;
 	}
-	ind[2] = -1;
+	ind[1] = -1;
 	ind[0] = -1;
-	while (++ind[0] < DIV * DIV)
+	while (++ind[0] < DIV)
 		pthread_create(&id[ind[0]], NULL, part_j, (void*)(&tmp[ind[0]]));
-	while (++ind[2] < DIV * DIV)
-		pthread_join(id[ind[2]], NULL);
+	while (++ind[1] < DIV)
+		pthread_join(id[ind[1]], NULL);
 	free(tmp);
 }

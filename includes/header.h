@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 13:54:06 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/09 23:10:11 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/10 23:47:26 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 # include "../libft/libft.h"
 # include "../mlx/mlx.h"
 # define P(x, y) sqrt(pow(x - 1 / 4, 2) + pow(y, 2))
-# define WIDTH 600
-# define HEIGHT 400
+# define WIDTH 1200
+# define HEIGHT 800
 # define MAX_ITER 50
-# define DIV 5
+# define DIV 20
 # define JULIA_C 0.001
 # define K_ESC 53
 # define K_UP 126
@@ -79,7 +79,6 @@ enum
 	GALAXY,
 	INTERN,
 	CANTOR,
-	MULTIJULIA,
 	NONE
 };
 

@@ -33,7 +33,7 @@ static void	fill_wiki1(int *map)
 {
 	map[7] = 0x0C2B8A;
 	map[8] = 0x0D2F8E;
-	map[9] = 0x0F3493;	
+	map[9] = 0x0F3493;
 	map[10] = 0x103998;
 	map[11] = 0x123E9D;
 	map[12] = 0x1342A2;

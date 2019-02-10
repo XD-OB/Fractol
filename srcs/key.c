@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:11:51 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/09 14:14:12 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/10 23:32:12 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void		switch_color(t_graphic *ptr, int ext)
 	}
 	else
 	{
-		if (ptr->intern == 4)
+		if (ptr->intern == 5)
 			ptr->intern = 0;
 		else
 			ptr->intern++;
@@ -32,11 +32,7 @@ static void		switch_color(t_graphic *ptr, int ext)
 
 static void		julia_event(int kcode, t_graphic *ptr)
 {
-	if (kcode == K_K)
-		ptr->j_puis++;
-	else if (kcode == K_J)
-		ptr->j_puis--;
-	else if (kcode == K_Y)
+	if (kcode == K_Y)
 		ptr->j_cte = complex(-0.8, 0.4);
 	else if (kcode == K_U)
 		ptr->j_cte = complex(-1.417022285618, 0.0099534);
@@ -89,7 +85,7 @@ int				key_event(int kcode, t_fractol *f)
 	mouse = &(f->mouse);
 	if (kcode == K_1)
 	{
-		if(f->type != MULTIJULIA)
+		if(f->type != CANTOR)
 			f->type++;
 		else
 			f->type = JULIA;
@@ -102,13 +98,10 @@ int				key_event(int kcode, t_fractol *f)
 		mouse->x -= 30 / f->ptr->zoom;
 	else if (kcode == K_RIGHT)
 		mouse->x += 30 / f->ptr->zoom;
-	if (f->type != MANDELBROT && f->type != JULIA)
-	{
-		if (kcode == K_M)
-			f->ptr->m_puis++;
-		else if (kcode == K_N && f->ptr->m_puis >= 0)
+	else if (kcode == K_M)
+		f->ptr->m_puis++;
+	else if (kcode == K_N && f->ptr->m_puis >= 0)
 			f->ptr->m_puis--;
-	}
 	fractal(f);
 	return (1);
 }

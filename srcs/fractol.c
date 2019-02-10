@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 21:02:48 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/09 22:19:09 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/10 22:53:28 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void			fractal(t_fractol *f)
 		infcircle(point(WIDTH / 2, HEIGHT / 2), (HEIGHT / 2)
 				- ((2 / 100) * HEIGHT), *(f->ptr), f->ptr->design + 1);
 	}
-	else if (f->type == MULTIJULIA)
-		multijulia(f);
 	partfract(f);
 	if (f->type != INFCIRCLE)
 		mlx_put_image_to_window(f->ptr, f->ptr->win,
@@ -97,8 +95,6 @@ void			fractal_type(t_fractol *f, char *str)
 		f->type = TRICORN;
 	else if (!strcmp(str, "Julia"))
 		f->type = JULIA;
-	else if (!strcmp(str, "MultiJulia"))
-		f->type = MULTIJULIA;
 	else if (!strcmp(str, "StarJulia"))
 		f->type = STAR;
 	else if (!strcmp(str, "LoopJulia"))
