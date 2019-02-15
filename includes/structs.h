@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 13:54:22 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/10 22:54:31 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/15 22:10:20 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 typedef struct		s_complex
 {
-	long double		re;
-	long double		im;
+	double			re;
+	double			im;
 }					t_complex;
 
 typedef struct		s_image
@@ -30,9 +30,9 @@ typedef struct		s_image
 
 typedef struct		s_mouse
 {
-	double			x;
-	double			y;
-	int				isclick;
+	float			x;
+	float			y;
+	int				isclick : 1;
 }					t_mouse;
 
 typedef struct		s_graphic
@@ -40,9 +40,9 @@ typedef struct		s_graphic
 	void			*mlx;
 	void			*win;
 	unsigned int	max_iter;
-	int				design;
-	int				intern;
-	long double		zoom;
+	int				design : 5;
+	int				intern : 5;
+	double			zoom;
 	t_image			image;
 	t_complex		j_cte;
 	int				m_puis;
@@ -58,8 +58,8 @@ typedef struct		s_fractol
 
 typedef struct		s_point
 {
-	float			x;
-	float			y;
+	int				x;
+	int				y;
 }					t_point;
 
 #endif

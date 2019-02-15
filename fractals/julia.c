@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:09:15 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/11 10:42:49 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/15 22:02:09 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static void		*part_j(void *varg)
 
 	f = (t_fractol*)varg;
 	ind[0] = ((HEIGHT * (f->div - 1)) / DIV) - 1;
-	while (++ind[0] <= (HEIGHT * f->div) / DIV)
+	while (++ind[0] < (HEIGHT * f->div) / DIV)
 	{
 		ind[1] = -1;
-		while (++ind[1] <= WIDTH)
+		while (++ind[1] < WIDTH)
 		{
 			ind[2] = -1;
 			z[0].re = ind[1] / f->ptr->zoom + (f->mouse).x;

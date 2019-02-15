@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:12:40 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/11 10:48:59 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/15 22:19:36 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	init_ptr(t_graphic *ptr)
 
 void	init_mouse(t_mouse *mouse)
 {
-	mouse->x = -2.7;
-	mouse->y = -1.8;
+	mouse->x = -2.4;
+	mouse->y = -1.5;
 	mouse->isclick = 0;
 }
 
