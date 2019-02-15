@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 21:02:48 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/10 22:53:28 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/11 10:53:01 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void		partfract(t_fractol *f)
 	else if (f->type == CANTOR)
 		f->ptr->j_cte = complex(0.285, 0.01);
 	else if (f->type == LOOP)
-		f->ptr->j_cte = complex(-0.5, 0.64);
+		f->ptr->j_cte = complex(0.39, 0);
 	if (f->type == LOOP || f->type == CANTOR || f->type == LEAF ||
 			f->type == SJULIA || f->type == GALAXY || f->type == INTERN
 			|| f->type == DOUADY || f->type == STAR)

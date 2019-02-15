@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 06:31:41 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/10 23:47:55 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/11 10:46:24 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int			wiki_map(int k);
 void		whitescreen(t_graphic *ptr);
 t_point		point(int x, int y);
 void		infcircle(t_point p, int r, t_graphic ptr, int n);
-int			change_map(int n);
 int			hsv(double h, double s, double v);
 int			outer(t_graphic ptr, int k);
 int			inner(t_graphic ptr, int k, t_complex z);

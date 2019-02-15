@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   init_zoom.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:12:40 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/10 23:34:36 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/11 10:48:59 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	init_ptr(t_graphic *ptr)
 {
 	ptr->max_iter = MAX_ITER;
-	ptr->design = 2;
+	ptr->design = 3;
 	ptr->intern = 0;
 	ptr->zoom = 200;
 	ptr->j_cte = complex(-0.7, 0.27015);
@@ -45,7 +45,7 @@ void	ft_zoom(int x, int y, t_fractol *f)
 	(&(f->mouse))->y = (y / (f->ptr)->zoom + (&(f->mouse))->y)
 		- (y / ((f->ptr)->zoom * 1.3));
 	f->ptr->zoom *= 1.3;
-	(f->ptr)->max_iter ++;
+	(f->ptr)->max_iter++;
 }
 
 void	ft_unzoom(int x, int y, t_fractol *f)
@@ -56,5 +56,5 @@ void	ft_unzoom(int x, int y, t_fractol *f)
 		- (y / ((f->ptr)->zoom / 1.3));
 	f->ptr->zoom /= 1.3;
 	if (f->ptr->max_iter > 5)
-		(f->ptr)->max_iter --;
+		(f->ptr)->max_iter--;
 }

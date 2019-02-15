@@ -6,7 +6,7 @@
 /*   By: obelouch <OB-96@hotmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:11:21 by obelouch          #+#    #+#             */
-/*   Updated: 2019/02/10 23:45:28 by obelouch         ###   ########.fr       */
+/*   Updated: 2019/02/11 10:44:58 by obelouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int				outer(t_graphic ptr, int k)
 	if (ptr.design == 6)
 		return (rgb_map(son(0.1, k, 1), son(0.1, k, 0), son(0.1, k, 1)));
 	if (ptr.design == 7)
-		return (change_map(k));
+		return (rgb_map(son(0.1, k, 4), son(0.4, k, 0), son(0.1, k, 4)));
 	if (ptr.design == 8)
 		return (rgb_map(son(0.2, k, 6), son(0.1, k, 6), son(0.1, k, 8)));
 	if (ptr.design > 8)
@@ -71,6 +71,8 @@ int				inner(t_graphic ptr, int k, t_complex z)
 	if (ptr.intern == 4)
 		return (rgb_map(son(s, 1, -4), son(s, 2, -4), son(s, 4, -4)));
 	if (ptr.intern == 5)
-	return (rgb_map(son(k, k, k), son(k / 4, k / 2, k), son(k / 8, k / 4, k)));
-	return (0);
+		return (rgb_map(son(k, k, k),
+					son(k / 4, k / 2, k), son(k / 8, k / 4, k)));
+	else
+		return (0);
 }
