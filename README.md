@@ -1,6 +1,6 @@
 # Fractol
 
-fractal was first used by mathematician Benoit Mandelbrot in 1974,
+Fractal was first used by mathematician Benoit Mandelbrot in 1974,
 he based it on the Latin word fractus, meaning "broken" or "fractured".
 
 A fractal is an abstract mathematical object, like a curve or a surface, which has a similar pattern whatever the scale.
@@ -23,23 +23,26 @@ Now, it’s MY TURN to modelize some magnificent fractals using some concepts of
 - ./fractol <type>
 
 ![Usage](/ressources/usage.png)
+
 ![Menu](/ressources/menu.png)
 
 ## Screenshots
-- Julia
+### Julia
 ![Julia1](/ressources/Julia1.png)
+
 ![Julia2](/ressources/Julia2.png)
+
 ![SJulia](/ressources/SJulia.png)
 
-Zoom:
+- Zoom:
 
 ![JuliaZoom1](/ressources/JuliaZoom1.png)
 ![JuliaZoom2](/ressources/JuliaZoom2.png)
 
-- Mandelbrot
+### Mandelbrot
 ![Mandelbrot](/ressources/mandelbrot.png)
 
-- BurningShip
+### BurningShip
 ![BurningShip](/ressources/burningShip.png)
 
 ## Lot of bonuses!!
@@ -52,3 +55,7 @@ Zoom:
 
 ## Owner
 - Oussama Belouche 1337
+
+#
+[![forthebadge](https://forthebadge.com/images/badges/made-with-c.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
